@@ -50,9 +50,12 @@ function Row({ children }: { children: React.ReactNode }) {
 
 function SettingsPage() {
   const navigate = useNavigate();
-  const { isPremium, exportData, deleteAllData } = useCareStore();
+  const { isPremium, entitlement, exportData, deleteAllData, setEntitlement } = useCareStore();
   const [permission, setPermission] = useState(currentPermission());
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [restoreEmail, setRestoreEmail] = useState(entitlement.email ?? "");
+  const [restoring, setRestoring] = useState(false);
+
 
   return (
     <AppShell>
