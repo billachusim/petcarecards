@@ -114,6 +114,10 @@ export interface CaregiverInfo {
 
 export interface PremiumEntitlement {
   lifetimeUnlocked: boolean;
+  /** Email used at checkout — the key the server verifies the purchase against. */
+  email?: string | undefined;
+  environment?: "sandbox" | "live" | undefined;
   purchasedAt?: string | undefined;
   reference?: string | undefined;
+  verifiedAt?: string | undefined;
 }
