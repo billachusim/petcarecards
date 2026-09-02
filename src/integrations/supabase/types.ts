@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      lifetime_purchases: {
+        Row: {
+          created_at: string
+          email: string
+          environment: string
+          id: string
+          paddle_customer_id: string | null
+          paddle_transaction_id: string
+          price_id: string
+          product_id: string
+          purchased_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          environment?: string
+          id?: string
+          paddle_customer_id?: string | null
+          paddle_transaction_id: string
+          price_id: string
+          product_id: string
+          purchased_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          environment?: string
+          id?: string
+          paddle_customer_id?: string | null
+          paddle_transaction_id?: string
+          price_id?: string
+          product_id?: string
+          purchased_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
