@@ -35,7 +35,7 @@ function Section({
   );
 }
 
-function Row({ label, value }: { label: string; value?: string }) {
+function Row({ label, value }: { label: string; value?: string | undefined }) {
   if (!has(value)) return null;
   return (
     <div>
