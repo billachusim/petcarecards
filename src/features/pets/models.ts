@@ -14,70 +14,70 @@ export interface Timestamped {
 export interface Pet extends Timestamped {
   id: string;
   name: string;
-  species?: Species;
-  breed?: string;
-  sex?: Sex;
-  dateOfBirth?: string;
-  approximateAge?: string;
-  weight?: string;
-  photoDataUrl?: string;
-  personality?: string;
-  thingsToKnow?: string;
+  species?: Species | undefined;
+  breed?: string | undefined;
+  sex?: Sex | undefined;
+  dateOfBirth?: string | undefined;
+  approximateAge?: string | undefined;
+  weight?: string | undefined;
+  photoDataUrl?: string | undefined;
+  personality?: string | undefined;
+  thingsToKnow?: string | undefined;
 }
 
 export interface FeedingSchedule extends Timestamped {
   id: string;
   petId: string;
-  foodName?: string;
-  amount?: string;
-  times?: string;
-  mealsPerDay?: string;
-  treats?: string;
-  foodsToAvoid?: string;
-  notes?: string;
+  foodName?: string | undefined;
+  amount?: string | undefined;
+  times?: string | undefined;
+  mealsPerDay?: string | undefined;
+  treats?: string | undefined;
+  foodsToAvoid?: string | undefined;
+  notes?: string | undefined;
 }
 
 export interface CareRoutine extends Timestamped {
   id: string;
   petId: string;
-  walkSchedule?: string;
-  playtime?: string;
-  sleepRoutine?: string;
-  bathroomRoutine?: string;
-  crateInstructions?: string;
-  indoorOutdoorNotes?: string;
-  other?: string;
+  walkSchedule?: string | undefined;
+  playtime?: string | undefined;
+  sleepRoutine?: string | undefined;
+  bathroomRoutine?: string | undefined;
+  crateInstructions?: string | undefined;
+  indoorOutdoorNotes?: string | undefined;
+  other?: string | undefined;
 }
 
 export interface Medication extends Timestamped {
   id: string;
   petId: string;
   name: string;
-  dosage?: string;
-  time?: string;
-  frequency?: string;
-  startDate?: string;
-  endDate?: string;
-  notes?: string;
+  dosage?: string | undefined;
+  time?: string | undefined;
+  frequency?: string | undefined;
+  startDate?: string | undefined;
+  endDate?: string | undefined;
+  notes?: string | undefined;
 }
 
 export interface EmergencyContact extends Timestamped {
   id: string;
   petId: string;
-  primaryName?: string;
-  primaryPhone?: string;
-  secondaryName?: string;
-  secondaryPhone?: string;
-  specialInstructions?: string;
+  primaryName?: string | undefined;
+  primaryPhone?: string | undefined;
+  secondaryName?: string | undefined;
+  secondaryPhone?: string | undefined;
+  specialInstructions?: string | undefined;
 }
 
 export interface Veterinarian extends Timestamped {
   id: string;
   petId: string;
-  vetName?: string;
-  clinicName?: string;
-  phone?: string;
-  address?: string;
+  vetName?: string | undefined;
+  clinicName?: string | undefined;
+  phone?: string | undefined;
+  address?: string | undefined;
 }
 
 export type ReminderType = "feeding" | "medication" | "walk" | "bathroom" | "custom";
@@ -90,8 +90,8 @@ export interface Reminder extends Timestamped {
   title: string;
   time: string; // HH:mm
   repeat: RepeatSchedule;
-  startDate?: string;
-  endDate?: string;
+  startDate?: string | undefined;
+  endDate?: string | undefined;
   enabled: boolean;
 }
 
@@ -99,21 +99,21 @@ export interface Reminder extends Timestamped {
 export interface CareCard {
   pet: Pet;
   feedings: FeedingSchedule[];
-  routine?: CareRoutine;
+  routine?: CareRoutine | undefined;
   medications: Medication[];
-  emergency?: EmergencyContact;
-  veterinarian?: Veterinarian;
+  emergency?: EmergencyContact | undefined;
+  veterinarian?: Veterinarian | undefined;
   generatedAt: string;
 }
 
 export interface CaregiverInfo {
-  name?: string;
-  phone?: string;
-  notes?: string;
+  name?: string | undefined;
+  phone?: string | undefined;
+  notes?: string | undefined;
 }
 
 export interface PremiumEntitlement {
   lifetimeUnlocked: boolean;
-  purchasedAt?: string;
-  reference?: string;
+  purchasedAt?: string | undefined;
+  reference?: string | undefined;
 }

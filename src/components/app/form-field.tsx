@@ -6,10 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface BaseProps {
   label: string;
-  hint?: string;
-  optional?: boolean;
-  error?: string;
-  children?: ReactNode;
+  hint?: string | undefined;
+  optional?: boolean | undefined;
+  error?: string | undefined;
+  children?: ReactNode | undefined;
 }
 
 export function Field({ label, hint, optional, error, children }: BaseProps) {
@@ -33,10 +33,10 @@ export function Field({ label, hint, optional, error, children }: BaseProps) {
 interface TextFieldProps extends BaseProps {
   value: string;
   onChange: (value: string) => void;
-  placeholder?: string;
-  type?: string;
-  multiline?: boolean;
-  rows?: number;
+  placeholder?: string | undefined;
+  type?: string | undefined;
+  multiline?: boolean | undefined;
+  rows?: number | undefined;
 }
 
 export function TextField({

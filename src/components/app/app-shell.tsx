@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 interface AppShellProps {
   children: ReactNode;
   /** Hide chrome for print/share surfaces. */
-  bare?: boolean;
+  bare?: boolean | undefined;
 }
 
 export function AppShell({ children, bare = false }: AppShellProps) {

@@ -15,7 +15,7 @@ function Section({
 }: {
   title: string;
   children: ReactNode;
-  emphasis?: boolean;
+  emphasis?: boolean | undefined;
 }) {
   return (
     <section

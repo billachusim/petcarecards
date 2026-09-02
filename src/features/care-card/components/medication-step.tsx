@@ -18,7 +18,7 @@ export function MedicationStep({ petId }: { petId: string }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const medications = medicationsFor(petId);
 
-  const validate = (id: string, values: { name: string; startDate?: string; endDate?: string }) => {
+  const validate = (id: string, values: { name: string; startDate?: string | undefined; endDate?: string }) => {
     try {
       medicationSchema.parse(values);
       setErrors((e) => ({ ...e, [id]: "" }));

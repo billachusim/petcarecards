@@ -7,9 +7,9 @@ import { compressImageFile } from "@/lib/image";
 import { firstError } from "@/lib/validation";
 
 interface PhotoPickerProps {
-  value?: string;
+  value?: string | undefined;
   onChange: (dataUrl: string | undefined) => void;
-  label?: string;
+  label?: string | undefined;
 }
 
 export function PhotoPicker({ value, onChange, label = "Photo" }: PhotoPickerProps) {

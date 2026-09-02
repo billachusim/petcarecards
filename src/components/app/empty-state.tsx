@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 interface EmptyStateProps {
   title: string;
   description: string;
-  icon?: ReactNode;
-  action?: ReactNode;
+  icon?: ReactNode | undefined;
+  action?: ReactNode | undefined;
 }
 
 export function EmptyState({ title, description, icon, action }: EmptyStateProps) {
