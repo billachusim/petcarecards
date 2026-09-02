@@ -34,7 +34,9 @@ interface CareStoreValue {
   ready: boolean;
   db: CareDatabase;
   isPremium: boolean;
+  entitlement: PremiumEntitlement;
   pets: Pet[];
+
   getPet: (id: string) => Pet | undefined;
   buildCareCard: (petId: string) => CareCard | undefined;
   addPet: (pet: Omit<Pet, "id" | "createdAt" | "updatedAt">) => Pet;
@@ -71,9 +73,29 @@ export function CareStoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setDb(loadDatabase());
+    const loaded = loadDatabase();
+    setDb(loaded);
     setReady(true);
+
+    // Re-verify a stored unlock against the server so entitlement can never be
+    // granted (or kept) by editing local storage alone.
+    const email = loaded.premium.email;
+    if (!email) return;
+    void (async () => {
+      try {
+        const { verifyEntitlement } = await import("@/features/premium/premium-service");
+        const verified = await verifyEntitlement(email);
+        setDb((current) => {
+          const next = { ...current, premium: verified };
+          saveDatabase(next);
+          return next;
+        });
+      } catch {
+        // Offline or transient failure: keep the last verified state.
+      }
+    })();
   }, []);
+
 
   const commit = useCallback((updater: (current: CareDatabase) => CareDatabase) => {
     setDb((current) => {
@@ -93,6 +115,7 @@ export function CareStoreProvider({ children }: { children: ReactNode }) {
       ready,
       db,
       isPremium: db.premium.lifetimeUnlocked,
+      entitlement: db.premium,
       pets: db.pets,
       getPet: (id) => db.pets.find((p) => p.id === id),
       buildCareCard: (petId) => {

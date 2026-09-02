@@ -4,9 +4,18 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { AppShell } from "@/components/app/app-shell";
+import { PaymentTestModeBanner } from "@/components/app/payment-test-mode-banner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
-import { LIFETIME_PRICE, PREMIUM_BENEFITS, restorePurchase } from "@/features/premium/premium-service";
+import {
+  LIFETIME_PRICE,
+  PREMIUM_BENEFITS,
+  restorePurchase,
+  startLifetimeCheckout,
+  verifyEntitlement,
+} from "@/features/premium/premium-service";
 import { firstError } from "@/lib/validation";
 
 export const Route = createFileRoute("/premium")({
@@ -25,15 +34,67 @@ export const Route = createFileRoute("/premium")({
   component: PremiumPage,
 });
 
+/** Polls the server after checkout until the payment webhook has landed. */
+async function waitForEntitlement(email: string) {
+  for (let attempt = 0; attempt < 12; attempt++) {
+    const entitlement = await verifyEntitlement(email);
+    if (entitlement.lifetimeUnlocked) return entitlement;
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+  }
+  return undefined;
+}
+
 function PremiumPage() {
   const navigate = useNavigate();
-  const { isPremium, setEntitlement } = useCareStore();
+  const { isPremium, entitlement, setEntitlement } = useCareStore();
+  const [email, setEmail] = useState(entitlement.email ?? "");
   const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState<string | null>(null);
+
+  const handleUnlock = async () => {
+    if (!email.trim()) {
+      toast.error("Please add your email so we can link your purchase.");
+      return;
+    }
+    setBusy(true);
+    setStatus(null);
+    try {
+      await startLifetimeCheckout({
+        email,
+        onClosed: () => setBusy(false),
+        onCompleted: () => {
+          setStatus("Payment received — confirming your unlock…");
+          void (async () => {
+            try {
+              const verified = await waitForEntitlement(email);
+              if (verified) {
+                setEntitlement(verified);
+                toast.success("Lifetime access unlocked.");
+                setStatus(null);
+              } else {
+                setStatus(
+                  "Your payment went through. It's taking a moment to confirm — tap Restore Purchase in a minute.",
+                );
+              }
+            } catch (error) {
+              setStatus(firstError(error));
+            } finally {
+              setBusy(false);
+            }
+          })();
+        },
+      });
+    } catch (error) {
+      toast.error(firstError(error));
+      setBusy(false);
+    }
+  };
 
   const handleRestore = async () => {
     setBusy(true);
     try {
-      await restorePurchase();
+      const restored = await restorePurchase(email);
+      setEntitlement(restored);
       toast.success("Lifetime access restored.");
     } catch (error) {
       toast.error(firstError(error));
@@ -44,6 +105,7 @@ function PremiumPage() {
 
   return (
     <AppShell>
+      <PaymentTestModeBanner />
       <Button
         variant="ghost"
         className="mb-4 -ml-2 rounded-xl"
@@ -76,30 +138,42 @@ function PremiumPage() {
 
         {isPremium ? (
           <div className="mt-8 rounded-2xl bg-accent/60 px-4 py-4 text-center text-sm font-medium text-accent-foreground">
-            Lifetime access is active on this device. Thank you.
+            Lifetime access is active{entitlement.email ? ` for ${entitlement.email}` : ""}. Thank
+            you.
           </div>
         ) : (
           <>
+            <div className="mt-8 space-y-2">
+              <Label htmlFor="premium-email">Email for your receipt</Label>
+              <Input
+                id="premium-email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                className="h-12 rounded-xl"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <p className="text-xs text-muted-foreground">
+                We use this only to link your purchase so you can restore it on another device.
+              </p>
+            </div>
+
             <Button
               size="lg"
-              className="mt-8 h-14 w-full rounded-2xl text-base"
+              className="mt-5 h-14 w-full rounded-2xl text-base"
               disabled={busy}
-              onClick={() => {
-                setBusy(true);
-                setEntitlement({
-                  lifetimeUnlocked: true,
-                  purchasedAt: new Date().toISOString(),
-                  reference: "pending-checkout",
-                });
-                setBusy(false);
-                toast.success("Lifetime access unlocked.");
-              }}
+              onClick={() => void handleUnlock()}
             >
               Unlock Lifetime — {LIFETIME_PRICE}
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
               One payment. Lifetime access. No subscription.
             </p>
+            {status && (
+              <p className="mt-3 text-center text-sm font-medium text-foreground">{status}</p>
+            )}
             <Button
               variant="ghost"
               className="mt-2 w-full rounded-xl"

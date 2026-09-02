@@ -15,6 +15,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import { restorePurchase } from "@/features/premium/premium-service";
@@ -50,9 +51,12 @@ function Row({ children }: { children: React.ReactNode }) {
 
 function SettingsPage() {
   const navigate = useNavigate();
-  const { isPremium, exportData, deleteAllData } = useCareStore();
+  const { isPremium, entitlement, exportData, deleteAllData, setEntitlement } = useCareStore();
   const [permission, setPermission] = useState(currentPermission());
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [restoreEmail, setRestoreEmail] = useState(entitlement.email ?? "");
+  const [restoring, setRestoring] = useState(false);
+
 
   return (
     <AppShell>
@@ -82,25 +86,44 @@ function SettingsPage() {
         </Row>
 
         <Row>
-          <div>
+          <div className="w-full">
             <p className="font-medium">Restore Purchase</p>
-            <p className="text-sm text-muted-foreground">Recover a purchase made in this browser.</p>
+            <p className="text-sm text-muted-foreground">
+              Enter the email you used at checkout to unlock on this device.
+            </p>
+            <div className="mt-3 flex gap-2">
+              <Input
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                aria-label="Purchase email"
+                placeholder="you@example.com"
+                className="h-11 rounded-xl"
+                value={restoreEmail}
+                onChange={(event) => setRestoreEmail(event.target.value)}
+              />
+              <Button
+                variant="secondary"
+                className="h-11 rounded-xl"
+                disabled={restoring}
+                onClick={async () => {
+                  setRestoring(true);
+                  try {
+                    setEntitlement(await restorePurchase(restoreEmail));
+                    toast.success("Lifetime access restored.");
+                  } catch (error) {
+                    toast.error(firstError(error));
+                  } finally {
+                    setRestoring(false);
+                  }
+                }}
+              >
+                Restore
+              </Button>
+            </div>
           </div>
-          <Button
-            variant="secondary"
-            className="rounded-xl"
-            onClick={async () => {
-              try {
-                await restorePurchase();
-                toast.success("Lifetime access restored.");
-              } catch (error) {
-                toast.error(firstError(error));
-              }
-            }}
-          >
-            Restore
-          </Button>
         </Row>
+
 
         <Row>
           <div>
