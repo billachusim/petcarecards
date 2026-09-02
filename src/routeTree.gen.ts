@@ -21,6 +21,7 @@ import { Route as PetsNewRouteImport } from './routes/pets.new'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
 import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
 import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
+import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +83,12 @@ const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
   path: '/pets/$petId/medications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPaymentsWebhookRoute =
+  ApiPublicPaymentsWebhookRouteImport.update({
+    id: '/api/public/payments/webhook',
+    path: '/api/public/payments/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,6 +118,7 @@ export interface FileRoutesByTo {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +134,7 @@ export interface FileRoutesById {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/payments/webhook'
   id:
     | '__root__'
     | '/'
@@ -169,6 +181,7 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,6 +196,7 @@ export interface RootRouteChildren {
   PetsNewRoute: typeof PetsNewRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
+  ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -271,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PetsPetIdMedicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/payments/webhook': {
+      id: '/api/public/payments/webhook'
+      path: '/api/public/payments/webhook'
+      fullPath: '/api/public/payments/webhook'
+      preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -298,6 +319,7 @@ const rootRouteChildren: RootRouteChildren = {
   PetsNewRoute: PetsNewRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
+  ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
