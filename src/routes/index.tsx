@@ -10,25 +10,19 @@ import { STORAGE_KEYS } from "@/features/pets/data/care-data-repository";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import { PaywallDialog } from "@/features/premium/components/paywall-dialog";
 import { readJson } from "@/lib/storage/local-store";
+import { SITE_NAME, absoluteUrl, publicHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Pet Care Card — Everything your sitter needs, in one card" },
-      {
-        name: "description",
-        content:
-          "Add your pet, fill in feeding, routine, medication and emergency details, then share a care card by link, print or QR code.",
-      },
-      { property: "og:title", content: "Pet Care Card" },
-      {
-        property: "og:description",
-        content: "Create a complete care card for your pet in two minutes.",
-      },
-    ],
-  }),
+  head: () =>
+    publicHead({
+      title: "Pet Care Card — Create a Pet Care Card for Your Sitter in Minutes",
+      description:
+        "Leaving your pet with a sitter? Build one care card with feeding, routine, medication, emergency and vet details, then share it by link, print it, or hand it over as a QR code.",
+      path: "/",
+    }),
   component: Home,
 });
+
 
 function Home() {
   const navigate = useNavigate();
@@ -53,9 +47,12 @@ function Home() {
     return (
       <AppShell>
         <div className="h-64 animate-pulse rounded-3xl bg-card" aria-label="Loading" />
+        <HomeMarketing />
       </AppShell>
     );
   }
+
+
 
   return (
     <AppShell>
@@ -150,6 +147,104 @@ function Home() {
           )}
         </div>
       )}
+      {pets.length === 0 && <HomeMarketing />}
     </AppShell>
+  );
+}
+
+function HomeMarketing() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: SITE_NAME,
+        url: absoluteUrl("/"),
+        applicationCategory: "LifestyleApplication",
+        operatingSystem: "Any modern web browser",
+        description:
+          "Create a complete pet care card with feeding, routine, medication, emergency and vet details, then share it by link, print it, or hand it over as a QR code.",
+        offers: [
+          {
+            "@type": "Offer",
+            name: "Free",
+            price: "0",
+            priceCurrency: "USD",
+            description: "One pet with a full care card, QR code and basic reminders.",
+          },
+          {
+            "@type": "Offer",
+            name: "Lifetime unlock",
+            price: "4.99",
+            priceCurrency: "USD",
+            description:
+              "One payment, no subscription. Unlimited pets, medication schedules, advanced reminders, PDF export and sharing.",
+          },
+        ],
+      },
+      {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: absoluteUrl("/"),
+      },
+    ],
+  };
+
+  const steps = [
+    {
+      title: "Add your pet",
+      body: "Name is all that's required. Add a photo, breed, age and weight if you have a moment.",
+    },
+    {
+      title: "Fill in the essentials",
+      body: "Short, skippable steps for feeding, daily routine, medication and emergency contacts.",
+    },
+    {
+      title: "Hand it over",
+      body: "Share a link, print a copy for the fridge, or let your sitter scan a QR code at the door.",
+    },
+  ];
+
+  return (
+    <section className="mt-12" aria-labelledby="how-it-works">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <h2 id="how-it-works" className="font-display text-2xl font-semibold">
+        A complete pet care card in minutes
+      </h2>
+      <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+        Pet Care Card collects the details a caregiver actually asks for — feeding amounts and times,
+        walks and bathroom habits, prescribed medication, emergency contacts and your vet — and turns
+        them into one readable card you can share, print or show as a QR code. No account needed, and
+        your pet&apos;s details stay on your device.
+      </p>
+      <ol className="mt-6 space-y-3">
+        {steps.map((step, i) => (
+          <li key={step.title} className="flex gap-4 rounded-2xl border border-border bg-card p-5">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-display font-semibold text-primary">
+              {i + 1}
+            </span>
+            <span>
+              <span className="block font-display text-lg font-semibold">{step.title}</span>
+              <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                {step.body}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-6 rounded-3xl border border-border bg-secondary/50 p-5">
+        <h3 className="font-display text-lg font-semibold">Not sure what to write down?</h3>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          Our Caregiver Guides cover sitter checklists, feeding schedules, medication notes and
+          emergency contact sheets.
+        </p>
+        <Link
+          to="/guides"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+        >
+          Read the Caregiver Guides
+        </Link>
+      </div>
+    </section>
   );
 }

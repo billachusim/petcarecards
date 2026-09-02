@@ -17,6 +17,8 @@ import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
 import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
@@ -63,6 +65,16 @@ const CarePetIdRoute = CarePetIdRouteImport.update({
   path: '/care/$petId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PetsNewRoute = PetsNewRouteImport.update({
   id: '/pets/new',
   path: '/pets/new',
@@ -99,7 +111,9 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/guides/': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -114,7 +128,9 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/guides': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -130,7 +146,9 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/guides/': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -147,7 +165,9 @@ export interface FileRouteTypes {
     | '/settings'
     | '/terms'
     | '/care/$petId'
+    | '/guides/$slug'
     | '/pets/new'
+    | '/guides/'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -162,7 +182,9 @@ export interface FileRouteTypes {
     | '/settings'
     | '/terms'
     | '/care/$petId'
+    | '/guides/$slug'
     | '/pets/new'
+    | '/guides'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -177,7 +199,9 @@ export interface FileRouteTypes {
     | '/settings'
     | '/terms'
     | '/care/$petId'
+    | '/guides/$slug'
     | '/pets/new'
+    | '/guides/'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -193,7 +217,9 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TermsRoute: typeof TermsRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
+  GuidesSlugRoute: typeof GuidesSlugRoute
   PetsNewRoute: typeof PetsNewRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -257,6 +283,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarePetIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pets/new': {
       id: '/pets/new'
       path: '/pets/new'
@@ -316,7 +356,9 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TermsRoute: TermsRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
+  GuidesSlugRoute: GuidesSlugRoute,
   PetsNewRoute: PetsNewRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,

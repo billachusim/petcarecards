@@ -10,6 +10,7 @@ import { writeJson } from "@/lib/storage/local-store";
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Welcome to Pet Care Card" },
       {
         name: "description",

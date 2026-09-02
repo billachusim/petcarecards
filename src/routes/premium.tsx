@@ -21,6 +21,7 @@ import { firstError } from "@/lib/validation";
 export const Route = createFileRoute("/premium")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Unlock Lifetime — Pet Care Card" },
       {
         name: "description",

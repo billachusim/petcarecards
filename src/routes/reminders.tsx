@@ -32,6 +32,7 @@ import { firstError, reminderSchema } from "@/lib/validation";
 export const Route = createFileRoute("/reminders")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Reminders — Pet Care Card" },
       {
         name: "description",

@@ -22,6 +22,7 @@ import { firstError, petSchema } from "@/lib/validation";
 export const Route = createFileRoute("/pets/new")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Add a pet — Pet Care Card" },
       {
         name: "description",
