@@ -34,7 +34,9 @@ interface CareStoreValue {
   ready: boolean;
   db: CareDatabase;
   isPremium: boolean;
+  entitlement: PremiumEntitlement;
   pets: Pet[];
+
   getPet: (id: string) => Pet | undefined;
   buildCareCard: (petId: string) => CareCard | undefined;
   addPet: (pet: Omit<Pet, "id" | "createdAt" | "updatedAt">) => Pet;
