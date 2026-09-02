@@ -1,22 +1,17 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
+import { publicHead } from "@/lib/seo";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — Pet Care Card" },
-      {
-        name: "description",
-        content:
-          "How Pet Care Card handles your data: stored on your device, no selling of data, no unnecessary tracking.",
-      },
-      { property: "og:title", content: "Privacy Policy — Pet Care Card" },
-      { property: "og:description", content: "Your pet's details stay on your device." },
-    ],
-  }),
+  head: () =>
+    publicHead({
+      title: 'Privacy Policy — Pet Care Card',
+      description: 'How Pet Care Card handles your data: pet details stay on your device, no data selling, no unnecessary tracking, and a one-tap way to delete everything.',
+      path: "/privacy",
+    }),
   component: PrivacyPage,
 });
 

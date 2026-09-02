@@ -1,22 +1,17 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
+import { publicHead } from "@/lib/seo";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Use — Pet Care Card" },
-      {
-        name: "description",
-        content:
-          "The terms that cover using Pet Care Card, including the one-time lifetime unlock and the no-medical-advice policy.",
-      },
-      { property: "og:title", content: "Terms of Use — Pet Care Card" },
-      { property: "og:description", content: "Terms covering use of Pet Care Card." },
-    ],
-  }),
+  head: () =>
+    publicHead({
+      title: 'Terms of Use — Pet Care Card',
+      description: 'The terms covering Pet Care Card, including the one-time $4.99 lifetime unlock and the no-medical-advice policy.',
+      path: "/terms",
+    }),
   component: TermsPage,
 });
 
