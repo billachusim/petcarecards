@@ -64,7 +64,7 @@ export function nextOccurrence(reminder: Reminder, from = new Date()): Date | nu
 
 export function formatTime(time: string): string {
   const [h, m] = time.split(":").map(Number);
-  if (Number.isNaN(h) || Number.isNaN(m)) return time;
+  if (h === undefined || m === undefined || Number.isNaN(h) || Number.isNaN(m)) return time;
   const date = new Date();
   date.setHours(h, m, 0, 0);
   return date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });

@@ -18,7 +18,7 @@ export const medicationSchema = z
   .object({
     name: z.string().trim().min(1, "Please add the medication name.").max(80),
     startDate: z.string().optional(),
-    endDate: z.string().optional(),
+    endDate: z.string().optional() as z.ZodType<string | undefined>,
   })
   .refine(
     (v) => !v.startDate || !v.endDate || v.startDate <= v.endDate,
@@ -30,7 +30,7 @@ export const reminderSchema = z
     title: z.string().trim().min(1, "Please add a title for this reminder.").max(80),
     time: z.string().min(1, "Please choose a time."),
     startDate: z.string().optional(),
-    endDate: z.string().optional(),
+    endDate: z.string().optional() as z.ZodType<string | undefined>,
   })
   .refine(
     (v) => !v.startDate || !v.endDate || v.startDate <= v.endDate,
