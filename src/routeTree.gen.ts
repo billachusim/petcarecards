@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemindersRoute = RemindersRouteImport.update({
+  id: '/reminders',
+  path: '/reminders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CarePetIdRoute = CarePetIdRouteImport.update({
@@ -56,6 +62,7 @@ const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/reminders': typeof RemindersRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/reminders': typeof RemindersRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/reminders': typeof RemindersRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/onboarding'
+    | '/reminders'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/onboarding'
+    | '/reminders'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/onboarding'
+    | '/reminders'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OnboardingRoute: typeof OnboardingRoute
+  RemindersRoute: typeof RemindersRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   PetsNewRoute: typeof PetsNewRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
@@ -134,6 +147,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reminders': {
+      id: '/reminders'
+      path: '/reminders'
+      fullPath: '/reminders'
+      preLoaderRoute: typeof RemindersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/care/$petId': {
@@ -189,6 +209,7 @@ const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OnboardingRoute: OnboardingRoute,
+  RemindersRoute: RemindersRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   PetsNewRoute: PetsNewRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
