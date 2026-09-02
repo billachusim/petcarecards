@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
+import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
+import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +30,69 @@ const PetsNewRoute = PetsNewRouteImport.update({
   path: '/pets/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PetsPetIdEditRoute = PetsPetIdEditRouteImport.update({
+  id: '/pets/$petId/edit',
+  path: '/pets/$petId/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
+  id: '/pets/$petId/medications',
+  path: '/pets/$petId/medications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
   '/pets/new': typeof PetsNewRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
   '/pets/new': typeof PetsNewRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
   '/pets/new': typeof PetsNewRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/onboarding' | '/pets/new'
+  fullPaths:
+    | '/'
+    | '/onboarding'
+    | '/pets/new'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/onboarding' | '/pets/new'
-  id: '__root__' | '/' | '/onboarding' | '/pets/new'
+  to:
+    | '/'
+    | '/onboarding'
+    | '/pets/new'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
+  id:
+    | '__root__'
+    | '/'
+    | '/onboarding'
+    | '/pets/new'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OnboardingRoute: typeof OnboardingRoute
   PetsNewRoute: typeof PetsNewRoute
+  PetsPetIdEditRoute: typeof PetsPetIdEditRoute
+  PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +118,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PetsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pets/$petId/edit': {
+      id: '/pets/$petId/edit'
+      path: '/pets/$petId/edit'
+      fullPath: '/pets/$petId/edit'
+      preLoaderRoute: typeof PetsPetIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pets/$petId/medications': {
+      id: '/pets/$petId/medications'
+      path: '/pets/$petId/medications'
+      fullPath: '/pets/$petId/medications'
+      preLoaderRoute: typeof PetsPetIdMedicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +139,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OnboardingRoute: OnboardingRoute,
   PetsNewRoute: PetsNewRoute,
+  PetsPetIdEditRoute: PetsPetIdEditRoute,
+  PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
