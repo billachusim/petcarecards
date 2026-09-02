@@ -10,33 +10,179 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PremiumRouteImport } from './routes/premium'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RemindersRouteImport } from './routes/reminders'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as CarePetIdRouteImport } from './routes/care.$petId'
+import { Route as PetsNewRouteImport } from './routes/pets.new'
+import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
+import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
+import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PremiumRoute = PremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemindersRoute = RemindersRouteImport.update({
+  id: '/reminders',
+  path: '/reminders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarePetIdRoute = CarePetIdRouteImport.update({
+  id: '/care/$petId',
+  path: '/care/$petId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetsNewRoute = PetsNewRouteImport.update({
+  id: '/pets/new',
+  path: '/pets/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarePetIdQrRoute = CarePetIdQrRouteImport.update({
+  id: '/qr',
+  path: '/qr',
+  getParentRoute: () => CarePetIdRoute,
+} as any)
+const PetsPetIdEditRoute = PetsPetIdEditRouteImport.update({
+  id: '/pets/$petId/edit',
+  path: '/pets/$petId/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
+  id: '/pets/$petId/medications',
+  path: '/pets/$petId/medications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
+  '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
+  '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/pets/new': typeof PetsNewRoute
+  '/care/$petId/qr': typeof CarePetIdQrRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
+  '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
+  '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/pets/new': typeof PetsNewRoute
+  '/care/$petId/qr': typeof CarePetIdQrRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
+  '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
+  '/care/$petId': typeof CarePetIdRouteWithChildren
+  '/pets/new': typeof PetsNewRoute
+  '/care/$petId/qr': typeof CarePetIdQrRoute
+  '/pets/$petId/edit': typeof PetsPetIdEditRoute
+  '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/onboarding'
+    | '/premium'
+    | '/privacy'
+    | '/reminders'
+    | '/settings'
+    | '/terms'
+    | '/care/$petId'
+    | '/pets/new'
+    | '/care/$petId/qr'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/onboarding'
+    | '/premium'
+    | '/privacy'
+    | '/reminders'
+    | '/settings'
+    | '/terms'
+    | '/care/$petId'
+    | '/pets/new'
+    | '/care/$petId/qr'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
+  id:
+    | '__root__'
+    | '/'
+    | '/onboarding'
+    | '/premium'
+    | '/privacy'
+    | '/reminders'
+    | '/settings'
+    | '/terms'
+    | '/care/$petId'
+    | '/pets/new'
+    | '/care/$petId/qr'
+    | '/pets/$petId/edit'
+    | '/pets/$petId/medications'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PremiumRoute: typeof PremiumRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RemindersRoute: typeof RemindersRoute
+  SettingsRoute: typeof SettingsRoute
+  TermsRoute: typeof TermsRoute
+  CarePetIdRoute: typeof CarePetIdRouteWithChildren
+  PetsNewRoute: typeof PetsNewRoute
+  PetsPetIdEditRoute: typeof PetsPetIdEditRoute
+  PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +194,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/premium': {
+      id: '/premium'
+      path: '/premium'
+      fullPath: '/premium'
+      preLoaderRoute: typeof PremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reminders': {
+      id: '/reminders'
+      path: '/reminders'
+      fullPath: '/reminders'
+      preLoaderRoute: typeof RemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/care/$petId': {
+      id: '/care/$petId'
+      path: '/care/$petId'
+      fullPath: '/care/$petId'
+      preLoaderRoute: typeof CarePetIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pets/new': {
+      id: '/pets/new'
+      path: '/pets/new'
+      fullPath: '/pets/new'
+      preLoaderRoute: typeof PetsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/care/$petId/qr': {
+      id: '/care/$petId/qr'
+      path: '/qr'
+      fullPath: '/care/$petId/qr'
+      preLoaderRoute: typeof CarePetIdQrRouteImport
+      parentRoute: typeof CarePetIdRoute
+    }
+    '/pets/$petId/edit': {
+      id: '/pets/$petId/edit'
+      path: '/pets/$petId/edit'
+      fullPath: '/pets/$petId/edit'
+      preLoaderRoute: typeof PetsPetIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pets/$petId/medications': {
+      id: '/pets/$petId/medications'
+      path: '/pets/$petId/medications'
+      fullPath: '/pets/$petId/medications'
+      preLoaderRoute: typeof PetsPetIdMedicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface CarePetIdRouteChildren {
+  CarePetIdQrRoute: typeof CarePetIdQrRoute
+}
+
+const CarePetIdRouteChildren: CarePetIdRouteChildren = {
+  CarePetIdQrRoute: CarePetIdQrRoute,
+}
+
+const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
+  CarePetIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OnboardingRoute: OnboardingRoute,
+  PremiumRoute: PremiumRoute,
+  PrivacyRoute: PrivacyRoute,
+  RemindersRoute: RemindersRoute,
+  SettingsRoute: SettingsRoute,
+  TermsRoute: TermsRoute,
+  CarePetIdRoute: CarePetIdRouteWithChildren,
+  PetsNewRoute: PetsNewRoute,
+  PetsPetIdEditRoute: PetsPetIdEditRoute,
+  PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
