@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PremiumRouteImport } from './routes/premium'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RemindersRouteImport } from './routes/reminders'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
@@ -28,9 +32,29 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PremiumRoute = PremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RemindersRoute = RemindersRouteImport.update({
   id: '/reminders',
   path: '/reminders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CarePetIdRoute = CarePetIdRouteImport.update({
@@ -62,7 +86,11 @@ const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
   '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -72,7 +100,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
   '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -83,7 +115,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
+  '/premium': typeof PremiumRoute
+  '/privacy': typeof PrivacyRoute
   '/reminders': typeof RemindersRoute
+  '/settings': typeof SettingsRoute
+  '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/pets/new': typeof PetsNewRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
@@ -95,7 +131,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/onboarding'
+    | '/premium'
+    | '/privacy'
     | '/reminders'
+    | '/settings'
+    | '/terms'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -105,7 +145,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/onboarding'
+    | '/premium'
+    | '/privacy'
     | '/reminders'
+    | '/settings'
+    | '/terms'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -115,7 +159,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/onboarding'
+    | '/premium'
+    | '/privacy'
     | '/reminders'
+    | '/settings'
+    | '/terms'
     | '/care/$petId'
     | '/pets/new'
     | '/care/$petId/qr'
@@ -126,7 +174,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OnboardingRoute: typeof OnboardingRoute
+  PremiumRoute: typeof PremiumRoute
+  PrivacyRoute: typeof PrivacyRoute
   RemindersRoute: typeof RemindersRoute
+  SettingsRoute: typeof SettingsRoute
+  TermsRoute: typeof TermsRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   PetsNewRoute: typeof PetsNewRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
@@ -149,11 +201,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/premium': {
+      id: '/premium'
+      path: '/premium'
+      fullPath: '/premium'
+      preLoaderRoute: typeof PremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reminders': {
       id: '/reminders'
       path: '/reminders'
       fullPath: '/reminders'
       preLoaderRoute: typeof RemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/care/$petId': {
@@ -209,7 +289,11 @@ const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OnboardingRoute: OnboardingRoute,
+  PremiumRoute: PremiumRoute,
+  PrivacyRoute: PrivacyRoute,
   RemindersRoute: RemindersRoute,
+  SettingsRoute: SettingsRoute,
+  TermsRoute: TermsRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   PetsNewRoute: PetsNewRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
