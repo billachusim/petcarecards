@@ -115,6 +115,7 @@ export function CareStoreProvider({ children }: { children: ReactNode }) {
       ready,
       db,
       isPremium: db.premium.lifetimeUnlocked,
+      entitlement: db.premium,
       pets: db.pets,
       getPet: (id) => db.pets.find((p) => p.id === id),
       buildCareCard: (petId) => {
