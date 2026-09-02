@@ -32,6 +32,7 @@ export const APP_VERSION = "1.0.0";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Settings — Pet Care Card" },
       {
         name: "description",

@@ -17,6 +17,7 @@ import { firstError } from "@/lib/validation";
 export const Route = createFileRoute("/care/$petId/qr")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "QR code — Pet Care Card" },
       {
         name: "description",

@@ -9,6 +9,7 @@ import { useCareStore } from "@/features/pets/hooks/use-care-store";
 export const Route = createFileRoute("/pets/$petId/medications")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Medications — Pet Care Card" },
       {
         name: "description",

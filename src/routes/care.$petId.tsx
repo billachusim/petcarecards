@@ -20,6 +20,7 @@ import { firstError } from "@/lib/validation";
 export const Route = createFileRoute("/care/$petId")({
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Care Card — Pet Care Card" },
       {
         name: "description",

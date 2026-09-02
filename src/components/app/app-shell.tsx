@@ -10,7 +10,7 @@ interface AppShellProps {
 
 export function AppShell({ children, bare = false }: AppShellProps) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       {!bare && (
         <header className="no-print border-b border-border/70 bg-card/70 backdrop-blur">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
@@ -20,17 +20,43 @@ export function AppShell({ children, bare = false }: AppShellProps) {
               </span>
               <span className="font-display text-lg font-semibold">Pet Care Card</span>
             </Link>
-            <Link
-              to="/settings"
-              className="inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-              aria-label="Settings"
-            >
-              <Settings className="size-5" aria-hidden="true" />
-            </Link>
+            <nav className="flex items-center gap-1" aria-label="Main">
+              <Link
+                to="/guides"
+                className="rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                Guides
+              </Link>
+              <Link
+                to="/settings"
+                className="inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                aria-label="Settings"
+              >
+                <Settings className="size-5" aria-hidden="true" />
+              </Link>
+            </nav>
           </div>
         </header>
       )}
-      <main className="mx-auto max-w-3xl px-5 pb-20 pt-6">{children}</main>
+      <main className="mx-auto w-full max-w-3xl flex-1 px-5 pb-20 pt-6">{children}</main>
+      {!bare && (
+        <footer className="no-print border-t border-border/70 bg-card/50">
+          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-muted-foreground">
+            <p>© {new Date().getFullYear()} Pet Care Card</p>
+            <nav className="flex flex-wrap gap-4" aria-label="Footer">
+              <Link to="/guides" className="hover:text-foreground">
+                Caregiver Guides
+              </Link>
+              <Link to="/privacy" className="hover:text-foreground">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-foreground">
+                Terms
+              </Link>
+            </nav>
+          </div>
+        </footer>
+      )}
     </div>
   );
 }
