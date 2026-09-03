@@ -40,6 +40,17 @@ function GuidesIndex() {
   return (
     <AppShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Caregiver Guides", path: "/guides" },
+            ]),
+          ),
+        }}
+      />
 
       <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted-foreground">
         <Link to="/" className="hover:text-foreground">

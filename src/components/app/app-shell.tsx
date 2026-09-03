@@ -28,6 +28,18 @@ export function AppShell({ children, bare = false }: AppShellProps) {
                 Guides
               </Link>
               <Link
+                to="/templates"
+                className="hidden rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline-flex"
+              >
+                Templates
+              </Link>
+              <Link
+                to="/tools/feeding-calculator"
+                className="hidden rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline-flex"
+              >
+                Calculator
+              </Link>
+              <Link
                 to="/settings"
                 className="inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 aria-label="Settings"
