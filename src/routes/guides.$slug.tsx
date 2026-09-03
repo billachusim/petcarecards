@@ -84,6 +84,18 @@ function GuidePage() {
       {faqLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Caregiver Guides", path: "/guides" },
+              { name: guide.title, path: `/guides/${guide.slug}` },
+            ]),
+          ),
+        }}
+      />
 
       <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted-foreground">
         <Link to="/" className="hover:text-foreground">
