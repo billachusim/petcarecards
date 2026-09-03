@@ -10,11 +10,11 @@ import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import { generateCareCardPdf, pdfFileName } from "@/features/pdf/care-card-pdf";
 import { PaywallDialog } from "@/features/premium/components/paywall-dialog";
 import {
-  buildCareCardUrl,
   downloadDataUrl,
   shareFile,
   shareLink,
 } from "@/features/sharing/care-card-sharing-service";
+import { useShareLink } from "@/features/sharing/use-share-link";
 import { firstError } from "@/lib/validation";
 
 export const Route = createFileRoute("/care/$petId")({
