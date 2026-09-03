@@ -162,6 +162,14 @@ function HomeMarketing() {
         url: absoluteUrl("/"),
         image: SOCIAL_IMAGE_URL,
         applicationCategory: "LifestyleApplication",
+        featureList: [
+          "Voice-to-care-card: talk about your pet and the care card is written for you",
+          "Feeding amounts, times and foods to avoid",
+          "Daily routine, walks and bathroom habits",
+          "Medication names, doses and schedules",
+          "Emergency contacts and veterinarian details",
+          "Share by link, print, export a PDF or hand over a QR code",
+        ],
         operatingSystem: "Any modern web browser",
         description:
           "Create a complete pet care card with feeding, routine, medication, emergency and vet details, then share it by link, print it, or hand it over as a QR code.",
@@ -234,6 +242,23 @@ function HomeMarketing() {
         ))}
       </ol>
       <div className="mt-6 rounded-3xl border border-border bg-secondary/50 p-5">
+        <h3 className="font-display text-lg font-semibold">
+          Don&apos;t feel like typing? Talk about your pet
+        </h3>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          Speak for about a minute — what your pet eats and when, their routine, any medication, who
+          to call and your vet — and Pet Care Card writes the sitter instructions for you. You check
+          every field before anything saves, and your recording is never stored.
+        </p>
+        <Link
+          to="/talk-about-your-pet"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+        >
+          See how Talk about your pet works
+        </Link>
+      </div>
+
+      <div className="mt-4 rounded-3xl border border-border bg-secondary/50 p-5">
         <h3 className="font-display text-lg font-semibold">Not sure what to write down?</h3>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
           Our Caregiver Guides cover sitter checklists, feeding schedules, medication notes and
