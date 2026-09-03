@@ -14,6 +14,312 @@ export type Database = {
   }
   public: {
     Tables: {
+      backup_emergency_contacts: {
+        Row: {
+          created_at: string
+          id: string
+          pet_id: string
+          primary_name: string | null
+          primary_phone: string | null
+          secondary_name: string | null
+          secondary_phone: string | null
+          special_instructions: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          pet_id: string
+          primary_name?: string | null
+          primary_phone?: string | null
+          secondary_name?: string | null
+          secondary_phone?: string | null
+          special_instructions?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          pet_id?: string
+          primary_name?: string | null
+          primary_phone?: string | null
+          secondary_name?: string | null
+          secondary_phone?: string | null
+          special_instructions?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      backup_feedings: {
+        Row: {
+          amount: string | null
+          created_at: string
+          food_name: string | null
+          foods_to_avoid: string | null
+          id: string
+          meals_per_day: string | null
+          notes: string | null
+          pet_id: string
+          times: string | null
+          treats: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: string | null
+          created_at?: string
+          food_name?: string | null
+          foods_to_avoid?: string | null
+          id: string
+          meals_per_day?: string | null
+          notes?: string | null
+          pet_id: string
+          times?: string | null
+          treats?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: string | null
+          created_at?: string
+          food_name?: string | null
+          foods_to_avoid?: string | null
+          id?: string
+          meals_per_day?: string | null
+          notes?: string | null
+          pet_id?: string
+          times?: string | null
+          treats?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      backup_medications: {
+        Row: {
+          created_at: string
+          dosage: string | null
+          end_date: string | null
+          frequency: string | null
+          id: string
+          name: string
+          notes: string | null
+          pet_id: string
+          start_date: string | null
+          time: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          dosage?: string | null
+          end_date?: string | null
+          frequency?: string | null
+          id: string
+          name: string
+          notes?: string | null
+          pet_id: string
+          start_date?: string | null
+          time?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          dosage?: string | null
+          end_date?: string | null
+          frequency?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          pet_id?: string
+          start_date?: string | null
+          time?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      backup_pets: {
+        Row: {
+          approximate_age: string | null
+          breed: string | null
+          created_at: string
+          date_of_birth: string | null
+          id: string
+          name: string
+          personality: string | null
+          photo_data_url: string | null
+          sex: string | null
+          species: string | null
+          things_to_know: string | null
+          updated_at: string
+          user_id: string
+          weight: string | null
+        }
+        Insert: {
+          approximate_age?: string | null
+          breed?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          id: string
+          name: string
+          personality?: string | null
+          photo_data_url?: string | null
+          sex?: string | null
+          species?: string | null
+          things_to_know?: string | null
+          updated_at?: string
+          user_id: string
+          weight?: string | null
+        }
+        Update: {
+          approximate_age?: string | null
+          breed?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          id?: string
+          name?: string
+          personality?: string | null
+          photo_data_url?: string | null
+          sex?: string | null
+          species?: string | null
+          things_to_know?: string | null
+          updated_at?: string
+          user_id?: string
+          weight?: string | null
+        }
+        Relationships: []
+      }
+      backup_reminders: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          end_date: string | null
+          id: string
+          pet_id: string
+          repeat: string
+          start_date: string | null
+          time: string
+          title: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          end_date?: string | null
+          id: string
+          pet_id: string
+          repeat?: string
+          start_date?: string | null
+          time: string
+          title: string
+          type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          end_date?: string | null
+          id?: string
+          pet_id?: string
+          repeat?: string
+          start_date?: string | null
+          time?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      backup_routines: {
+        Row: {
+          bathroom_routine: string | null
+          crate_instructions: string | null
+          created_at: string
+          id: string
+          indoor_outdoor_notes: string | null
+          other: string | null
+          pet_id: string
+          playtime: string | null
+          sleep_routine: string | null
+          updated_at: string
+          user_id: string
+          walk_schedule: string | null
+        }
+        Insert: {
+          bathroom_routine?: string | null
+          crate_instructions?: string | null
+          created_at?: string
+          id: string
+          indoor_outdoor_notes?: string | null
+          other?: string | null
+          pet_id: string
+          playtime?: string | null
+          sleep_routine?: string | null
+          updated_at?: string
+          user_id: string
+          walk_schedule?: string | null
+        }
+        Update: {
+          bathroom_routine?: string | null
+          crate_instructions?: string | null
+          created_at?: string
+          id?: string
+          indoor_outdoor_notes?: string | null
+          other?: string | null
+          pet_id?: string
+          playtime?: string | null
+          sleep_routine?: string | null
+          updated_at?: string
+          user_id?: string
+          walk_schedule?: string | null
+        }
+        Relationships: []
+      }
+      backup_vets: {
+        Row: {
+          address: string | null
+          clinic_name: string | null
+          created_at: string
+          id: string
+          pet_id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+          vet_name: string | null
+        }
+        Insert: {
+          address?: string | null
+          clinic_name?: string | null
+          created_at?: string
+          id: string
+          pet_id: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+          vet_name?: string | null
+        }
+        Update: {
+          address?: string | null
+          clinic_name?: string | null
+          created_at?: string
+          id?: string
+          pet_id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+          vet_name?: string | null
+        }
+        Relationships: []
+      }
       generated_guides: {
         Row: {
           answer: string
@@ -181,6 +487,39 @@ export type Database = {
           product_id?: string
           purchased_at?: string
           status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          backup_enabled: boolean
+          caregiver_name: string | null
+          caregiver_notes: string | null
+          caregiver_phone: string | null
+          created_at: string
+          email: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          backup_enabled?: boolean
+          caregiver_name?: string | null
+          caregiver_notes?: string | null
+          caregiver_phone?: string | null
+          created_at?: string
+          email?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          backup_enabled?: boolean
+          caregiver_name?: string | null
+          caregiver_notes?: string | null
+          caregiver_phone?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
           updated_at?: string
         }
         Relationships: []
