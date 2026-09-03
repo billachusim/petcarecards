@@ -59,9 +59,16 @@ export function AppShell({ children, bare = false }: AppShellProps) {
               © {new Date().getFullYear()} Pet Care Card
             </p>
             <nav className="flex flex-wrap gap-4" aria-label="Footer">
+              <Link to="/pricing" className="hover:text-foreground">
+                Pricing
+              </Link>
+              <Link to="/contact" className="hover:text-foreground">
+                Contact
+              </Link>
               <Link to="/guides" className="hover:text-foreground">
                 Caregiver Guides
               </Link>
+
               <Link to="/templates" className="hover:text-foreground">
                 Templates
               </Link>
