@@ -160,6 +160,7 @@ function HomeMarketing() {
         "@type": "SoftwareApplication",
         name: SITE_NAME,
         url: absoluteUrl("/"),
+        image: SOCIAL_IMAGE_URL,
         applicationCategory: "LifestyleApplication",
         operatingSystem: "Any modern web browser",
         description:
