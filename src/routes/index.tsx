@@ -10,7 +10,7 @@ import { STORAGE_KEYS } from "@/features/pets/data/care-data-repository";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import { PaywallDialog } from "@/features/premium/components/paywall-dialog";
 import { readJson } from "@/lib/storage/local-store";
-import { SITE_NAME, absoluteUrl, publicHead } from "@/lib/seo";
+import { SITE_NAME, SOCIAL_IMAGE_URL, absoluteUrl, publicHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () =>
