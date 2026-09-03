@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
-import { GUIDES } from "@/features/guides/guides-data";
 import {
   BUSINESS_NAME,
   SITE_NAME,
@@ -97,7 +96,7 @@ function AboutPage() {
           app changes or a reader tells us something is unclear.
         </li>
         <li>
-          There are currently {GUIDES.length} guides, all free to read with no sign-up.
+          A new guide is published every week, and every guide is free to read with no sign-up.
         </li>
       </ul>
 

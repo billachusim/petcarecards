@@ -3,14 +3,18 @@ import { AlertTriangle, ArrowRight, Check, Clock } from "lucide-react";
 
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
-import { AUTHOR, GUIDES, getGuide } from "@/features/guides/guides-data";
+import { AUTHOR, GUIDES, type Guide, getGuide } from "@/features/guides/guides-data";
+import { getGeneratedGuides } from "@/features/guides/guides.functions";
 import { PUBLISHER, SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
-  loader: ({ params }) => {
-    const guide = getGuide(params.slug);
+  loader: async ({ params }) => {
+    const staticGuide = getGuide(params.slug);
+    if (staticGuide) return { guide: staticGuide, all: GUIDES };
+    const generated = await getGeneratedGuides();
+    const guide = generated.find((g) => g.slug === params.slug);
     if (!guide) throw notFound();
-    return { guide };
+    return { guide, all: [...GUIDES, ...generated] };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
@@ -43,7 +47,7 @@ function GuideNotFound() {
 }
 
 function GuidePage() {
-  const { guide } = Route.useLoaderData();
+  const { guide, all } = Route.useLoaderData();
   const url = absoluteUrl(`/guides/${guide.slug}`);
 
   const articleLd = {
@@ -75,8 +79,8 @@ function GuidePage() {
       : null;
 
   const related = guide.related
-    .map((slug) => GUIDES.find((g) => g.slug === slug))
-    .filter((g): g is (typeof GUIDES)[number] => Boolean(g));
+    .map((slug) => all.find((g) => g.slug === slug))
+    .filter((g): g is Guide => Boolean(g));
 
   return (
     <AppShell>
