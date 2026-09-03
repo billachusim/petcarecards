@@ -113,6 +113,7 @@ export type Database = {
       guide_job_state: {
         Row: {
           id: string
+          job_token: string
           last_run_at: string | null
           lease_until: string | null
           pause_reason: string | null
@@ -122,6 +123,7 @@ export type Database = {
         }
         Insert: {
           id: string
+          job_token?: string
           last_run_at?: string | null
           lease_until?: string | null
           pause_reason?: string | null
@@ -131,6 +133,7 @@ export type Database = {
         }
         Update: {
           id?: string
+          job_token?: string
           last_run_at?: string | null
           lease_until?: string | null
           pause_reason?: string | null
