@@ -4,7 +4,7 @@ import { AlertTriangle, ArrowRight, Check, Clock } from "lucide-react";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { AUTHOR, GUIDES, getGuide } from "@/features/guides/guides-data";
-import { PUBLISHER, SITE_NAME, absoluteUrl, publicHead } from "@/lib/seo";
+import { PUBLISHER, SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
   loader: ({ params }) => {
