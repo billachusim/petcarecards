@@ -18,7 +18,22 @@ export const Route = createFileRoute("/api/public/hooks/weekly-guide")({
           request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ??
           "";
 
-        if (provided !== secret) {
+        // The scheduler authenticates with a rotating token held only in the
+        // database, so no secret has to be embedded in the cron definition.
+        const schedulerToken = request.headers.get("x-weekly-guide-token") ?? "";
+        let authorized = provided.length > 0 && provided === secret;
+
+        if (!authorized && schedulerToken.length > 20) {
+          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { data } = await supabaseAdmin
+            .from("guide_job_state")
+            .select("job_token")
+            .eq("id", "weekly-guide")
+            .maybeSingle();
+          authorized = Boolean(data?.job_token) && data?.job_token === schedulerToken;
+        }
+
+        if (!authorized) {
           return Response.json({ error: "Unauthorized" }, { status: 401 });
         }
 
