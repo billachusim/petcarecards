@@ -25,6 +25,8 @@ export interface Guide {
   sections: GuideSection[];
   faqs: GuideFaq[];
   related: string[];
+  /** True for guides written by the weekly automatic publisher. */
+  generated?: boolean;
 }
 
 export const AUTHOR = "The Pet Care Card team";

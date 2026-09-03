@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { GUIDES } from "@/features/guides/guides-data";
+import { getGeneratedGuides } from "@/features/guides/guides.functions";
 import { SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 const TITLE = "Caregiver Guides — Preparing Someone to Look After Your Pet";
@@ -11,6 +12,10 @@ const DESCRIPTION =
   "Practical guides for handing your pet over to a sitter, family member or boarding facility: care card checklists, feeding schedules, medication notes and emergency contact sheets.";
 
 export const Route = createFileRoute("/guides/")({
+  loader: async () => {
+    const generated = await getGeneratedGuides();
+    return { guides: [...GUIDES, ...generated] };
+  },
   head: () =>
     publicHead({
       title: `${TITLE} | ${SITE_NAME}`,
@@ -21,6 +26,7 @@ export const Route = createFileRoute("/guides/")({
 });
 
 function GuidesIndex() {
+  const { guides } = Route.useLoaderData();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -28,7 +34,7 @@ function GuidesIndex() {
     description: DESCRIPTION,
     url: absoluteUrl("/guides"),
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
-    hasPart: GUIDES.map((guide) => ({
+    hasPart: guides.map((guide) => ({
       "@type": "Article",
       headline: guide.title,
       description: guide.description,
@@ -79,7 +85,7 @@ function GuidesIndex() {
 
       <h2 className="mt-10 font-display text-2xl font-semibold">All guides</h2>
       <div className="mt-4 space-y-4">
-        {GUIDES.map((guide) => (
+        {guides.map((guide) => (
           <article key={guide.slug} className="rounded-3xl border border-border bg-card p-5 shadow-sm">
             <h3 className="font-display text-xl font-semibold">
               <Link

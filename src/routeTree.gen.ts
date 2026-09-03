@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PremiumRouteImport } from './routes/premium'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -28,6 +29,7 @@ import { Route as ToolsFeedingCalculatorRouteImport } from './routes/tools.feedi
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
 import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
 import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
+import { Route as ApiPublicHooksWeeklyGuideRouteImport } from './routes/api/public/hooks/weekly-guide'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const IndexRoute = IndexRouteImport.update({
@@ -38,6 +40,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -125,6 +132,12 @@ const PetsPetIdMedicationsRoute = PetsPetIdMedicationsRouteImport.update({
   path: '/pets/$petId/medications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksWeeklyGuideRoute =
+  ApiPublicHooksWeeklyGuideRouteImport.update({
+    id: '/api/public/hooks/weekly-guide',
+    path: '/api/public/hooks/weekly-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicPaymentsWebhookRoute =
   ApiPublicPaymentsWebhookRouteImport.update({
     id: '/api/public/payments/webhook',
@@ -135,6 +148,7 @@ const ApiPublicPaymentsWebhookRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
@@ -152,11 +166,13 @@ export interface FileRoutesByFullPath {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/hooks/weekly-guide': typeof ApiPublicHooksWeeklyGuideRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
@@ -174,12 +190,14 @@ export interface FileRoutesByTo {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/hooks/weekly-guide': typeof ApiPublicHooksWeeklyGuideRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
@@ -197,6 +215,7 @@ export interface FileRoutesById {
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
+  '/api/public/hooks/weekly-guide': typeof ApiPublicHooksWeeklyGuideRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRouteTypes {
@@ -204,6 +223,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/llms.txt'
     | '/onboarding'
     | '/premium'
     | '/privacy'
@@ -221,11 +241,13 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/hooks/weekly-guide'
     | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/llms.txt'
     | '/onboarding'
     | '/premium'
     | '/privacy'
@@ -243,11 +265,13 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/hooks/weekly-guide'
     | '/api/public/payments/webhook'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/llms.txt'
     | '/onboarding'
     | '/premium'
     | '/privacy'
@@ -265,12 +289,14 @@ export interface FileRouteTypes {
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
+    | '/api/public/hooks/weekly-guide'
     | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   OnboardingRoute: typeof OnboardingRoute
   PremiumRoute: typeof PremiumRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -287,6 +313,7 @@ export interface RootRouteChildren {
   GuidesIndexRoute: typeof GuidesIndexRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
+  ApiPublicHooksWeeklyGuideRoute: typeof ApiPublicHooksWeeklyGuideRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
 }
 
@@ -304,6 +331,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -425,6 +459,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PetsPetIdMedicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/weekly-guide': {
+      id: '/api/public/hooks/weekly-guide'
+      path: '/api/public/hooks/weekly-guide'
+      fullPath: '/api/public/hooks/weekly-guide'
+      preLoaderRoute: typeof ApiPublicHooksWeeklyGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/payments/webhook': {
       id: '/api/public/payments/webhook'
       path: '/api/public/payments/webhook'
@@ -450,6 +491,7 @@ const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   OnboardingRoute: OnboardingRoute,
   PremiumRoute: PremiumRoute,
   PrivacyRoute: PrivacyRoute,
@@ -466,6 +508,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuidesIndexRoute: GuidesIndexRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
+  ApiPublicHooksWeeklyGuideRoute: ApiPublicHooksWeeklyGuideRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
 }
 export const routeTree = rootRouteImport

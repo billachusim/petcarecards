@@ -15,11 +15,16 @@ interface SitemapEntry {
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: () => {
+      GET: async () => {
+        const { fetchPublishedGeneratedGuides } = await import(
+          "@/features/guides/generated-guides.server"
+        );
+        const allGuides = [...GUIDES, ...(await fetchPublishedGeneratedGuides())];
+
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/guides", changefreq: "weekly", priority: "0.9" },
-          ...GUIDES.map((guide) => ({
+          ...allGuides.map((guide) => ({
             path: `/guides/${guide.slug}`,
             lastmod: guide.updated,
             priority: "0.8",
