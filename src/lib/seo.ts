@@ -39,6 +39,8 @@ export function publicHead({
   type = "website",
   publishedTime,
   modifiedTime,
+  image = SOCIAL_IMAGE_URL,
+  imageAlt = SOCIAL_IMAGE_ALT,
 }: PublicMetaInput) {
   const url = absoluteUrl(path);
   const meta: MetaEntry[] = [
