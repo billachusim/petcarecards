@@ -26,6 +26,9 @@ interface PublicMetaInput {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  /** Absolute URL of a page-specific social image; defaults to the product card. */
+  image?: string;
+  imageAlt?: string;
 }
 
 /** Meta + canonical for a public, indexable page. */
