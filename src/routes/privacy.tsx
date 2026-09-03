@@ -67,6 +67,12 @@ function PrivacyPage() {
           identify you, your household, or an individual pet.
         </p>
         <p>
+          If you choose to share a care card by link or QR code while signed in, we publish a copy
+          of that card so anyone holding the unguessable link can open it. The link is not indexed
+          by search engines, and you can stop sharing it at any time from the care card page, which
+          immediately makes the link stop working.
+        </p>
+        <p>
           You can delete your backup at any time from Settings, which permanently removes those
           records from our servers. Deleting your backup does not delete the copy on your device.
         </p>
