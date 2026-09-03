@@ -10,7 +10,7 @@ export const Route = createFileRoute("/terms")({
     publicHead({
       title: "Terms of Use — Pet Care Card",
       description:
-        "The terms between you and Tech Faculty for Pet Care Card, covering acceptable use, the one-time $4.99 lifetime unlock, Paddle as Merchant of Record, and the no-medical-advice policy.",
+        "The terms between you and Tech Faculty for Pet Care Card, covering acceptable use, the one-time $4.99 lifetime unlock, Flutterwave as payment processor, and the no-medical-advice policy.",
       path: "/terms",
     }),
   component: TermsPage,
@@ -110,18 +110,11 @@ function TermsPage() {
           subscription and does not renew.
         </p>
         <p>
-          Our order process is conducted by our online reseller Paddle.com. Paddle.com is the
-          Merchant of Record for all our orders. Paddle provides all customer service inquiries and
-          handles returns. Payment, billing, tax, cancellation and refund mechanics are governed by{" "}
-          <a
-            className="underline"
-            href="https://www.paddle.com/legal/checkout-buyer-terms"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Paddle&apos;s Buyer Terms
-          </a>
-          . See our <Link className="underline" to="/refunds">Refund Policy</Link>.
+          Tech Faculty is the seller of record for all orders. Payments are processed securely by
+          our payment provider, Flutterwave; we never receive or store your card details. Prices are
+          in US dollars and any applicable taxes are shown at checkout. Billing questions, returns
+          and refunds are handled by us directly &mdash; see our{" "}
+          <Link className="underline" to="/refunds">Refund Policy</Link>.
         </p>
 
         <h2 className="font-display text-xl font-semibold">10. Availability and warranties</h2>

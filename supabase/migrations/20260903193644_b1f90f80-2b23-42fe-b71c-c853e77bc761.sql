@@ -1,0 +1,3 @@
+ALTER TABLE public.lifetime_purchases RENAME COLUMN paddle_transaction_id TO provider_transaction_id;
+ALTER TABLE public.lifetime_purchases RENAME COLUMN paddle_customer_id TO provider_customer_id;
+CREATE UNIQUE INDEX IF NOT EXISTS lifetime_purchases_provider_transaction_id_key ON public.lifetime_purchases (provider_transaction_id);

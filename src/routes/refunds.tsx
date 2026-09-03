@@ -10,7 +10,7 @@ export const Route = createFileRoute("/refunds")({
     publicHead({
       title: "Refund Policy — Pet Care Card",
       description:
-        "Pet Care Card offers a 30-day money-back guarantee on the one-time $4.99 lifetime unlock. Refunds are handled by Paddle, our Merchant of Record.",
+        "Pet Care Card offers a 30-day money-back guarantee on the one-time $4.99 lifetime unlock. Refunds are handled directly by Tech Faculty.",
       path: "/refunds",
     }),
   component: RefundsPage,
@@ -40,29 +40,22 @@ function RefundsPage() {
 
         <h2 className="font-display text-xl font-semibold">How to request a refund</h2>
         <p>
-          Our order process is conducted by our online reseller Paddle.com, the Merchant of Record
-          for all our orders. Paddle handles customer service enquiries and returns.
+          Tech Faculty is the seller of record and handles all refund requests directly. Payments
+          are processed by Flutterwave.
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            Visit{" "}
-            <a className="underline" href="https://paddle.net" target="_blank" rel="noreferrer noopener">
-              paddle.net
-            </a>{" "}
-            and enter the email address you used at checkout, or
-          </li>
-          <li>
-            email us at{" "}
+            Email us at{" "}
             <a className="underline" href="mailto:support@petcarecards.app">
               support@petcarecards.app
             </a>{" "}
-            with your order email and we will arrange it with Paddle.
+            with the email address you used at checkout, and we will process it.
           </li>
         </ul>
 
         <h2 className="font-display text-xl font-semibold">After a refund</h2>
         <p>
-          Approved refunds are returned to your original payment method by Paddle, usually within
+          Approved refunds are returned to your original payment method, usually within
           5&ndash;10 business days depending on your bank. Once a refund is processed, the lifetime
           unlock is deactivated and premium features return to the free tier. Pets and care cards
           stored on your device are not deleted; you can export them at any time.

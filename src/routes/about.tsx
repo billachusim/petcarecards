@@ -87,7 +87,7 @@ function AboutPage() {
         Pet Care Card is built and published by {BUSINESS_NAME}, an independent software studio.
         {" "}
         {BUSINESS_NAME} is the seller of record for the lifetime unlock and the publisher of the
-        Caregiver Guides on this site. Payments are processed by Paddle as Merchant of Record.
+        Caregiver Guides on this site. Payments are processed securely by Flutterwave.
       </p>
 
       <h2 className="mt-10 font-display text-2xl font-semibold">How the guides are written</h2>

@@ -106,9 +106,9 @@ function PricingPage() {
           your country and are shown before you pay.
         </p>
         <p>
-          Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant
-          of Record for all our orders. Paddle provides all customer service inquiries and handles
-          returns.
+          Tech Faculty is the seller of record for all orders and handles customer service and
+          returns directly. Payments are processed securely by Flutterwave; card details go straight
+          to the processor and are never stored by us.
         </p>
         <p>
           Not happy with your purchase? We offer a 30-day money-back guarantee — see our{" "}

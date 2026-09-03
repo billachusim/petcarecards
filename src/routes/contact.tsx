@@ -40,12 +40,10 @@ function ContactPage() {
         <div className="rounded-3xl border border-border bg-card p-6">
           <h2 className="font-display text-xl font-semibold">Billing, invoices and refunds</h2>
           <p className="mt-2 text-muted-foreground">
-            Our order process is conducted by our online reseller Paddle.com, the Merchant of Record
-            for all our orders. For invoices, payment issues or refunds you can contact Paddle at{" "}
-            <a href="https://paddle.net" className="font-medium text-foreground underline" rel="noopener">
-              paddle.net
-            </a>
-            , or email us and we will help. See our{" "}
+            Tech Faculty is the seller of record for the lifetime unlock. Payments are processed
+            securely by Flutterwave; we never see or store your card details. For invoices, payment
+            issues or refunds, email us with the address you used at checkout and we will help. See
+            our{" "}
             <Link to="/refunds" className="font-medium text-foreground underline">
               refund policy
             </Link>{" "}

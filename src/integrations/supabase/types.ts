@@ -455,10 +455,10 @@ export type Database = {
           email: string
           environment: string
           id: string
-          paddle_customer_id: string | null
-          paddle_transaction_id: string
           price_id: string
           product_id: string
+          provider_customer_id: string | null
+          provider_transaction_id: string
           purchased_at: string
           status: string
           updated_at: string
@@ -468,10 +468,10 @@ export type Database = {
           email: string
           environment?: string
           id?: string
-          paddle_customer_id?: string | null
-          paddle_transaction_id: string
           price_id: string
           product_id: string
+          provider_customer_id?: string | null
+          provider_transaction_id: string
           purchased_at?: string
           status?: string
           updated_at?: string
@@ -481,10 +481,10 @@ export type Database = {
           email?: string
           environment?: string
           id?: string
-          paddle_customer_id?: string | null
-          paddle_transaction_id?: string
           price_id?: string
           product_id?: string
+          provider_customer_id?: string | null
+          provider_transaction_id?: string
           purchased_at?: string
           status?: string
           updated_at?: string
