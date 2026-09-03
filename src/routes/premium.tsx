@@ -120,11 +120,13 @@ function PremiumPage() {
           <Sparkles className="size-6" aria-hidden="true" />
         </div>
         <h1 className="mt-5 font-display text-3xl leading-tight font-semibold">
-          Keep everything ready for your pet&apos;s caregiver.
+          Unlock Lifetime Premium
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          The free plan covers one pet with a full basic care card. Lifetime unlocks the rest.
+          Keep everything ready for your pet&apos;s caregiver. The free plan covers one pet with a
+          full basic care card. Lifetime unlocks the rest.
         </p>
+
 
         <ul className="mt-6 space-y-3">
           {PREMIUM_BENEFITS.map((benefit) => (
