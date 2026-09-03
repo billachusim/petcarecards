@@ -72,6 +72,15 @@ function AboutPage() {
         emergency and vet details into one readable card you can share by link, print, or show as a
         QR code — in about two minutes, with no account.
       </p>
+      <p className="mt-3 text-base leading-relaxed">
+        If typing it all out is the part you dread, you can{" "}
+        <Link to="/talk-about-your-pet" className="text-primary hover:underline">
+          talk about your pet
+        </Link>{" "}
+        instead: speak for a minute and the care card is written for you to check before anything
+        saves.
+      </p>
+
 
       <h2 className="mt-10 font-display text-2xl font-semibold">Who makes it</h2>
       <p className="mt-3 text-base leading-relaxed">
