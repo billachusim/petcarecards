@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Settings } from "lucide-react";
+import { PawPrint, Settings } from "lucide-react";
 import type { ReactNode } from "react";
-
-import logoAsset from "@/assets/petcarecard-logo.png.asset.json";
 
 interface AppShellProps {
   children: ReactNode;
@@ -16,14 +14,10 @@ export function AppShell({ children, bare = false }: AppShellProps) {
       {!bare && (
         <header className="no-print border-b border-border/70 bg-card/70 backdrop-blur">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
-            <Link to="/" className="flex items-center gap-2.5 rounded-md" aria-label="Pet Care Card home">
-              <img
-                src={logoAsset.url}
-                alt=""
-                className="size-9 rounded-xl"
-                width={36}
-                height={36}
-              />
+            <Link to="/" className="flex items-center gap-2 rounded-md" aria-label="Pet Care Card home">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <PawPrint className="size-5" aria-hidden="true" />
+              </span>
               <span className="font-display text-lg font-semibold">Pet Care Card</span>
             </Link>
             <nav className="flex items-center gap-1" aria-label="Main">
@@ -48,10 +42,7 @@ export function AppShell({ children, bare = false }: AppShellProps) {
       {!bare && (
         <footer className="no-print border-t border-border/70 bg-card/50">
           <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-muted-foreground">
-            <p className="flex items-center gap-2">
-              <img src={logoAsset.url} alt="" className="size-6 rounded-md" width={24} height={24} />©{" "}
-              {new Date().getFullYear()} Pet Care Card
-            </p>
+            <p>© {new Date().getFullYear()} Pet Care Card</p>
             <nav className="flex flex-wrap gap-4" aria-label="Footer">
               <Link to="/guides" className="hover:text-foreground">
                 Caregiver Guides

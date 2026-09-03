@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { HeartHandshake, LayoutList, Share2 } from "lucide-react";
 import { useState } from "react";
 
-import logoAsset from "@/assets/petcarecard-logo.png.asset.json";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { STORAGE_KEYS } from "@/features/pets/data/care-data-repository";
@@ -65,19 +64,9 @@ function Onboarding() {
     <AppShell bare>
       <div className="mx-auto flex min-h-[80vh] max-w-md flex-col justify-between py-10">
         <div>
-          {index === 0 ? (
-            <img
-              src={logoAsset.url}
-              alt="Pet Care Card logo — a dog and cat holding a care card"
-              className="size-20 rounded-3xl"
-              width={80}
-              height={80}
-            />
-          ) : (
-            <div className="flex size-16 items-center justify-center rounded-3xl bg-primary/10 text-primary">
-              <Icon className="size-8" aria-hidden="true" />
-            </div>
-          )}
+          <div className="flex size-16 items-center justify-center rounded-3xl bg-primary/10 text-primary">
+            <Icon className="size-8" aria-hidden="true" />
+          </div>
           <h1 className="mt-8 font-display text-4xl leading-tight font-semibold">{slide.title}</h1>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{slide.body}</p>
           {slide.bullets.length > 0 && (

@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 
-import featureAsset from "@/assets/petfeature.png.asset.json";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { GUIDES } from "@/features/guides/guides-data";
@@ -65,14 +64,6 @@ function GuidesIndex() {
         <Button asChild size="lg" className="mt-5 h-12 rounded-xl px-6">
           <Link to="/pets/new">Create a care card</Link>
         </Button>
-        <img
-          src={featureAsset.url}
-          alt="Pet Care Card — everything your pet sitter needs: feeding and routine, medications, emergency contacts, vet information, QR code sharing and a printable care card."
-          className="mt-6 w-full rounded-2xl"
-          loading="lazy"
-          width={1024}
-          height={500}
-        />
       </header>
 
       <h2 className="mt-10 font-display text-2xl font-semibold">All guides</h2>
