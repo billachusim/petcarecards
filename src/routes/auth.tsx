@@ -84,6 +84,22 @@ function AuthPage() {
       </p>
 
       <div className="mt-6 space-y-4 rounded-3xl border border-border bg-card p-5">
+        <Button
+          variant="secondary"
+          className="h-12 w-full rounded-xl"
+          disabled={busy}
+          onClick={() => void signInWithGoogle()}
+        >
+          Continue with Google
+        </Button>
+
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <span className="h-px flex-1 bg-border" />
+          or use email
+          <span className="h-px flex-1 bg-border" />
+        </div>
+
+
         <div className="space-y-1.5">
           <Label htmlFor="auth-email" className="text-sm font-medium">
             Email
