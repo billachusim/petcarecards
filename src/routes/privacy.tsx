@@ -10,7 +10,7 @@ export const Route = createFileRoute("/privacy")({
     publicHead({
       title: "Privacy Notice — Pet Care Card",
       description:
-        "How Tech Faculty handles personal data in Pet Care Card: what we collect, why, who we share it with (including Paddle as Merchant of Record), retention, security and your rights.",
+        "How Tech Faculty handles personal data in Pet Care Card: what we collect, why, who we share it with (including Flutterwave as payment processor), retention, security and your rights.",
       path: "/privacy",
     }),
   component: PrivacyPage,
@@ -113,16 +113,16 @@ function PrivacyPage() {
         <h2 className="font-display text-xl font-semibold">Who we share data with</h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Paddle.com Market Ltd</strong>, our Merchant of Record. Paddle handles checkout,
-            payment processing, billing, sales tax compliance, invoicing, customer purchase
-            enquiries and refunds, and receives the personal data needed for those purposes. See{" "}
+            <strong>Flutterwave</strong>, our payment processor. Flutterwave handles checkout, card
+            processing and payment confirmation, and receives the email address and payment details
+            needed for those purposes. See{" "}
             <a
               className="underline"
-              href="https://www.paddle.com/legal/privacy"
+              href="https://flutterwave.com/us/privacy-policy"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Paddle&apos;s privacy policy
+              Flutterwave&apos;s privacy policy
             </a>
             .
           </li>
@@ -160,7 +160,7 @@ function PrivacyPage() {
           We use appropriate technical and organisational measures, including encryption in transit
           (HTTPS), encryption at rest for our database, access controls limiting who can reach
           purchase records, and signed, verified payment webhooks. Card details are never handled by
-          us — they go directly to Paddle.
+          us — they go directly to Flutterwave.
         </p>
 
         <h2 className="font-display text-xl font-semibold">Your rights</h2>
