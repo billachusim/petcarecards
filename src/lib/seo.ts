@@ -81,6 +81,42 @@ export function privateHead(title: string, description: string) {
   };
 }
 
+/** Legal seller / publisher entity behind the site. */
+export const BUSINESS_NAME = "Tech Faculty";
+
+export const organizationLd = {
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: BUSINESS_NAME,
+  alternateName: SITE_NAME,
+  url: absoluteUrl("/"),
+  logo: absoluteUrl("/favicon.svg"),
+  image: SOCIAL_IMAGE_URL,
+  description:
+    "Tech Faculty publishes Pet Care Card, a web tool that turns pet feeding, routine, medication, emergency and vet details into a single shareable care card.",
+};
+
+export const websiteLd = {
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: absoluteUrl("/"),
+  inLanguage: "en",
+  publisher: { "@id": `${SITE_URL}/#organization` },
+};
+
+/** BreadcrumbList JSON-LD from an ordered list of crumbs. */
+export const breadcrumbLd = (crumbs: { name: string; path: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: absoluteUrl(crumb.path),
+  })),
+});
+
 export const jsonLdScript = (data: unknown) => ({
   type: "application/ld+json",
   children: JSON.stringify(data),
