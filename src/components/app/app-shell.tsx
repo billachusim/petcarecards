@@ -53,6 +53,9 @@ export function AppShell({ children, bare = false }: AppShellProps) {
               <Link to="/terms" className="hover:text-foreground">
                 Terms
               </Link>
+              <Link to="/refunds" className="hover:text-foreground">
+                Refunds
+              </Link>
             </nav>
           </div>
         </footer>

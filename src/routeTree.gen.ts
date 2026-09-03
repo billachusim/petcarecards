@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PremiumRouteImport } from './routes/premium'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundsRouteImport } from './routes/refunds'
 import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -43,6 +44,11 @@ const PremiumRoute = PremiumRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundsRoute = RefundsRouteImport.update({
+  id: '/refunds',
+  path: '/refunds',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RemindersRoute = RemindersRouteImport.update({
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/premium'
     | '/privacy'
+    | '/refunds'
     | '/reminders'
     | '/settings'
     | '/terms'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/premium'
     | '/privacy'
+    | '/refunds'
     | '/reminders'
     | '/settings'
     | '/terms'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/premium'
     | '/privacy'
+    | '/refunds'
     | '/reminders'
     | '/settings'
     | '/terms'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   PremiumRoute: typeof PremiumRoute
   PrivacyRoute: typeof PrivacyRoute
+  RefundsRoute: typeof RefundsRoute
   RemindersRoute: typeof RemindersRoute
   SettingsRoute: typeof SettingsRoute
   TermsRoute: typeof TermsRoute
@@ -253,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refunds': {
+      id: '/refunds'
+      path: '/refunds'
+      fullPath: '/refunds'
+      preLoaderRoute: typeof RefundsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reminders': {
@@ -352,6 +372,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   PremiumRoute: PremiumRoute,
   PrivacyRoute: PrivacyRoute,
+  RefundsRoute: RefundsRoute,
   RemindersRoute: RemindersRoute,
   SettingsRoute: SettingsRoute,
   TermsRoute: TermsRoute,
