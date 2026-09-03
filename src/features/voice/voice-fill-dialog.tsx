@@ -259,17 +259,21 @@ export function VoiceFillDialog({
               <ReviewSummary details={details} />
 
               <div>
-                <Label htmlFor="voice-transcript">What we heard</Label>
+                <Label htmlFor="voice-transcript">What we heard — edit if needed</Label>
+                <p className="text-xs text-muted-foreground">
+                  Change any misheard words, then tap “Read it again” to update the card.
+                </p>
                 <Textarea
                   id="voice-transcript"
-                  className="mt-1 rounded-xl"
+                  className="mt-1.5 rounded-xl"
                   rows={3}
                   value={transcript}
                   onChange={(event) => setTranscript(event.target.value)}
                 />
                 <Button
                   type="button"
-                  variant="ghost"
+                  variant="outline"
+                  size="sm"
                   className="mt-2 rounded-xl"
                   onClick={() => void runParse(transcript)}
                 >
