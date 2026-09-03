@@ -63,7 +63,10 @@ export interface CareStoreValue {
   saveCaregiver: (info: CaregiverInfo) => void;
   setEntitlement: (entitlement: PremiumEntitlement) => void;
   deleteAllData: () => void;
+  /** Replaces every local care record (used when restoring an account backup). */
+  replaceAll: (data: Omit<CareDatabase, "premium">) => void;
   exportData: () => string;
+
 }
 
 const CareStoreContext = createContext<CareStoreValue | null>(null);
