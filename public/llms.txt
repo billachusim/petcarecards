@@ -40,6 +40,7 @@
 - Printable pet care card template: /guides/printable-pet-care-card-template
 - Privacy Policy: /privacy
 - Terms of Use: /terms
+- Refund Policy: /refunds
 
 ## Not public
 

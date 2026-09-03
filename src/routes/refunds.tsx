@@ -60,9 +60,7 @@ function RefundsPage() {
           </li>
         </ul>
 
-        <h2 className="font-district text-xl font-semibold font-display">
-          After a refund
-        </h2>
+        <h2 className="font-display text-xl font-semibold">After a refund</h2>
         <p>
           Approved refunds are returned to your original payment method by Paddle, usually within
           5&ndash;10 business days depending on your bank. Once a refund is processed, the lifetime
