@@ -139,7 +139,7 @@ export const GUIDES: Guide[] = [
           "Make a separate card for each pet. Shared instructions get skimmed, and feeding mistakes between pets are one of the most common sitter errors.",
       },
     ],
-    related: ["what-to-leave-with-a-dog-sitter", "pet-emergency-contact-sheet", "printable-pet-care-card-template"],
+    related: ["what-to-leave-with-a-dog-sitter", "pet-emergency-contact-sheet", "printable-pet-care-card-template", "voice-pet-sitter-instructions"],
   },
   {
     slug: "what-to-leave-with-a-dog-sitter",
@@ -219,7 +219,7 @@ export const GUIDES: Guide[] = [
           "Yes. Emergencies are not proportional to trip length, and a clinic will move faster when the caller already has the clinic name, your name and the dog's details.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet"],
+    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet", "voice-pet-sitter-instructions"],
   },
   {
     slug: "cat-sitter-instructions",
@@ -290,7 +290,7 @@ export const GUIDES: Guide[] = [
           "Ask for a short message covering how much was eaten, what was in the litter box, and how the cat behaved. That is enough to spot most problems early.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet"],
+    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet", "voice-pet-sitter-instructions"],
   },
   {
     slug: "pet-emergency-contact-sheet",
@@ -561,7 +561,7 @@ export const GUIDES: Guide[] = [
           "Two printed copies is a sensible default: one on the fridge and one with the pet's supplies, plus the shared digital link.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-emergency-contact-sheet", "pet-feeding-schedule-template"],
+    related: ["pet-sitter-care-card-checklist", "pet-emergency-contact-sheet", "pet-feeding-schedule-template", "voice-pet-sitter-instructions"],
   },
   {
     slug: "puppy-feeding-schedule-by-age",
