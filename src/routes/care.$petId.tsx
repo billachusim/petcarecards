@@ -43,6 +43,7 @@ function CareCardPage() {
   const { ready, buildCareCard, isPremium } = useCareStore();
   const [paywallOpen, setPaywallOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const share = useShareLink(petId);
   const card = buildCareCard(petId);
 
   if (!ready) {
