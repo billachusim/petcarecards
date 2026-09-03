@@ -131,7 +131,7 @@ function PremiumPage() {
 
   return (
     <AppShell>
-      <PaymentTestModeBanner />
+      
       <Button
         variant="ghost"
         className="mb-4 -ml-2 rounded-xl"
