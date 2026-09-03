@@ -186,10 +186,32 @@ function CareCardPage() {
             </Link>
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground">
-          Care cards live on this device. Sharing sends a link to this card&apos;s address — no
-          private data is put inside the link or QR code itself.
-        </p>
+        {share.signedIn ? (
+          <div className="space-y-2">
+            <p className="text-xs text-muted-foreground">
+              {share.token
+                ? "This card has a live link. Anyone with it — on WhatsApp, email or the QR code — can open the card on any device. Sharing again refreshes it with your latest details."
+                : "Sharing publishes a copy of this card to your account so a sitter can open it on their own phone."}
+            </p>
+            {share.token ? (
+              <Button
+                variant="ghost"
+                className="h-9 rounded-xl px-2 text-xs"
+                onClick={() => void handleStopSharing()}
+              >
+                Stop sharing this link
+              </Button>
+            ) : null}
+          </div>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            This card lives on this device, so the link only opens here.{" "}
+            <Link to="/settings" className="underline">
+              Sign in and turn on backup
+            </Link>{" "}
+            to share a link a sitter can open anywhere.
+          </p>
+        )}
       </div>
     </AppShell>
   );
