@@ -52,9 +52,17 @@ export function publicHead({
     { property: "og:type", content: type },
     { property: "og:url", content: url },
     { property: "og:site_name", content: SITE_NAME },
+    { property: "og:image", content: image },
+    { property: "og:image:secure_url", content: image },
+    { property: "og:image:type", content: "image/jpeg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:alt", content: imageAlt },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
+    { name: "twitter:image", content: image },
+    { name: "twitter:image:alt", content: imageAlt },
   ];
   if (publishedTime) meta.push({ property: "article:published_time", content: publishedTime });
   if (modifiedTime) meta.push({ property: "article:modified_time", content: modifiedTime });
