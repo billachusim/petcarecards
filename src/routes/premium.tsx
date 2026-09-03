@@ -53,6 +53,53 @@ function PremiumPage() {
   const [email, setEmail] = useState(entitlement.email ?? "");
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const handledReturn = useRef(false);
+
+  // Handle the redirect back from the hosted checkout.
+  useEffect(() => {
+    if (handledReturn.current) return;
+    handledReturn.current = true;
+
+    const params = new URLSearchParams(window.location.search);
+    const transactionId = params.get("transaction_id");
+    const flwStatus = params.get("status");
+    if (!transactionId && !flwStatus) return;
+
+    const pendingEmail = readPendingCheckoutEmail() ?? entitlement.email ?? "";
+    window.history.replaceState({}, "", window.location.pathname);
+
+    if (flwStatus && flwStatus !== "successful" && flwStatus !== "completed") {
+      clearPendingCheckoutEmail();
+      setStatus("Your payment wasn't completed. You can try again — nothing was charged.");
+      return;
+    }
+    if (!pendingEmail) return;
+
+    setEmail(pendingEmail);
+    setBusy(true);
+    setStatus("Payment received — confirming your unlock…");
+    void (async () => {
+      try {
+        if (transactionId) await confirmCheckoutReturn(transactionId);
+        const verified = await waitForEntitlement(pendingEmail);
+        if (verified) {
+          clearPendingCheckoutEmail();
+          setEntitlement(verified);
+          toast.success("Lifetime access unlocked.");
+          setStatus(null);
+        } else {
+          setStatus(
+            "Your payment went through. It's taking a moment to confirm — tap Restore Purchase in a minute.",
+          );
+        }
+      } catch (error) {
+        setStatus(firstError(error));
+      } finally {
+        setBusy(false);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleUnlock = async () => {
     if (!email.trim()) {
@@ -62,31 +109,7 @@ function PremiumPage() {
     setBusy(true);
     setStatus(null);
     try {
-      await startLifetimeCheckout({
-        email,
-        onClosed: () => setBusy(false),
-        onCompleted: () => {
-          setStatus("Payment received — confirming your unlock…");
-          void (async () => {
-            try {
-              const verified = await waitForEntitlement(email);
-              if (verified) {
-                setEntitlement(verified);
-                toast.success("Lifetime access unlocked.");
-                setStatus(null);
-              } else {
-                setStatus(
-                  "Your payment went through. It's taking a moment to confirm — tap Restore Purchase in a minute.",
-                );
-              }
-            } catch (error) {
-              setStatus(firstError(error));
-            } finally {
-              setBusy(false);
-            }
-          })();
-        },
-      });
+      await startLifetimeCheckout(email);
     } catch (error) {
       toast.error(firstError(error));
       setBusy(false);
