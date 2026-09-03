@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PremiumRouteImport } from './routes/premium'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundsRouteImport } from './routes/refunds'
 import { Route as RemindersRouteImport } from './routes/reminders'
@@ -62,6 +63,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const PremiumRoute = PremiumRouteImport.update({
   id: '/premium',
   path: '/premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/llms.txt': typeof LlmsDottxtRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
@@ -245,6 +254,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/onboarding'
     | '/premium'
+    | '/pricing'
     | '/privacy'
     | '/refunds'
     | '/reminders'
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/onboarding'
     | '/premium'
+    | '/pricing'
     | '/privacy'
     | '/refunds'
     | '/reminders'
@@ -297,6 +308,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/onboarding'
     | '/premium'
+    | '/pricing'
     | '/privacy'
     | '/refunds'
     | '/reminders'
@@ -324,6 +336,7 @@ export interface RootRouteChildren {
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   OnboardingRoute: typeof OnboardingRoute
   PremiumRoute: typeof PremiumRoute
+  PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundsRoute: typeof RefundsRoute
   RemindersRoute: typeof RemindersRoute
@@ -385,6 +398,13 @@ declare module '@tanstack/react-router' {
       path: '/premium'
       fullPath: '/premium'
       preLoaderRoute: typeof PremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -535,6 +555,7 @@ const rootRouteChildren: RootRouteChildren = {
   LlmsDottxtRoute: LlmsDottxtRoute,
   OnboardingRoute: OnboardingRoute,
   PremiumRoute: PremiumRoute,
+  PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundsRoute: RefundsRoute,
   RemindersRoute: RemindersRoute,
