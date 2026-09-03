@@ -17,7 +17,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { BackupSettings } from "@/features/backup/components/backup-settings";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
+
 import { restorePurchase } from "@/features/premium/premium-service";
 import {
   NOTIFICATION_WEB_LIMITS,
