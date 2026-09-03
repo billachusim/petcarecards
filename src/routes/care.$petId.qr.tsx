@@ -7,11 +7,11 @@ import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import {
-  buildCareCardUrl,
   downloadDataUrl,
   generateQrDataUrl,
   shareLink,
 } from "@/features/sharing/care-card-sharing-service";
+import { useShareLink } from "@/features/sharing/use-share-link";
 import { firstError } from "@/lib/validation";
 
 export const Route = createFileRoute("/care/$petId/qr")({
@@ -33,17 +33,31 @@ export const Route = createFileRoute("/care/$petId/qr")({
 function QrPage() {
   const { petId } = Route.useParams();
   const navigate = useNavigate();
-  const { ready, getPet } = useCareStore();
+  const { ready, getPet, buildCareCard } = useCareStore();
   const pet = getPet(petId);
+  const share = useShareLink(petId);
   const [qr, setQr] = useState<string>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
     if (!ready || !pet) return;
-    generateQrDataUrl(buildCareCardUrl(petId))
-      .then(setQr)
-      .catch((err) => setError(firstError(err)));
-  }, [ready, pet, petId]);
+    let active = true;
+    void (async () => {
+      try {
+        // Publish first when signed in, so the QR points at a link any device opens.
+        const card = buildCareCard(petId);
+        const url = share.signedIn && card ? await share.publish(card) : share.url;
+        const dataUrl = await generateQrDataUrl(url);
+        if (active) setQr(dataUrl);
+      } catch (err) {
+        if (active) setError(firstError(err));
+      }
+    })();
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, pet, petId, share.signedIn]);
 
   return (
     <AppShell>
