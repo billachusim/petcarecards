@@ -25,6 +25,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TalkAboutYourPetRouteImport } from './routes/talk-about-your-pet'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
@@ -116,6 +117,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CTokenRoute = CTokenRouteImport.update({
+  id: '/c/$token',
+  path: '/c/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CarePetIdRoute = CarePetIdRouteImport.update({
   id: '/care/$petId',
   path: '/care/$petId',
@@ -186,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
@@ -214,6 +221,7 @@ export interface FileRoutesByTo {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
@@ -243,6 +251,7 @@ export interface FileRoutesById {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
@@ -273,6 +282,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
@@ -301,6 +311,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
@@ -329,6 +340,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
@@ -358,6 +370,7 @@ export interface RootRouteChildren {
   TalkAboutYourPetRoute: typeof TalkAboutYourPetRoute
   TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
+  CTokenRoute: typeof CTokenRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   GuidesSlugRoute: typeof GuidesSlugRoute
   PetsNewRoute: typeof PetsNewRoute
@@ -483,6 +496,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/c/$token': {
+      id: '/c/$token'
+      path: '/c/$token'
+      fullPath: '/c/$token'
+      preLoaderRoute: typeof CTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/care/$petId': {
       id: '/care/$petId'
       path: '/care/$petId'
@@ -585,6 +605,7 @@ const rootRouteChildren: RootRouteChildren = {
   TalkAboutYourPetRoute: TalkAboutYourPetRoute,
   TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
+  CTokenRoute: CTokenRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   GuidesSlugRoute: GuidesSlugRoute,
   PetsNewRoute: PetsNewRoute,
