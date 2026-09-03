@@ -12,6 +12,8 @@ import { FeedingStep } from "@/features/care-card/components/feeding-step";
 import { MedicationStep } from "@/features/care-card/components/medication-step";
 import { RoutineStep } from "@/features/care-card/components/routine-step";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
+import { applyParsedDetails } from "@/features/voice/apply-parsed-details";
+import { VoiceFillButton } from "@/features/voice/voice-fill-button";
 
 export const Route = createFileRoute("/pets/$petId/edit")({
   head: () => ({
@@ -35,7 +37,8 @@ const STEPS = ["Pet", "Feeding", "Routine", "Medication", "Emergency", "Done"] a
 function EditPet() {
   const { petId } = Route.useParams();
   const navigate = useNavigate();
-  const { ready, getPet } = useCareStore();
+  const store = useCareStore();
+  const { ready, getPet, isPremium } = store;
   const [step, setStep] = useState(0);
   const pet = getPet(petId);
 
@@ -87,6 +90,19 @@ function EditPet() {
           Everything saves automatically. Skip anything you don&apos;t need.
         </p>
       </div>
+
+      {step < 5 && (
+        <div className="mb-6">
+          <VoiceFillButton
+            isPremium={isPremium}
+            label="Talk instead of typing"
+            onConfirm={(details) => {
+              applyParsedDetails(store, petId, details);
+              toast.success("Filled in from what you said — please check it over.");
+            }}
+          />
+        </div>
+      )}
 
       {step === 0 && <AboutStep petId={petId} />}
       {step === 1 && <FeedingStep petId={petId} />}

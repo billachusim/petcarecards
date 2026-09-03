@@ -17,6 +17,9 @@ import {
 import { PhotoPicker } from "@/features/pets/components/photo-picker";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import type { Sex, Species } from "@/features/pets/models";
+import { applyParsedDetails } from "@/features/voice/apply-parsed-details";
+import { VoiceFillButton } from "@/features/voice/voice-fill-button";
+import type { ParsedCareDetails } from "@/features/voice/voice-types";
 import { firstError, petSchema } from "@/lib/validation";
 
 export const Route = createFileRoute("/pets/new")({
@@ -40,7 +43,8 @@ const SEXES: Sex[] = ["Male", "Female", "Unknown"];
 
 function NewPet() {
   const navigate = useNavigate();
-  const { addPet, pets, isPremium } = useCareStore();
+  const store = useCareStore();
+  const { addPet, pets, isPremium } = store;
 
   const [name, setName] = useState("");
   const [species, setSpecies] = useState<Species | "">("");
@@ -51,6 +55,26 @@ function NewPet() {
   const [weight, setWeight] = useState("");
   const [photo, setPhoto] = useState<string | undefined>();
   const [error, setError] = useState<string>();
+
+  const applyVoice = (details: ParsedCareDetails) => {
+    if (!isPremium && pets.length >= 1) {
+      void navigate({ to: "/premium" });
+      return;
+    }
+    const petName = details.pet.name?.trim();
+    if (!petName) return;
+    const pet = addPet({
+      name: petName,
+      species: details.pet.species ?? undefined,
+      breed: details.pet.breed ?? undefined,
+      sex: details.pet.sex ?? undefined,
+      approximateAge: details.pet.approximateAge ?? undefined,
+      weight: details.pet.weight ?? undefined,
+    });
+    applyParsedDetails(store, pet.id, details);
+    toast.success(`${pet.name}'s card is filled in — please check it over.`);
+    void navigate({ to: "/pets/$petId/edit", params: { petId: pet.id } });
+  };
 
   const submit = () => {
     if (!isPremium && pets.length >= 1) {
@@ -92,6 +116,10 @@ function NewPet() {
       <p className="mt-1 text-sm text-muted-foreground">
         Only the name is required — you can fill in the rest any time.
       </p>
+
+      <div className="mt-6">
+        <VoiceFillButton isPremium={isPremium} onConfirm={applyVoice} />
+      </div>
 
       <div className="mt-6 space-y-5 rounded-3xl border border-border bg-card p-5">
         <TextField
