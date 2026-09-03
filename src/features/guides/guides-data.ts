@@ -1114,6 +1114,105 @@ export const GUIDES: Guide[] = [
       "pet-first-aid-basics-for-sitters",
     ],
   },
+  {
+    slug: "voice-pet-sitter-instructions",
+    title: "How to leave pet care instructions for a sitter without typing it all out",
+    metaTitle: "Voice Pet Sitter Instructions — Talk Instead of Typing | Pet Care Card",
+    description:
+      "Record pet sitter instructions by talking instead of typing. What to say out loud, in what order, and how to turn a one-minute voice note into a care card your sitter, dog walker or grandparents can actually follow.",
+    answer:
+      "Speak your pet's instructions in one pass, in this order: who the pet is, what and how much they eat and when, their daily routine and bathroom habits, any medication, who to call in an emergency, and your vet's name and phone. A minute of talking covers everything a sitter needs. Then read it back and correct it — especially medication names and doses, which should always be checked against the label.",
+    published: "2026-09-03",
+    updated: "2026-09-03",
+    readMinutes: 5,
+    medicalDisclaimer: true,
+    intro: [
+      "Care instructions usually get written at the worst possible moment: the night before you leave, half-packed, with the sitter arriving at eight. That is why so many sitters end up with a three-line text message instead of a real handover.",
+      "Talking is faster than typing and, oddly, more complete — people naturally mention the gate that does not latch or the treat limit when they are speaking out loud. Pet Care Card's Voice Fill turns that into a structured care card you can share, print or hand over as a QR code.",
+    ],
+    sections: [
+      {
+        heading: "Say it in this order",
+        paragraphs: [
+          "Order matters, because it is how a sitter reads the card later and how any tool listening to you will file the details.",
+        ],
+        bullets: [
+          "Who the pet is: name, species, breed, rough age and weight.",
+          "Feeding: the food, the exact amount, the measuring tool, and the times.",
+          "Anything they must not eat, plus the treat limit.",
+          "Routine: walks, play, litter or garden access, sleeping arrangements.",
+          "Medication: name, strength, amount, time of day, and how it is given.",
+          "Emergency: your phone, a second decision-maker, and any spending limit you authorise.",
+          "Vet: clinic name, phone and address, plus the nearest 24-hour clinic.",
+        ],
+      },
+      {
+        heading: "A script you can read out loud",
+        paragraphs: [
+          "If you freeze the moment the microphone opens, say this and swap in your own details:",
+          "\u201cThis is Milo, a four-year-old beagle, about twelve kilos. He eats one cup of dry food at 7am and 6pm, using the scoop in the bin, and no chocolate or grapes. He gets two walks a day, morning and after work, and sleeps in the crate in the kitchen. He takes half a tablet of his allergy medication every morning with food. If anything happens, call me first, then Sarah on 555 0134. Our vet is Green Lane Clinic on 555 0199.\u201d",
+          "That is roughly forty seconds and it fills every essential section of a care card.",
+        ],
+      },
+      {
+        heading: "What sitters say they most often need and rarely get",
+        checklist: [
+          "How much food, in a unit they can measure",
+          "Whether the pet can be left alone, and for how long",
+          "Where the leash, food, litter and cleaning supplies are kept",
+          "Behaviour warnings: door dashing, resource guarding, fear of thunder",
+          "Whether they are allowed to authorise veterinary treatment, and up to what cost",
+          "A second human to call when you do not answer",
+        ],
+      },
+      {
+        heading: "Read it back before you hand it over",
+        paragraphs: [
+          "Voice is for speed, not for accuracy on the details that matter clinically. Whatever you use to capture it, check the written version before you share it.",
+        ],
+        bullets: [
+          "Compare every medication name, strength and dose against the label on the packet.",
+          "Check numbers that sound alike out loud: 15 and 50, 7am and 11am.",
+          "Confirm phone numbers digit by digit.",
+          "Add anything you skipped — most people forget where the spare key is.",
+        ],
+      },
+      {
+        heading: "Doing it in Pet Care Card",
+        paragraphs: [
+          "Open Add Pet, tap \u201cTalk about your pet\u201d, and speak. The details are written into the matching fields and shown to you on a review screen before anything is saved; recordings are not stored, and your pet's details stay on your device.",
+          "The finished card can be shared by link, printed for the fridge, or scanned as a QR code at the door. Voice fill is free twice, then part of the one-off $4.99 lifetime unlock — typing everything in stays free.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is talking really faster than filling in a form?",
+        answer:
+          "For a first care card, yes — most owners cover feeding, routine, medication, emergency contacts and the vet in under a minute of speech, then spend a minute correcting it. Editing an existing card is usually quicker by hand.",
+      },
+      {
+        question: "Can I use a normal voice note instead?",
+        answer:
+          "You can send a sitter a voice note, but they cannot scan it at 7am with a dog at their feet. Written instructions in a fixed order are far easier to follow under pressure, which is why converting speech into a care card works better than the recording itself.",
+      },
+      {
+        question: "Is my recording saved anywhere?",
+        answer:
+          "In Pet Care Card, no. Audio is used only to produce the text you review and is then discarded.",
+      },
+      {
+        question: "Can voice get medication wrong?",
+        answer:
+          "Any transcription can mishear a number or a drug name, which is why the review screen flags medication for a manual check. Always confirm the name, strength and dose against the label. Pet Care Card never suggests or adjusts a dose.",
+      },
+    ],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "what-to-leave-with-a-dog-sitter",
+      "printable-pet-care-card-template",
+    ],
+  },
 ];
 
 export const getGuide = (slug: string) => GUIDES.find((g) => g.slug === slug);
