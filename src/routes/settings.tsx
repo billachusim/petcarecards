@@ -17,7 +17,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { BackupSettings } from "@/features/backup/components/backup-settings";
 import { useCareStore } from "@/features/pets/hooks/use-care-store";
+
 import { restorePurchase } from "@/features/premium/premium-service";
 import {
   NOTIFICATION_WEB_LIMITS,
@@ -190,6 +192,9 @@ function SettingsPage() {
       <p className="mt-4 px-1 text-xs leading-relaxed text-muted-foreground">
         {NOTIFICATION_WEB_LIMITS}
       </p>
+
+      <BackupSettings />
+
 
       <div className="mt-6 divide-y divide-border rounded-3xl border border-border bg-card px-5">
         <Row>

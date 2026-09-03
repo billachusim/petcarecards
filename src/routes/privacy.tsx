@@ -46,8 +46,31 @@ function PrivacyPage() {
         <p>
           Pets, care details, photos, medications and reminders you enter are stored in your
           browser&apos;s local storage on the device you used. We do not create an account for you
-          and we do not upload that content to our servers unless you explicitly share or export it.
+          and we do not upload that content to our servers unless you explicitly share or export it,
+          or you switch on optional backup.
         </p>
+
+        <h2 className="font-display text-xl font-semibold">Optional backup and sync</h2>
+        <p>
+          Backup is off by default and the app works fully without it. If you create an account and
+          switch backup on in Settings, we store a copy of your care data against your account so
+          you can restore it on another device: pet names, species, breed, age, photos, feeding,
+          routine, medication, emergency contact, veterinarian, reminder and caregiver details,
+          free-text notes, and your account email address. Our legal basis is your consent, which
+          you can withdraw at any time by switching backup off.
+        </p>
+        <p>
+          We use this data to provide backup and restore, and to improve Pet Care Card. We do not
+          sell or share your identifiable care data or photos with third parties, and we do not use
+          it to advertise to you. We may publish, share or license aggregated and anonymised
+          insights (for example, how common a feeding pattern is) that cannot reasonably be used to
+          identify you, your household, or an individual pet.
+        </p>
+        <p>
+          You can delete your backup at any time from Settings, which permanently removes those
+          records from our servers. Deleting your backup does not delete the copy on your device.
+        </p>
+
 
         <h2 className="font-display text-xl font-semibold">Personal data we process</h2>
         <ul className="list-disc space-y-2 pl-5">
