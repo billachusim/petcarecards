@@ -16,6 +16,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundsRouteImport } from './routes/refunds'
 import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
@@ -59,6 +60,11 @@ const RemindersRoute = RemindersRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
@@ -228,6 +240,7 @@ export interface RootRouteChildren {
   RefundsRoute: typeof RefundsRoute
   RemindersRoute: typeof RemindersRoute
   SettingsRoute: typeof SettingsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   GuidesSlugRoute: typeof GuidesSlugRoute
@@ -287,6 +300,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -375,6 +395,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundsRoute: RefundsRoute,
   RemindersRoute: RemindersRoute,
   SettingsRoute: SettingsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   GuidesSlugRoute: GuidesSlugRoute,
