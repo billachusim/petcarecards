@@ -191,6 +191,9 @@ function SettingsPage() {
         {NOTIFICATION_WEB_LIMITS}
       </p>
 
+      <BackupSettings />
+
+
       <div className="mt-6 divide-y divide-border rounded-3xl border border-border bg-card px-5">
         <Row>
           <Link to="/privacy" className="font-medium underline-offset-4 hover:underline">
