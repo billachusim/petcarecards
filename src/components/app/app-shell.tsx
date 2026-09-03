@@ -42,7 +42,10 @@ export function AppShell({ children, bare = false }: AppShellProps) {
       {!bare && (
         <footer className="no-print border-t border-border/70 bg-card/50">
           <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Pet Care Card</p>
+            <p className="flex items-center gap-2">
+              <img src="/favicon.svg" alt="" width={20} height={20} className="size-5 rounded-md" aria-hidden="true" />
+              © {new Date().getFullYear()} Pet Care Card
+            </p>
             <nav className="flex flex-wrap gap-4" aria-label="Footer">
               <Link to="/guides" className="hover:text-foreground">
                 Caregiver Guides
