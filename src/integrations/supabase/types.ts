@@ -14,6 +14,132 @@ export type Database = {
   }
   public: {
     Tables: {
+      generated_guides: {
+        Row: {
+          answer: string
+          created_at: string
+          description: string
+          faqs: Json
+          id: string
+          intro: Json
+          medical_disclaimer: boolean
+          meta_title: string
+          model: string | null
+          published_at: string
+          read_minutes: number
+          related: Json
+          sections: Json
+          slug: string
+          status: string
+          title: string
+          topic: string | null
+          updated_at: string
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          description: string
+          faqs?: Json
+          id?: string
+          intro?: Json
+          medical_disclaimer?: boolean
+          meta_title: string
+          model?: string | null
+          published_at?: string
+          read_minutes?: number
+          related?: Json
+          sections?: Json
+          slug: string
+          status?: string
+          title: string
+          topic?: string | null
+          updated_at?: string
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          description?: string
+          faqs?: Json
+          id?: string
+          intro?: Json
+          medical_disclaimer?: boolean
+          meta_title?: string
+          model?: string | null
+          published_at?: string
+          read_minutes?: number
+          related?: Json
+          sections?: Json
+          slug?: string
+          status?: string
+          title?: string
+          topic?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      guide_generation_runs: {
+        Row: {
+          attempts: number
+          error: string | null
+          finished_at: string | null
+          id: string
+          slug: string | null
+          started_at: string
+          status: string
+          topic: string | null
+        }
+        Insert: {
+          attempts?: number
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          slug?: string | null
+          started_at?: string
+          status?: string
+          topic?: string | null
+        }
+        Update: {
+          attempts?: number
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          slug?: string | null
+          started_at?: string
+          status?: string
+          topic?: string | null
+        }
+        Relationships: []
+      }
+      guide_job_state: {
+        Row: {
+          id: string
+          last_run_at: string | null
+          lease_until: string | null
+          pause_reason: string | null
+          paused: boolean
+          paused_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          last_run_at?: string | null
+          lease_until?: string | null
+          pause_reason?: string | null
+          paused?: boolean
+          paused_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          last_run_at?: string | null
+          lease_until?: string | null
+          pause_reason?: string | null
+          paused?: boolean
+          paused_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       lifetime_purchases: {
         Row: {
           created_at: string
