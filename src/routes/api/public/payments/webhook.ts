@@ -12,7 +12,9 @@ export const Route = createFileRoute("/api/public/payments/webhook")({
         const expected = process.env["FLUTTERWAVE_WEBHOOK_HASH"];
         const provided = request.headers.get("verif-hash");
 
-        if (!expected || !provided || provided !== expected) {
+        // If a secret hash is configured, require it. Otherwise the webhook still
+        // rejects fake events by re-verifying each transaction with Flutterwave.
+        if (expected && provided !== expected) {
           return new Response("Invalid signature", { status: 401 });
         }
 
