@@ -10,11 +10,11 @@ import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import { generateCareCardPdf, pdfFileName } from "@/features/pdf/care-card-pdf";
 import { PaywallDialog } from "@/features/premium/components/paywall-dialog";
 import {
-  buildCareCardUrl,
   downloadDataUrl,
   shareFile,
   shareLink,
 } from "@/features/sharing/care-card-sharing-service";
+import { useShareLink } from "@/features/sharing/use-share-link";
 import { firstError } from "@/lib/validation";
 
 export const Route = createFileRoute("/care/$petId")({
@@ -43,6 +43,7 @@ function CareCardPage() {
   const { ready, buildCareCard, isPremium } = useCareStore();
   const [paywallOpen, setPaywallOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const share = useShareLink(petId);
   const card = buildCareCard(petId);
 
   if (!ready) {
@@ -78,14 +79,26 @@ function CareCardPage() {
 
   const handleShare = async () => {
     try {
+      // Signed-in owners get a link anyone can open; otherwise the card stays
+      // on this device and the link only works here.
+      const url = share.signedIn ? await share.publish(card) : share.url;
       const result = await shareLink(
         `${card.pet.name}'s Care Card`,
         `Everything you need to look after ${card.pet.name}.`,
-        buildCareCardUrl(petId),
+        url,
       );
       if (result.method === "clipboard") toast.success("Link copied to your clipboard.");
       if (result.method === "unsupported")
         toast.error("Sharing isn't available in this browser. Copy the address bar link instead.");
+    } catch (error) {
+      toast.error(firstError(error));
+    }
+  };
+
+  const handleStopSharing = async () => {
+    try {
+      await share.stopSharing();
+      toast.success("That link no longer opens this card.");
     } catch (error) {
       toast.error(firstError(error));
     }
@@ -173,10 +186,32 @@ function CareCardPage() {
             </Link>
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground">
-          Care cards live on this device. Sharing sends a link to this card&apos;s address — no
-          private data is put inside the link or QR code itself.
-        </p>
+        {share.signedIn ? (
+          <div className="space-y-2">
+            <p className="text-xs text-muted-foreground">
+              {share.token
+                ? "This card has a live link. Anyone with it — on WhatsApp, email or the QR code — can open the card on any device. Sharing again refreshes it with your latest details."
+                : "Sharing publishes a copy of this card to your account so a sitter can open it on their own phone."}
+            </p>
+            {share.token ? (
+              <Button
+                variant="ghost"
+                className="h-9 rounded-xl px-2 text-xs"
+                onClick={() => void handleStopSharing()}
+              >
+                Stop sharing this link
+              </Button>
+            ) : null}
+          </div>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            This card lives on this device, so the link only opens here.{" "}
+            <Link to="/settings" className="underline">
+              Sign in and turn on backup
+            </Link>{" "}
+            to share a link a sitter can open anywhere.
+          </p>
+        )}
       </div>
     </AppShell>
   );
