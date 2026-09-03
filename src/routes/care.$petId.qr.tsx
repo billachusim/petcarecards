@@ -93,7 +93,7 @@ function QrPage() {
                 const result = await shareLink(
                   `${pet?.name ?? "Pet"}'s Care Card`,
                   "Scan or tap to open the care card.",
-                  buildCareCardUrl(petId),
+                  share.url,
                 );
                 if (result.method === "clipboard") toast.success("Link copied to your clipboard.");
                 if (result.method === "unsupported") toast.error("Sharing isn't available here.");
