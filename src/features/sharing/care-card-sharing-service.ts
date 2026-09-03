@@ -16,6 +16,12 @@ export function buildCareCardUrl(petId: string): string {
   return `${origin}/care/${petId}`;
 }
 
+/** Public, account-backed link that opens the card on any device. */
+export function buildSharedCardUrl(token: string): string {
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  return `${origin}/c/${token}`;
+}
+
 export function canWebShare(): boolean {
   return typeof navigator !== "undefined" && typeof navigator.share === "function";
 }
