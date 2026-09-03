@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
-import type { BackupPayload } from "./backup-mapping";
+import type { BackupPayload, BackupRow } from "./backup-mapping";
 
 const TABLES = [
   "backup_pets",
@@ -14,7 +14,7 @@ const TABLES = [
   "backup_reminders",
 ] as const;
 
-type Row = Record<string, unknown>;
+type Row = BackupRow;
 
 const asRows = (value: unknown): Row[] =>
   Array.isArray(value) ? (value.filter((v) => v && typeof v === "object") as Row[]) : [];
@@ -52,9 +52,9 @@ export const pushBackup = createServerFn({ method: "POST" })
     const profile = await supabase.from("profiles").upsert({
       id: userId,
       email,
-      caregiver_name: data.caregiver.name,
-      caregiver_phone: data.caregiver.phone,
-      caregiver_notes: data.caregiver.notes,
+      caregiver_name: data.caregiver.name ?? null,
+      caregiver_phone: data.caregiver.phone ?? null,
+      caregiver_notes: data.caregiver.notes ?? null,
       backup_enabled: true,
     });
     if (profile.error) throw new Error(profile.error.message);

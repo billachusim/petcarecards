@@ -12,14 +12,17 @@ import type {
 } from "@/features/pets/models";
 
 /** Wire shape pushed to / pulled from the backend. Snake_case mirrors the tables. */
+export type BackupValue = string | number | boolean | null;
+export type BackupRow = Record<string, BackupValue>;
+
 export interface BackupPayload {
-  pets: Record<string, unknown>[];
-  feedings: Record<string, unknown>[];
-  routines: Record<string, unknown>[];
-  medications: Record<string, unknown>[];
-  emergency: Record<string, unknown>[];
-  vets: Record<string, unknown>[];
-  reminders: Record<string, unknown>[];
+  pets: BackupRow[];
+  feedings: BackupRow[];
+  routines: BackupRow[];
+  medications: BackupRow[];
+  emergency: BackupRow[];
+  vets: BackupRow[];
+  reminders: BackupRow[];
   caregiver: { name?: string | null; phone?: string | null; notes?: string | null };
 }
 
@@ -113,10 +116,10 @@ export function toBackupPayload(db: CareDatabase): BackupPayload {
   };
 }
 
-const str = (value: unknown): string | undefined =>
+const str = (value: BackupValue | undefined): string | undefined =>
   typeof value === "string" && value.length > 0 ? value : undefined;
 
-const stamps = (row: Record<string, unknown>) => ({
+const stamps = (row: BackupRow) => ({
   id: String(row["id"]),
   createdAt: str(row["created_at"]) ?? new Date().toISOString(),
   updatedAt: str(row["updated_at"]) ?? new Date().toISOString(),
