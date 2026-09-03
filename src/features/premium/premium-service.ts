@@ -1,8 +1,11 @@
 import { readJson, writeJson } from "@/lib/storage/local-store";
 import { STORAGE_KEYS } from "@/features/pets/data/care-data-repository";
 import type { PremiumEntitlement } from "@/features/pets/models";
-import { getPaddleEnvironment, getPaddlePriceId, initializePaddle } from "@/lib/paddle";
-import { verifyLifetimeEntitlement } from "./premium.functions";
+import {
+  confirmLifetimeCheckout,
+  createLifetimeCheckout,
+  verifyLifetimeEntitlement,
+} from "./premium.functions";
 
 export const LIFETIME_PRICE = "$4.99";
 export const LIFETIME_PRICE_ID = "lifetime_unlock";
@@ -41,25 +44,25 @@ function friendly(error: unknown, fallback: string): Error {
 /**
  * Asks the server whether this email has a completed lifetime purchase.
  * The browser never decides this on its own — the purchase record is written
- * only by the verified payment webhook.
+ * only after the payment is verified with the provider.
  */
 export async function verifyEntitlement(email: string): Promise<PremiumEntitlement> {
-  const environment = getPaddleEnvironment();
   let result;
   try {
-    result = await verifyLifetimeEntitlement({ data: { email: email.trim(), environment } });
+    result = await verifyLifetimeEntitlement({ data: { email: email.trim() } });
   } catch (error) {
     throw friendly(error, "We couldn't check your purchase right now. Please try again.");
   }
 
+  const normalized = email.trim().toLowerCase();
   if (!result.lifetimeUnlocked) {
-    return { lifetimeUnlocked: false, email: email.trim().toLowerCase(), environment };
+    return { lifetimeUnlocked: false, email: normalized, environment: result.environment };
   }
 
   return {
     lifetimeUnlocked: true,
-    email: email.trim().toLowerCase(),
-    environment,
+    email: normalized,
+    environment: result.environment,
     purchasedAt: result.purchasedAt,
     reference: result.reference,
     verifiedAt: new Date().toISOString(),
@@ -84,40 +87,44 @@ export async function restorePurchase(email?: string): Promise<PremiumEntitlemen
   return entitlement;
 }
 
-interface CheckoutOptions {
-  email: string;
-  /** Called after the buyer completes payment in the overlay. */
-  onCompleted: () => void;
-  onClosed?: () => void;
+const PENDING_EMAIL_KEY = "pcc.pendingCheckoutEmail";
+
+export function readPendingCheckoutEmail(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  return window.localStorage.getItem(PENDING_EMAIL_KEY) ?? undefined;
 }
 
-/** Opens the secure hosted checkout for the one-time lifetime unlock. */
-export async function startLifetimeCheckout({
-  email,
-  onCompleted,
-  onClosed,
-}: CheckoutOptions): Promise<void> {
-  const normalizedEmail = email.trim().toLowerCase();
-  try {
-    await initializePaddle();
-    const paddlePriceId = await getPaddlePriceId(LIFETIME_PRICE_ID);
+export function clearPendingCheckoutEmail(): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(PENDING_EMAIL_KEY);
+}
 
-    window.Paddle.Checkout.open({
-      items: [{ priceId: paddlePriceId, quantity: 1 }],
-      customer: { email: normalizedEmail },
-      customData: { email: normalizedEmail },
-      settings: {
-        displayMode: "overlay",
-        successUrl: `${window.location.origin}/premium?checkout=success`,
-        allowLogout: false,
-        variant: "one-page",
-      },
-      eventCallback: (event: { name?: string }) => {
-        if (event?.name === "checkout.completed") onCompleted();
-        if (event?.name === "checkout.closed") onClosed?.();
-      },
+/** Sends the buyer to the secure hosted checkout for the one-time lifetime unlock. */
+export async function startLifetimeCheckout(email: string): Promise<void> {
+  const normalizedEmail = email.trim().toLowerCase();
+  let link: string;
+  try {
+    const result = await createLifetimeCheckout({
+      data: { email: normalizedEmail, origin: window.location.origin },
     });
+    link = result.link;
   } catch (error) {
     throw friendly(error, "We couldn't open the checkout. Please try again.");
+  }
+
+  window.localStorage.setItem(PENDING_EMAIL_KEY, normalizedEmail);
+  window.location.href = link;
+}
+
+/**
+ * Called when the buyer is redirected back from checkout. Re-verifies the
+ * transaction server-side so the unlock never depends on URL parameters.
+ */
+export async function confirmCheckoutReturn(transactionId: string): Promise<boolean> {
+  try {
+    const result = await confirmLifetimeCheckout({ data: { transactionId } });
+    return result.recorded;
+  } catch {
+    return false;
   }
 }
