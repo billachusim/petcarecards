@@ -71,7 +71,7 @@ function GuidesIndex() {
           className="mt-6 w-full rounded-2xl"
           loading="lazy"
           width={1024}
-          height={512}
+          height={500}
         />
       </header>
 
