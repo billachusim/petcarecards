@@ -270,6 +270,8 @@ export function CareStoreProvider({ children }: { children: ReactNode }) {
         clearPetData();
         setDb((c) => ({ ...emptyDatabase(), premium: c.premium }));
       },
+      replaceAll: (data) => commit((c) => ({ ...data, premium: c.premium })),
+
       exportData: () =>
         JSON.stringify(
           {
