@@ -7,6 +7,7 @@ import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { lovable } from "@/integrations/lovable/index";
 import { supabase } from "@/integrations/supabase/client";
 import { firstError } from "@/lib/validation";
 
@@ -36,6 +37,27 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"signin" | "signup">("signin");
+
+  const signInWithGoogle = async () => {
+    setBusy(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) {
+        toast.error(result.error.message || "Google sign-in failed. Please try again.");
+        return;
+      }
+      if (result.redirected) return;
+      toast.success("Signed in. Backup is ready to turn on.");
+      void navigate({ to: "/settings" });
+    } catch (error) {
+      toast.error(firstError(error));
+    } finally {
+      setBusy(false);
+    }
+  };
+
 
   const submit = async () => {
     setBusy(true);
@@ -84,6 +106,22 @@ function AuthPage() {
       </p>
 
       <div className="mt-6 space-y-4 rounded-3xl border border-border bg-card p-5">
+        <Button
+          variant="secondary"
+          className="h-12 w-full rounded-xl"
+          disabled={busy}
+          onClick={() => void signInWithGoogle()}
+        >
+          Continue with Google
+        </Button>
+
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <span className="h-px flex-1 bg-border" />
+          or use email
+          <span className="h-px flex-1 bg-border" />
+        </div>
+
+
         <div className="space-y-1.5">
           <Label htmlFor="auth-email" className="text-sm font-medium">
             Email
