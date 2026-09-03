@@ -152,7 +152,9 @@ function TalkAboutYourPetPage() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-6">
-            <Link to="/guides/voice-pet-sitter-instructions">Read the how-to guide</Link>
+            <Link to="/guides/$slug" params={{ slug: "voice-pet-sitter-instructions" }}>
+              Read the how-to guide
+            </Link>
           </Button>
         </div>
       </header>
