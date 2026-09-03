@@ -32,7 +32,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/talk-about-your-pet", changefreq: "monthly", priority: "0.9" },
           { path: "/tools/feeding-calculator", changefreq: "monthly", priority: "0.7" },
           { path: "/templates", changefreq: "monthly", priority: "0.7" },
+          { path: "/pricing", changefreq: "monthly", priority: "0.8" },
+          { path: "/contact", changefreq: "yearly", priority: "0.5" },
           { path: "/about", changefreq: "yearly", priority: "0.5" },
+
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },
           { path: "/terms", changefreq: "yearly", priority: "0.3" },
           { path: "/refunds", changefreq: "yearly", priority: "0.3" },
