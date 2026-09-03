@@ -33,6 +33,11 @@ export async function flutterwaveFetch(
   const body = (await response.json().catch(() => ({}))) as Record<string, unknown>;
   if (!response.ok) {
     console.error("Flutterwave API error", response.status, body);
+    if (response.status === 401 || response.status === 403) {
+      throw new Error(
+        "Payments aren't configured correctly yet (the payment key was rejected). Please try again later.",
+      );
+    }
     throw new Error("The payment provider is unavailable right now. Please try again.");
   }
   return body;
