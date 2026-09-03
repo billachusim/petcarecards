@@ -1,10 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, Check, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { AppShell } from "@/components/app/app-shell";
-import { PaymentTestModeBanner } from "@/components/app/payment-test-mode-banner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +11,9 @@ import { useCareStore } from "@/features/pets/hooks/use-care-store";
 import {
   LIFETIME_PRICE,
   PREMIUM_BENEFITS,
+  clearPendingCheckoutEmail,
+  confirmCheckoutReturn,
+  readPendingCheckoutEmail,
   restorePurchase,
   startLifetimeCheckout,
   verifyEntitlement,
