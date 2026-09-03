@@ -49,6 +49,8 @@ export const Route = createFileRoute("/llms.txt")({
 - Free: one pet with full basic functionality, including a care card, QR code and basic reminders.
 - Lifetime unlock: one payment of $4.99 USD, not a subscription. Adds unlimited pets, medication schedules, advanced reminders, printable PDF care cards, sharing and data export.
 - Paddle is the Merchant of Record. Refunds: 30 days, see ${BASE_URL}/refunds
+- Full pricing page: ${BASE_URL}/pricing
+
 
 ## Free tools
 
