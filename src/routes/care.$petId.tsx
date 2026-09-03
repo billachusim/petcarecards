@@ -79,14 +79,26 @@ function CareCardPage() {
 
   const handleShare = async () => {
     try {
+      // Signed-in owners get a link anyone can open; otherwise the card stays
+      // on this device and the link only works here.
+      const url = share.signedIn ? await share.publish(card) : share.url;
       const result = await shareLink(
         `${card.pet.name}'s Care Card`,
         `Everything you need to look after ${card.pet.name}.`,
-        buildCareCardUrl(petId),
+        url,
       );
       if (result.method === "clipboard") toast.success("Link copied to your clipboard.");
       if (result.method === "unsupported")
         toast.error("Sharing isn't available in this browser. Copy the address bar link instead.");
+    } catch (error) {
+      toast.error(firstError(error));
+    }
+  };
+
+  const handleStopSharing = async () => {
+    try {
+      await share.stopSharing();
+      toast.success("That link no longer opens this card.");
     } catch (error) {
       toast.error(firstError(error));
     }
