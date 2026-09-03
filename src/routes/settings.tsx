@@ -25,7 +25,7 @@ import {
   requestNotificationPermission,
 } from "@/features/reminders/reminder-service";
 import { downloadDataUrl } from "@/features/sharing/care-card-sharing-service";
-import { AutoGuidesAdmin } from "@/features/guides/components/auto-guides-admin";
+
 import { firstError } from "@/lib/validation";
 
 export const APP_VERSION = "1.0.0";
@@ -216,10 +216,6 @@ function SettingsPage() {
           <p className="text-sm text-muted-foreground">{APP_VERSION}</p>
         </Row>
       </div>
-
-      <Separator className="my-8" />
-
-      <AutoGuidesAdmin />
 
       <Separator className="my-8" />
 
