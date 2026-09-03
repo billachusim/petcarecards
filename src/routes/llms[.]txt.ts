@@ -67,7 +67,10 @@ ${guideLines}
 - ${BASE_URL}/ — home
 - ${BASE_URL}/talk-about-your-pet — create pet sitter instructions by talking instead of typing
 - ${BASE_URL}/about — who publishes the guides
+- ${BASE_URL}/pricing — pricing and what the lifetime unlock includes
+- ${BASE_URL}/contact — support and business contact details
 - ${BASE_URL}/privacy — privacy policy
+
 - ${BASE_URL}/terms — terms of use
 - ${BASE_URL}/refunds — refund policy
 
