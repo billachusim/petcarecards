@@ -15,7 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { PaywallDialog } from "@/features/premium/components/paywall-dialog";
 
 import { useSpeechRecognition } from "./use-speech-recognition";
 import { parseCareTranscript, transcribeRecording } from "./voice.functions";
@@ -57,7 +56,6 @@ export function VoiceFillDialog({
   const [transcript, setTranscript] = useState("");
   const [details, setDetails] = useState<ParsedCareDetails>(EMPTY_PARSED);
   const [recording, setRecording] = useState(false);
-  const [paywallOpen, setPaywallOpen] = useState(false);
   const recorderRef = useRef<WavRecorder | null>(null);
 
   const liveText = `${speech.finalTranscript} ${speech.interimTranscript}`.trim();
@@ -310,7 +308,6 @@ export function VoiceFillDialog({
         </DialogContent>
       </Dialog>
 
-      <PaywallDialog open={paywallOpen} onOpenChange={setPaywallOpen} />
     </>
   );
 }

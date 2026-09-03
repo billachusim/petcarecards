@@ -30,7 +30,7 @@ import type {
 } from "../models";
 import { nowIso } from "@/lib/storage/local-store";
 
-interface CareStoreValue {
+export interface CareStoreValue {
   ready: boolean;
   db: CareDatabase;
   isPremium: boolean;
