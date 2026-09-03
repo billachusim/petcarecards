@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { firstError } from "@/lib/validation";
 
 export const Route = createFileRoute("/auth")({
@@ -85,27 +84,6 @@ function AuthPage() {
       </p>
 
       <div className="mt-6 space-y-4 rounded-3xl border border-border bg-card p-5">
-        <Button
-          variant="secondary"
-          className="h-12 w-full rounded-xl"
-          onClick={async () => {
-            try {
-              await lovable.auth.signInWithOAuth("google", {
-                redirect_uri: window.location.origin,
-              });
-            } catch (error) {
-              toast.error(firstError(error));
-            }
-          }}
-        >
-          Continue with Google
-        </Button>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="h-px flex-1 bg-border" /> or use email{" "}
-          <span className="h-px flex-1 bg-border" />
-        </div>
-
         <div className="space-y-1.5">
           <Label htmlFor="auth-email" className="text-sm font-medium">
             Email
