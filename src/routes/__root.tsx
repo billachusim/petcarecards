@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { CareStoreProvider } from "@/features/pets/hooks/use-care-store";
 import { useReminderScheduler } from "@/features/reminders/hooks/use-reminder-scheduler";
+import { jsonLdScript, organizationLd, websiteLd } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -103,6 +104,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    scripts: [
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@graph": [organizationLd, websiteLd],
+      }),
     ],
   }),
   shellComponent: RootShell,
