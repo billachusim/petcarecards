@@ -3,14 +3,18 @@
  * authoritative site origin here.
  */
 export const SITE_URL = (
-  import.meta.env["VITE_SITE_URL"] ??
-  "https://project--e388cfa0-1f6a-44f4-a7ed-c96329bf5ab7.lovable.app"
+  import.meta.env["VITE_SITE_URL"] ?? "https://petcarecards.app"
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "Pet Care Card";
 export const PUBLISHER = "Pet Care Card";
 
 export const absoluteUrl = (path: string) => `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+
+/** Default 1200x630 social sharing card (Open Graph / Twitter / LinkedIn). */
+export const SOCIAL_IMAGE_URL = absoluteUrl(socialCard.url);
+export const SOCIAL_IMAGE_ALT =
+  "Pet Care Card — everything your pet sitter needs: feeding and routine, medications and reminders, emergency contacts, vet information, QR code sharing and a printable care card, shown beside a golden retriever, a cat and the app on a phone.";
 
 type MetaEntry = Record<string, string>;
 
