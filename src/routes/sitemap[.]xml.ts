@@ -29,6 +29,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             lastmod: guide.updated,
             priority: "0.8",
           })),
+          { path: "/talk-about-your-pet", changefreq: "monthly", priority: "0.9" },
           { path: "/tools/feeding-calculator", changefreq: "monthly", priority: "0.7" },
           { path: "/templates", changefreq: "monthly", priority: "0.7" },
           { path: "/about", changefreq: "yearly", priority: "0.5" },

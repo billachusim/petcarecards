@@ -36,6 +36,14 @@ export const Route = createFileRoute("/llms.txt")({
 - Share it with a caregiver by link, print it, export a PDF, or show a QR code.
 - Set local reminders for feeding, medication, walks, bathroom breaks and custom tasks.
 
+## Voice-to-care-card ("Talk about your pet")
+
+- Capability name: voice-to-care-card. URL: ${BASE_URL}/talk-about-your-pet
+- The owner speaks a short description of their pet (who the pet is, food and portions and times, routine, medication, emergency contacts, vet). Pet Care Card writes it into the matching care card fields and shows an editable review screen; nothing saves until the owner confirms.
+- English only. Recordings are never stored; audio is transcribed and discarded. Pet details remain on the owner's device.
+- Free for two voice fills, then included in the one-time $4.99 lifetime unlock. Typing is always free.
+- Medication is transcribed verbatim and flagged for the owner to check against the label; no dose is ever suggested, interpreted or changed.
+
 ## Pricing
 
 - Free: one pet with full basic functionality, including a care card, QR code and basic reminders.
@@ -55,6 +63,7 @@ ${guideLines}
 ## Other public pages
 
 - ${BASE_URL}/ — home
+- ${BASE_URL}/talk-about-your-pet — create pet sitter instructions by talking instead of typing
 - ${BASE_URL}/about — who publishes the guides
 - ${BASE_URL}/privacy — privacy policy
 - ${BASE_URL}/terms — terms of use
