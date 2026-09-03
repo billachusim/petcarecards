@@ -62,6 +62,15 @@ export function AppShell({ children, bare = false }: AppShellProps) {
               <Link to="/guides" className="hover:text-foreground">
                 Caregiver Guides
               </Link>
+              <Link to="/templates" className="hover:text-foreground">
+                Templates
+              </Link>
+              <Link to="/tools/feeding-calculator" className="hover:text-foreground">
+                Feeding calculator
+              </Link>
+              <Link to="/about" className="hover:text-foreground">
+                About
+              </Link>
               <Link to="/privacy" className="hover:text-foreground">
                 Privacy
               </Link>
