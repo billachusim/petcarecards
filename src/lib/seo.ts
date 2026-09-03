@@ -2,6 +2,7 @@
  * Central SEO helpers. Canonical URLs must be absolute, so we keep one
  * authoritative site origin here.
  */
+import socialCard from "@/assets/pet-care-card-social.jpg.asset.json";
 export const SITE_URL = (
   import.meta.env["VITE_SITE_URL"] ?? "https://petcarecards.app"
 ).replace(/\/$/, "");
