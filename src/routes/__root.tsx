@@ -12,7 +12,9 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { BackupRunner } from "@/features/backup/backup-runner";
 import { CareStoreProvider } from "@/features/pets/hooks/use-care-store";
+
 import { useReminderScheduler } from "@/features/reminders/hooks/use-reminder-scheduler";
 import { jsonLdScript, organizationLd, websiteLd } from "@/lib/seo";
 
