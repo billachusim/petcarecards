@@ -28,6 +28,18 @@ export function AppShell({ children, bare = false }: AppShellProps) {
                 Guides
               </Link>
               <Link
+                to="/templates"
+                className="hidden rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline-flex"
+              >
+                Templates
+              </Link>
+              <Link
+                to="/tools/feeding-calculator"
+                className="hidden rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline-flex"
+              >
+                Calculator
+              </Link>
+              <Link
                 to="/settings"
                 className="inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 aria-label="Settings"
@@ -49,6 +61,15 @@ export function AppShell({ children, bare = false }: AppShellProps) {
             <nav className="flex flex-wrap gap-4" aria-label="Footer">
               <Link to="/guides" className="hover:text-foreground">
                 Caregiver Guides
+              </Link>
+              <Link to="/templates" className="hover:text-foreground">
+                Templates
+              </Link>
+              <Link to="/tools/feeding-calculator" className="hover:text-foreground">
+                Feeding calculator
+              </Link>
+              <Link to="/about" className="hover:text-foreground">
+                About
               </Link>
               <Link to="/privacy" className="hover:text-foreground">
                 Privacy

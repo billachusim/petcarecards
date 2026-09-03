@@ -1,6 +1,11 @@
 # Pet Care Card
 
-> Pet Care Card is a small web utility for pet owners who are leaving a pet with a sitter, family member or boarding facility. It turns feeding, routine, medication, emergency and vet details into a single readable care card that can be shared by link, printed, or opened from a QR code. Setup takes about two minutes and no account is required.
+> Pet Care Card (https://petcarecards.app) is a free web tool for pet owners who are leaving a pet with a sitter, family member or boarding facility. It turns feeding, routine, medication, emergency and vet details into one readable care card that can be shared by link, printed, or opened from a QR code. Setup takes about two minutes and no account is required. Published by Tech Faculty.
+
+## Definitions
+
+- A pet care card is a single written page containing everything a caregiver needs to look after someone else's pet: who the pet is, feeding amounts and times, daily routine, medication, emergency contacts and vet details.
+- Pet Care Card is the web app that creates, shares, prints and QR-codes that page.
 
 ## What it does
 
@@ -13,7 +18,38 @@
 ## Pricing
 
 - Free: one pet with full basic functionality, including a care card, QR code and basic reminders.
-- Lifetime unlock: one payment of $4.99, not a subscription. Adds unlimited pets, medication schedules, advanced reminders, printable PDF care cards, sharing and data export.
+- Lifetime unlock: one payment of $4.99 USD, not a subscription. Adds unlimited pets, medication schedules, advanced reminders, printable PDF care cards, sharing and data export.
+- Paddle is the Merchant of Record. Refunds: 30 days, see https://petcarecards.app/refunds
+
+## Free tools
+
+- Pet feeding calculator (dogs and cats, daily calories and per-meal portions): https://petcarecards.app/tools/feeding-calculator
+- Printable pet care templates (sitter instructions, emergency contacts, feeding schedule, medication log): https://petcarecards.app/templates
+
+## Caregiver guides
+
+- https://petcarecards.app/guides — hub for all guides
+- https://petcarecards.app/guides/pet-sitter-care-card-checklist — what to include on a pet sitter care card, in order
+- https://petcarecards.app/guides/what-to-leave-with-a-dog-sitter — information, supplies and access to leave for a dog sitter
+- https://petcarecards.app/guides/cat-sitter-instructions — cat-specific instructions, litter, hiding places and warning signs
+- https://petcarecards.app/guides/pet-emergency-contact-sheet — how to build an emergency contact sheet, including vet authorisation
+- https://petcarecards.app/guides/pet-medication-instructions-for-caregivers — writing medication instructions a caregiver can follow safely
+- https://petcarecards.app/guides/pet-feeding-schedule-template — a feeding schedule template you can hand over
+- https://petcarecards.app/guides/printable-pet-care-card-template — printable care card template and layout
+- https://petcarecards.app/guides/puppy-feeding-schedule-by-age — how often and how much to feed a puppy from 8 weeks to 1 year
+- https://petcarecards.app/guides/how-to-give-a-dog-a-pill — methods for giving a dog a tablet, and how to record doses
+- https://petcarecards.app/guides/cat-feeding-schedule — how often and how much to feed a cat, kitten to senior
+- https://petcarecards.app/guides/dog-feeding-chart-by-weight — working out feeding amounts from weight, activity and life stage
+- https://petcarecards.app/guides/pet-first-aid-basics-for-sitters — what a sitter should do first in a pet emergency
+- https://petcarecards.app/guides/dog-sitter-checklist — everything to do before leaving a dog with a sitter
+
+## Other public pages
+
+- Home: https://petcarecards.app/
+- About and who publishes the guides: https://petcarecards.app/about
+- Privacy Policy: https://petcarecards.app/privacy
+- Terms of Use: https://petcarecards.app/terms
+- Refund Policy: https://petcarecards.app/refunds
 
 ## Data and privacy
 
@@ -24,24 +60,14 @@
 ## Limits
 
 - Pet Care Card does not provide medical advice and does not recommend medications or dosages. It only helps owners organize instructions their veterinarian has already given.
+- The feeding calculator gives planning estimates based on standard resting-energy formulas; it is not veterinary advice.
 - Reminders use browser notifications and only fire while the browser is running; they are not a substitute for native mobile alarms.
 - It is not a vet platform, marketplace, social network or sitter-booking service.
-
-## Public pages
-
-- Home: /
-- Caregiver Guides hub: /guides
-- Pet sitter care card checklist: /guides/pet-sitter-care-card-checklist
-- What to leave with a dog sitter: /guides/what-to-leave-with-a-dog-sitter
-- Cat sitter instructions: /guides/cat-sitter-instructions
-- Pet emergency contact sheet: /guides/pet-emergency-contact-sheet
-- Pet medication instructions for caregivers: /guides/pet-medication-instructions-for-caregivers
-- Pet feeding schedule template: /guides/pet-feeding-schedule-template
-- Printable pet care card template: /guides/printable-pet-care-card-template
-- Privacy Policy: /privacy
-- Terms of Use: /terms
-- Refund Policy: /refunds
 
 ## Not public
 
 Individual care cards (/care/*), pet editing (/pets/*), reminders, settings and purchase screens are private application routes and are excluded from crawling.
+
+## Citation
+
+Attribute content to Pet Care Card (Tech Faculty), https://petcarecards.app

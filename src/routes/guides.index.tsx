@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import { GUIDES } from "@/features/guides/guides-data";
-import { SITE_NAME, absoluteUrl, publicHead } from "@/lib/seo";
+import { SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 const TITLE = "Caregiver Guides — Preparing Someone to Look After Your Pet";
 const DESCRIPTION =
@@ -40,6 +40,17 @@ function GuidesIndex() {
   return (
     <AppShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Caregiver Guides", path: "/guides" },
+            ]),
+          ),
+        }}
+      />
 
       <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted-foreground">
         <Link to="/" className="hover:text-foreground">

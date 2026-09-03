@@ -10,17 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PremiumRouteImport } from './routes/premium'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundsRouteImport } from './routes/refunds'
 import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
+import { Route as ToolsFeedingCalculatorRouteImport } from './routes/tools.feeding-calculator'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
 import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
 import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
@@ -29,6 +33,11 @@ import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/publi
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -61,6 +70,16 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -84,6 +103,11 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
 const PetsNewRoute = PetsNewRouteImport.update({
   id: '/pets/new',
   path: '/pets/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsFeedingCalculatorRoute = ToolsFeedingCalculatorRouteImport.update({
+  id: '/tools/feeding-calculator',
+  path: '/tools/feeding-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CarePetIdQrRoute = CarePetIdQrRouteImport.update({
@@ -110,16 +134,20 @@ const ApiPublicPaymentsWebhookRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -128,16 +156,20 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -147,16 +179,20 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/privacy': typeof PrivacyRoute
   '/refunds': typeof RefundsRoute
   '/reminders': typeof RemindersRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -167,16 +203,20 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/onboarding'
     | '/premium'
     | '/privacy'
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
+    | '/templates'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/tools/feeding-calculator'
     | '/guides/'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -185,16 +225,20 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/onboarding'
     | '/premium'
     | '/privacy'
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
+    | '/templates'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/tools/feeding-calculator'
     | '/guides'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -203,16 +247,20 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/onboarding'
     | '/premium'
     | '/privacy'
     | '/refunds'
     | '/reminders'
     | '/settings'
+    | '/sitemap.xml'
+    | '/templates'
     | '/terms'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/tools/feeding-calculator'
     | '/guides/'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -222,16 +270,20 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   OnboardingRoute: typeof OnboardingRoute
   PremiumRoute: typeof PremiumRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundsRoute: typeof RefundsRoute
   RemindersRoute: typeof RemindersRoute
   SettingsRoute: typeof SettingsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   GuidesSlugRoute: typeof GuidesSlugRoute
   PetsNewRoute: typeof PetsNewRoute
+  ToolsFeedingCalculatorRoute: typeof ToolsFeedingCalculatorRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
@@ -245,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -289,6 +348,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -322,6 +395,13 @@ declare module '@tanstack/react-router' {
       path: '/pets/new'
       fullPath: '/pets/new'
       preLoaderRoute: typeof PetsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/feeding-calculator': {
+      id: '/tools/feeding-calculator'
+      path: '/tools/feeding-calculator'
+      fullPath: '/tools/feeding-calculator'
+      preLoaderRoute: typeof ToolsFeedingCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/care/$petId/qr': {
@@ -369,16 +449,20 @@ const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   OnboardingRoute: OnboardingRoute,
   PremiumRoute: PremiumRoute,
   PrivacyRoute: PrivacyRoute,
   RefundsRoute: RefundsRoute,
   RemindersRoute: RemindersRoute,
   SettingsRoute: SettingsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   GuidesSlugRoute: GuidesSlugRoute,
   PetsNewRoute: PetsNewRoute,
+  ToolsFeedingCalculatorRoute: ToolsFeedingCalculatorRoute,
   GuidesIndexRoute: GuidesIndexRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,

@@ -7,4 +7,50 @@ Disallow: /reminders
 Disallow: /premium
 Disallow: /onboarding
 
-Sitemap: https://project--e388cfa0-1f6a-44f4-a7ed-c96329bf5ab7.lovable.app/sitemap.xml
+# AI assistants and AI search crawlers are welcome on the public pages.
+User-agent: GPTBot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /care/
+Disallow: /pets/
+
+Sitemap: https://petcarecards.app/sitemap.xml
