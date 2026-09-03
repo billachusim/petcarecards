@@ -80,6 +80,15 @@ function TermsPage() {
           process it solely to provide the Service. You are responsible for the accuracy of your
           content and for keeping your own backups using the export option.
         </p>
+        <p>
+          Backup and sync is optional. If you create an account and switch it on, you instruct us to
+          store a copy of your care data, including photos and free-text notes, against your account
+          so it can be restored on your other devices, and you permit us to use it to operate and
+          improve the Service. You may switch backup off or delete the stored copy at any time in
+          Settings. We may publish or license aggregated, anonymised insights derived from care data
+          that do not identify you or your pets, as described in the Privacy Policy.
+        </p>
+
 
         <h2 className="font-display text-xl font-semibold">7. Intellectual property</h2>
         <p>
