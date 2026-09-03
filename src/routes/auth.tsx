@@ -37,6 +37,27 @@ function AuthPage() {
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"signin" | "signup">("signin");
 
+  const signInWithGoogle = async () => {
+    setBusy(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) {
+        toast.error(result.error.message || "Google sign-in failed. Please try again.");
+        return;
+      }
+      if (result.redirected) return;
+      toast.success("Signed in. Backup is ready to turn on.");
+      void navigate({ to: "/settings" });
+    } catch (error) {
+      toast.error(firstError(error));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+
   const submit = async () => {
     setBusy(true);
     try {
