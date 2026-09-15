@@ -87,19 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "fPav10721zyDtSi6VDoIRMesoDarkO_6rtVEEyhwf5o",
       },
-      { title: "Pet Care Card — Care instructions your sitter can follow" },
-      {
-        name: "description",
-        content:
-          "Create a complete care card for your pet in two minutes. Feeding, routine, medication, emergency and vet info — ready to share, print or scan.",
-      },
-      { property: "og:title", content: "Pet Care Card" },
-      {
-        property: "og:description",
-        content: "Leaving your pet with someone? Give them everything they need to know.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:site_name", content: "Pet Care Card" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
