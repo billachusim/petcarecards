@@ -40,7 +40,7 @@ export function BackupSettings() {
           Optional. Sign in to back up your care cards so you can open them on a new phone. Without
           an account, everything stays on this device only.
         </p>
-        <Button className="mt-4 h-11 rounded-xl" onClick={() => void navigate({ to: "/auth" })}>
+        <Button className="mt-4 h-11 rounded-xl" onClick={() => void navigate({ to: "/auth", search: { next: "" } })}>
           Sign in to back up
         </Button>
         <p className="mt-3 text-xs text-muted-foreground">

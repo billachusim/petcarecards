@@ -51,7 +51,7 @@ export default defineTool({
     ]);
 
     const { photo_data_url: _photo, ...petFields } = record as Record<string, unknown>;
-    const card = {
+    const card: Record<string, unknown> = {
       pet: petFields,
       feeding: feeding[0] ?? null,
       routine: routine[0] ?? null,
@@ -62,7 +62,7 @@ export default defineTool({
 
     return {
       content: [{ type: "text", text: JSON.stringify(card, null, 2) }],
-      structuredContent: card,
+      structuredContent: card as never,
     };
   },
 });
