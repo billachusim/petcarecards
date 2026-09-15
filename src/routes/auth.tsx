@@ -28,11 +28,21 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    next: typeof search["next"] === "string" && search["next"].startsWith("/") ? search["next"] : "",
+  }),
   component: AuthPage,
 });
 
+/** Only same-origin relative paths are honoured as a post-sign-in destination. */
+function returnTo(next: string) {
+  return next && next.startsWith("/") && !next.startsWith("//") ? next : "/settings";
+}
+
 function AuthPage() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
+  const destination = returnTo(next);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -42,7 +52,7 @@ function AuthPage() {
     setBusy(true);
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}${destination}`,
       });
       if (result.error) {
         toast.error(result.error.message || "Google sign-in failed. Please try again.");
@@ -66,7 +76,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/settings` },
+          options: { emailRedirectTo: `${window.location.origin}${destination}` },
         });
         if (error) throw error;
         toast.success("Check your inbox to confirm your email.");
@@ -74,7 +84,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Signed in. Backup is ready to turn on.");
-        void navigate({ to: "/settings" });
+        window.location.href = destination;
       }
     } catch (error) {
       toast.error(firstError(error));

@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PremiumRouteImport } from './routes/premium'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -25,6 +26,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TalkAboutYourPetRouteImport } from './routes/talk-about-your-pet'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
@@ -61,6 +63,11 @@ const ContactRoute = ContactRouteImport.update({
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -118,6 +125,12 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CTokenRoute = CTokenRouteImport.update({
   id: '/c/$token',
   path: '/c/$token',
@@ -187,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/mcp': typeof McpRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/pricing': typeof PricingRoute
@@ -198,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -217,6 +232,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/mcp': typeof McpRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/pricing': typeof PricingRoute
@@ -228,6 +244,7 @@ export interface FileRoutesByTo {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -248,6 +265,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/mcp': typeof McpRoute
   '/onboarding': typeof OnboardingRoute
   '/premium': typeof PremiumRoute
   '/pricing': typeof PricingRoute
@@ -259,6 +277,7 @@ export interface FileRoutesById {
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
@@ -280,6 +299,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/llms.txt'
+    | '/mcp'
     | '/onboarding'
     | '/premium'
     | '/pricing'
@@ -291,6 +311,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
@@ -310,6 +331,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/llms.txt'
+    | '/mcp'
     | '/onboarding'
     | '/premium'
     | '/pricing'
@@ -321,6 +343,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
@@ -340,6 +363,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/llms.txt'
+    | '/mcp'
     | '/onboarding'
     | '/premium'
     | '/pricing'
@@ -351,6 +375,7 @@ export interface FileRouteTypes {
     | '/talk-about-your-pet'
     | '/templates'
     | '/terms'
+    | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
@@ -371,6 +396,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  McpRoute: typeof McpRoute
   OnboardingRoute: typeof OnboardingRoute
   PremiumRoute: typeof PremiumRoute
   PricingRoute: typeof PricingRoute
@@ -382,6 +408,7 @@ export interface RootRouteChildren {
   TalkAboutYourPetRoute: typeof TalkAboutYourPetRoute
   TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   CTokenRoute: typeof CTokenRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   GuidesSlugRoute: typeof GuidesSlugRoute
@@ -430,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/llms.txt'
       fullPath: '/llms.txt'
       preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -507,6 +541,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/c/$token': {
@@ -614,6 +655,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  McpRoute: McpRoute,
   OnboardingRoute: OnboardingRoute,
   PremiumRoute: PremiumRoute,
   PricingRoute: PricingRoute,
@@ -625,6 +667,8 @@ const rootRouteChildren: RootRouteChildren = {
   TalkAboutYourPetRoute: TalkAboutYourPetRoute,
   TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
   CTokenRoute: CTokenRoute,
   CarePetIdRoute: CarePetIdRouteWithChildren,
   GuidesSlugRoute: GuidesSlugRoute,
