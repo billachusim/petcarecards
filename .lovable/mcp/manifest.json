@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "sdk_version": "2.1.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://dbepuegwaqjffvtoyeic.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "pet-care-cards",
+      "version": "0.1.0",
+      "title": "Pet Care Cards"
+    },
+    "tools": [
+      {
+        "name": "list_pets",
+        "title": "List pets",
+        "description": "List the pets backed up to the signed-in Pet Care Card account, with id, name, species and breed.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_care_card",
+        "title": "Get care card",
+        "description": "Read one pet's full care card: feeding, routine, medications, emergency contacts and vet details. Accepts a pet id or name.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "pet": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Pet id or pet name as saved in Pet Care Card."
+            }
+          },
+          "required": [
+            "pet"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_reminders",
+        "title": "List reminders",
+        "description": "List the care reminders saved on the signed-in Pet Care Card account, such as medication or feeding reminders.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
