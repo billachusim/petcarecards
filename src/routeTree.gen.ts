@@ -31,6 +31,7 @@ import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
 import { Route as ToolsFeedingCalculatorRouteImport } from './routes/tools.feeding-calculator'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
 import { Route as PetsPetIdEditRouteImport } from './routes/pets.$petId.edit'
 import { Route as PetsPetIdMedicationsRouteImport } from './routes/pets.$petId.medications'
@@ -147,6 +148,11 @@ const ToolsFeedingCalculatorRoute = ToolsFeedingCalculatorRouteImport.update({
   path: '/tools/feeding-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CarePetIdQrRoute = CarePetIdQrRouteImport.update({
   id: '/qr',
   path: '/qr',
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/pets/new': typeof PetsNewRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -227,6 +234,7 @@ export interface FileRoutesByTo {
   '/pets/new': typeof PetsNewRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides': typeof GuidesIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -257,6 +265,7 @@ export interface FileRoutesById {
   '/pets/new': typeof PetsNewRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
   '/pets/$petId/medications': typeof PetsPetIdMedicationsRoute
@@ -288,6 +297,7 @@ export interface FileRouteTypes {
     | '/pets/new'
     | '/tools/feeding-calculator'
     | '/guides/'
+    | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -317,6 +327,7 @@ export interface FileRouteTypes {
     | '/pets/new'
     | '/tools/feeding-calculator'
     | '/guides'
+    | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -346,6 +357,7 @@ export interface FileRouteTypes {
     | '/pets/new'
     | '/tools/feeding-calculator'
     | '/guides/'
+    | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
     | '/pets/$petId/medications'
@@ -376,6 +388,7 @@ export interface RootRouteChildren {
   PetsNewRoute: typeof PetsNewRoute
   ToolsFeedingCalculatorRoute: typeof ToolsFeedingCalculatorRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
   ApiPublicHooksWeeklyGuideRoute: typeof ApiPublicHooksWeeklyGuideRoute
@@ -538,6 +551,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsFeedingCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/care/$petId/qr': {
       id: '/care/$petId/qr'
       path: '/qr'
@@ -611,6 +631,7 @@ const rootRouteChildren: RootRouteChildren = {
   PetsNewRoute: PetsNewRoute,
   ToolsFeedingCalculatorRoute: ToolsFeedingCalculatorRoute,
   GuidesIndexRoute: GuidesIndexRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,
   ApiPublicHooksWeeklyGuideRoute: ApiPublicHooksWeeklyGuideRoute,
