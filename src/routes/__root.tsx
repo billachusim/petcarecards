@@ -83,6 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "google-site-verification",
+        content: "fPav10721zyDtSi6VDoIRMesoDarkO_6rtVEEyhwf5o",
+      },
       { title: "Pet Care Card — Care instructions your sitter can follow" },
       {
         name: "description",
