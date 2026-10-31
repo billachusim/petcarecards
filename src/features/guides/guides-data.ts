@@ -29,7 +29,7 @@ export interface Guide {
   generated?: boolean;
 }
 
-export const AUTHOR = "The Pet Care Card team";
+// The named author lives in ./author.ts so pages and JSON-LD share one source.
 
 /**
  * Auto-written guides that drifted outside the caregiver-handover topic.
