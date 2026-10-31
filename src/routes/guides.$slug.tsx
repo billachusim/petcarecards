@@ -127,7 +127,6 @@ function GuidePage() {
           <h1 className="font-display text-3xl leading-tight font-semibold sm:text-4xl">{guide.title}</h1>
           <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <span>
-            <span>
               Updated{" "}
               <time dateTime={guide.updated}>
                 {new Date(guide.updated).toLocaleDateString("en-GB", {
