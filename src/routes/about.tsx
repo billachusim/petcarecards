@@ -43,6 +43,13 @@ function AboutPage() {
         url: absoluteUrl("/about"),
         about: { "@id": `${absoluteUrl("/")}#organization` },
       },
+      {
+        "@type": "Person",
+        "@id": `${absoluteUrl("/about")}#author`,
+        name: AUTHOR,
+        url: absoluteUrl("/about#author"),
+        description: AUTHOR_BIO,
+      },
     ],
   };
 
