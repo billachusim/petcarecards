@@ -7,10 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-<<<<<<< HEAD
-=======
 import { AuthorByline } from "@/features/guides/author-byline";
->>>>>>> origin/main
 import { GUIDES } from "@/features/guides/guides-data";
 import {
   TEMPLATE_TOOLS,
@@ -126,10 +123,7 @@ function TemplateToolPage() {
       </nav>
 
       <header className="no-print">
-<<<<<<< HEAD
-=======
         <AuthorByline className="text-sm text-muted-foreground" />
->>>>>>> origin/main
         <h1 className="font-display text-3xl leading-tight font-semibold sm:text-4xl">{tool.h1}</h1>
         {tool.intro.map((p) => (
           <p key={p} className="mt-3 text-base leading-relaxed text-muted-foreground">

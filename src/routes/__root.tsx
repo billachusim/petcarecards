@@ -87,6 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "fPav10721zyDtSi6VDoIRMesoDarkO_6rtVEEyhwf5o",
       },
+      { name: "p:domain_verify", content: "2d37053121f0f9e03ff7a9dbf4f366e1" },
       { property: "og:site_name", content: "Pet Care Card" },
     ],
     links: [

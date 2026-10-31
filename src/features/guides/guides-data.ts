@@ -43,18 +43,6 @@ export const NOINDEX_GUIDE_SLUGS = new Set([
   "dog-holiday-packing-list",
 ]);
 
-/**
- * Auto-written guides that drifted outside the caregiver-handover topic.
- * They stay reachable for visitors but are kept out of the index and sitemap
- * until they are rewritten or removed.
- */
-export const NOINDEX_GUIDE_SLUGS = new Set([
-  "how-to-prepare-pets-for-a-power-cut",
-  "moving-house-with-a-cat-checklist",
-  "how-to-travel-with-a-cat-by-car",
-  "dog-holiday-packing-list",
-]);
-
 export const GUIDES: Guide[] = [
   {
     slug: "pet-sitter-care-card-checklist",
