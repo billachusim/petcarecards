@@ -68,7 +68,7 @@ function GuidePage() {
     url,
     datePublished: guide.published,
     dateModified: guide.updated,
-    author: { "@type": "Organization", name: AUTHOR },
+    author: { "@type": "Person", name: "Bill Achusim", url: AUTHOR_URL },
     publisher: { "@type": "Organization", name: PUBLISHER, url: absoluteUrl("/") },
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
   };
@@ -123,9 +123,10 @@ function GuidePage() {
 
       <article>
         <header>
+          <AuthorByline className="text-sm text-muted-foreground" />
           <h1 className="font-display text-3xl leading-tight font-semibold sm:text-4xl">{guide.title}</h1>
           <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            <span>By {AUTHOR}</span>
+            <span>
             <span>
               Updated{" "}
               <time dateTime={guide.updated}>
