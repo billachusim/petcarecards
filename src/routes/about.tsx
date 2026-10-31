@@ -3,6 +3,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
 import {
+  AUTHOR,
+  AUTHOR_BIO,
+  AUTHOR_PHOTO,
+  AUTHOR_PHOTO_ALT,
+} from "@/features/guides/author";
+import {
   BUSINESS_NAME,
   SITE_NAME,
   absoluteUrl,
@@ -36,6 +42,13 @@ function AboutPage() {
         description: DESCRIPTION,
         url: absoluteUrl("/about"),
         about: { "@id": `${absoluteUrl("/")}#organization` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${absoluteUrl("/about")}#author`,
+        name: AUTHOR,
+        url: absoluteUrl("/about#author"),
+        description: AUTHOR_BIO,
       },
     ],
   };
@@ -89,6 +102,24 @@ function AboutPage() {
         {BUSINESS_NAME} is the seller of record for the lifetime unlock and the publisher of the
         Caregiver Guides on this site. Payments are processed securely by Flutterwave.
       </p>
+
+      <section id="author" className="mt-10 scroll-mt-24">
+        <h2 className="font-display text-2xl font-semibold">About the author</h2>
+        <div className="mt-3 flex items-start gap-4">
+          <img
+            src={AUTHOR_PHOTO}
+            alt={AUTHOR_PHOTO_ALT}
+            width={64}
+            height={64}
+            loading="lazy"
+            className="size-16 shrink-0 rounded-full object-cover"
+          />
+          <div>
+            <p className="font-display text-lg font-semibold">{AUTHOR}</p>
+            <p className="mt-1 text-base leading-relaxed text-muted-foreground">{AUTHOR_BIO}</p>
+          </div>
+        </div>
+      </section>
 
       <h2 className="mt-10 font-display text-2xl font-semibold">How the guides are written</h2>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed">

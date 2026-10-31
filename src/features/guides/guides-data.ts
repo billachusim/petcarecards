@@ -29,7 +29,19 @@ export interface Guide {
   generated?: boolean;
 }
 
-export const AUTHOR = "The Pet Care Card team";
+// The named author lives in ./author.ts so pages and JSON-LD share one source.
+
+/**
+ * Auto-written guides that drifted outside the caregiver-handover topic.
+ * They stay reachable for visitors but are kept out of the index and sitemap
+ * until they are rewritten or removed.
+ */
+export const NOINDEX_GUIDE_SLUGS = new Set([
+  "how-to-prepare-pets-for-a-power-cut",
+  "moving-house-with-a-cat-checklist",
+  "how-to-travel-with-a-cat-by-car",
+  "dog-holiday-packing-list",
+]);
 
 /**
  * Auto-written guides that drifted outside the caregiver-handover topic.
