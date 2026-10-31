@@ -3,7 +3,9 @@ import { AlertTriangle, ArrowRight, Check, Clock } from "lucide-react";
 
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
-import { AUTHOR, GUIDES, NOINDEX_GUIDE_SLUGS, type Guide, getGuide } from "@/features/guides/guides-data";
+import { AUTHOR_URL } from "@/features/guides/author";
+import { AuthorByline } from "@/features/guides/author-byline";
+import { GUIDES, NOINDEX_GUIDE_SLUGS, type Guide, getGuide } from "@/features/guides/guides-data";
 import { getGeneratedGuides } from "@/features/guides/guides.functions";
 import { TEMPLATE_TOOLS } from "@/features/templates/templates-data";
 import { PUBLISHER, SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
@@ -66,7 +68,7 @@ function GuidePage() {
     url,
     datePublished: guide.published,
     dateModified: guide.updated,
-    author: { "@type": "Organization", name: AUTHOR },
+    author: { "@type": "Person", name: "Bill Achusim", url: AUTHOR_URL },
     publisher: { "@type": "Organization", name: PUBLISHER, url: absoluteUrl("/") },
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
   };
@@ -121,9 +123,9 @@ function GuidePage() {
 
       <article>
         <header>
+          <AuthorByline className="text-sm text-muted-foreground" />
           <h1 className="font-display text-3xl leading-tight font-semibold sm:text-4xl">{guide.title}</h1>
           <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            <span>By {AUTHOR}</span>
             <span>
               Updated{" "}
               <time dateTime={guide.updated}>
