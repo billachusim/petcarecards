@@ -18,12 +18,12 @@ export function AppShell({ children, bare = false }: AppShellProps) {
               <span className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <PawPrint className="size-5" aria-hidden="true" />
               </span>
-              <span className="font-display text-lg font-semibold">Pet Care Card</span>
+              <span className="font-display text-lg font-semibold whitespace-nowrap">Pet Care Card</span>
             </Link>
             <nav className="flex items-center gap-1" aria-label="Main">
               <Link
                 to="/guides"
-                className="rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="rounded-xl px-2 py-2 sm:px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               >
                 Guides
               </Link>
@@ -38,6 +38,12 @@ export function AppShell({ children, bare = false }: AppShellProps) {
                 className="hidden rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline-flex"
               >
                 Calculator
+              </Link>
+              <Link
+                to="/app"
+                className="rounded-xl px-2 py-2 whitespace-nowrap sm:px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                My cards
               </Link>
               <Link
                 to="/settings"

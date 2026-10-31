@@ -116,18 +116,19 @@ function validateDraft(
   return null;
 }
 
-function buildPrompt(existing: Guide[]): string {
+function buildPrompt(existing: Pick<Guide, "slug" | "title">[]): string {
   const list = existing.map((guide) => `- ${guide.slug} — ${guide.title}`).join("\n");
   return `You write practical pet-care guides for Pet Care Card (petcarecards.app), a free tool that turns a pet's feeding, routine, medication and emergency details into one care card an owner can hand to a sitter.
 
 Pick ONE new guide topic and write it in full.
 
 Topic rules:
-- It must be a topic a pet owner or caregiver genuinely searches for: feeding and portions, daily routines, sitter and boarding handovers, travel, puppy/kitten and senior care, house-sitting logistics, emergency preparedness, species-specific routines (dogs, cats, and occasionally rabbits, birds or small pets).
+- It must be about the moment an owner hands their pet to someone else: what to write down or leave for a pet sitter, dog walker, cat sitter, house sitter, boarding kennel, family member or neighbour, and how that caregiver should handle feeding, routines, medication instructions, emergencies and vet visits while the owner is away. Species-specific handovers (dogs, cats, and occasionally rabbits, birds or small pets) are fine.
+- Do NOT write general pet-care, travel, moving house, training, health or lifestyle topics that do not involve a caregiver looking after someone else's pet.
 - It must be clearly DIFFERENT from every guide already published. Do not rewrite, re-angle, or narrow an existing topic.
 - Write for a real search intent, with a specific, natural title (no clickbait, no year numbers, no "ultimate").
 
-Already published (do not repeat these topics):
+Already published or drafted (do not repeat these topics):
 ${list}
 
 Safety rules (strict):
@@ -256,7 +257,7 @@ async function setJobState(fields: Record<string, unknown>) {
 }
 
 /**
- * Generates and publishes one guide. Single-flight via a database lease,
+ * Generates one guide as an unpublished draft for human review. Single-flight via a database lease,
  * bounded attempts, and self-pausing on credit/policy failures.
  */
 export async function runWeeklyGuideJob(force = false): Promise<RunResult> {
@@ -315,9 +316,17 @@ export async function runWeeklyGuideJob(force = false): Promise<RunResult> {
   try {
     const generated = await fetchPublishedGeneratedGuides();
     const existing = [...GUIDES, ...generated];
-    const existingSlugs = new Set(existing.map((guide) => guide.slug));
-    const existingTitles = new Set(existing.map((guide) => normalizeTitle(guide.title)));
-    const prompt = buildPrompt(existing);
+    // Drafts still awaiting review count too, so the same topic isn't drafted twice.
+    const { data: drafts } = await supabaseAdmin
+      .from("generated_guides")
+      .select("slug,title")
+      .eq("status", "unpublished");
+    const publishedSlugs = new Set(existing.map((guide) => guide.slug));
+    const existingSlugs = new Set([...publishedSlugs, ...(drafts ?? []).map((d) => d.slug)]);
+    const existingTitles = new Set(
+      [...existing, ...(drafts ?? [])].map((guide) => normalizeTitle(guide.title)),
+    );
+    const prompt = buildPrompt([...existing, ...(drafts ?? [])]);
 
     let lastReason = "";
     for (let attempt = 1; attempt <= MAX_TOPIC_ATTEMPTS; attempt += 1) {
@@ -335,7 +344,7 @@ export async function runWeeklyGuideJob(force = false): Promise<RunResult> {
         continue;
       }
 
-      draft.related = draft.related.filter((slug) => existingSlugs.has(slug)).slice(0, 3);
+      draft.related = draft.related.filter((slug) => publishedSlugs.has(slug)).slice(0, 3);
       const problem = validateDraft(draft, existingSlugs, existingTitles);
       if (problem) {
         lastReason = problem;
@@ -355,7 +364,8 @@ export async function runWeeklyGuideJob(force = false): Promise<RunResult> {
         related: draft.related,
         read_minutes: draft.readMinutes,
         medical_disclaimer: draft.medicalDisclaimer,
-        status: "published",
+        // Drafts wait for a human to review, edit and set status = 'published'.
+        status: "unpublished",
         topic: draft.topic,
         model: MODEL,
       });
@@ -370,7 +380,7 @@ export async function runWeeklyGuideJob(force = false): Promise<RunResult> {
         await setJobState({ paused: false, pause_reason: null, paused_at: null });
       }
 
-      console.log(`[weekly-guide] published /guides/${draft.slug}`);
+      console.log(`[weekly-guide] drafted /guides/${draft.slug} for review`);
       return await finish({ status: "published", slug: draft.slug, topic: draft.topic }, attempt);
     }
 

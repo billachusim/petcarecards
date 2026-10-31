@@ -67,7 +67,7 @@ function SettingsPage() {
       <Button
         variant="ghost"
         className="mb-4 -ml-2 rounded-xl"
-        onClick={() => void navigate({ to: "/" })}
+        onClick={() => void navigate({ to: "/app" })}
       >
         <ArrowLeft className="size-4" aria-hidden="true" /> Back
       </Button>
@@ -237,7 +237,7 @@ function SettingsPage() {
               onClick={() => {
                 deleteAllData();
                 toast.success("All pet data deleted.");
-                void navigate({ to: "/" });
+                void navigate({ to: "/app" });
               }}
             >
               Delete

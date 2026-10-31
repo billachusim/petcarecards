@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
 import { GUIDES } from "@/features/guides/guides-data";
+import { TEMPLATE_TOOLS } from "@/features/templates/templates-data";
 
 const BASE_URL = "https://petcarecards.app";
 
@@ -56,6 +57,7 @@ export const Route = createFileRoute("/llms.txt")({
 
 - ${BASE_URL}/tools/feeding-calculator — dog and cat feeding calculator: daily calories and per-meal portions.
 - ${BASE_URL}/templates — printable blank templates: sitter instructions, emergency contacts, feeding schedule, medication log.
+${TEMPLATE_TOOLS.map((t) => `- ${BASE_URL}/templates/${t.slug} — ${t.name}: fill in on screen, then print or save as PDF.`).join("\n")}
 
 ## Caregiver guides
 

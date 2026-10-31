@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
@@ -24,7 +25,6 @@ import { Route as RemindersRouteImport } from './routes/reminders'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TalkAboutYourPetRouteImport } from './routes/talk-about-your-pet'
-import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as CTokenRouteImport } from './routes/c.$token'
@@ -32,6 +32,8 @@ import { Route as CarePetIdRouteImport } from './routes/care.$petId'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as PetsNewRouteImport } from './routes/pets.new'
+import { Route as TemplatesIndexRouteImport } from './routes/templates.index'
+import { Route as TemplatesSlugRouteImport } from './routes/templates.$slug'
 import { Route as ToolsFeedingCalculatorRouteImport } from './routes/tools.feeding-calculator'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as CarePetIdQrRouteImport } from './routes/care.$petId.qr'
@@ -48,6 +50,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -115,11 +122,6 @@ const TalkAboutYourPetRoute = TalkAboutYourPetRouteImport.update({
   path: '/talk-about-your-pet',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TemplatesRoute = TemplatesRouteImport.update({
-  id: '/templates',
-  path: '/templates',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -154,6 +156,16 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
 const PetsNewRoute = PetsNewRouteImport.update({
   id: '/pets/new',
   path: '/pets/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesIndexRoute = TemplatesIndexRouteImport.update({
+  id: '/templates/',
+  path: '/templates/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesSlugRoute = TemplatesSlugRouteImport.update({
+  id: '/templates/$slug',
+  path: '/templates/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsFeedingCalculatorRoute = ToolsFeedingCalculatorRouteImport.update({
@@ -197,6 +209,7 @@ const ApiPublicPaymentsWebhookRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -210,15 +223,16 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
-  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/templates/$slug': typeof TemplatesSlugRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -229,6 +243,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -242,15 +257,16 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
-  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/templates/$slug': typeof TemplatesSlugRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides': typeof GuidesIndexRoute
+  '/templates': typeof TemplatesIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -262,6 +278,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -275,15 +292,16 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/talk-about-your-pet': typeof TalkAboutYourPetRoute
-  '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/c/$token': typeof CTokenRoute
   '/care/$petId': typeof CarePetIdRouteWithChildren
   '/guides/$slug': typeof GuidesSlugRoute
   '/pets/new': typeof PetsNewRoute
+  '/templates/$slug': typeof TemplatesSlugRoute
   '/tools/feeding-calculator': typeof ToolsFeedingCalculatorRoute
   '/guides/': typeof GuidesIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/care/$petId/qr': typeof CarePetIdQrRoute
   '/pets/$petId/edit': typeof PetsPetIdEditRoute
@@ -296,6 +314,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/app'
     | '/auth'
     | '/contact'
     | '/llms.txt'
@@ -309,15 +328,16 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sitemap.xml'
     | '/talk-about-your-pet'
-    | '/templates'
     | '/terms'
     | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/templates/$slug'
     | '/tools/feeding-calculator'
     | '/guides/'
+    | '/templates/'
     | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -328,6 +348,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/app'
     | '/auth'
     | '/contact'
     | '/llms.txt'
@@ -341,15 +362,16 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sitemap.xml'
     | '/talk-about-your-pet'
-    | '/templates'
     | '/terms'
     | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/templates/$slug'
     | '/tools/feeding-calculator'
     | '/guides'
+    | '/templates'
     | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -360,6 +382,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/app'
     | '/auth'
     | '/contact'
     | '/llms.txt'
@@ -373,15 +396,16 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sitemap.xml'
     | '/talk-about-your-pet'
-    | '/templates'
     | '/terms'
     | '/.well-known/oauth-protected-resource'
     | '/c/$token'
     | '/care/$petId'
     | '/guides/$slug'
     | '/pets/new'
+    | '/templates/$slug'
     | '/tools/feeding-calculator'
     | '/guides/'
+    | '/templates/'
     | '/.lovable/oauth/consent'
     | '/care/$petId/qr'
     | '/pets/$petId/edit'
@@ -393,6 +417,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AppRoute: typeof AppRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
@@ -406,15 +431,16 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TalkAboutYourPetRoute: typeof TalkAboutYourPetRoute
-  TemplatesRoute: typeof TemplatesRoute
   TermsRoute: typeof TermsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   CTokenRoute: typeof CTokenRoute
   CarePetIdRoute: typeof CarePetIdRouteWithChildren
   GuidesSlugRoute: typeof GuidesSlugRoute
   PetsNewRoute: typeof PetsNewRoute
+  TemplatesSlugRoute: typeof TemplatesSlugRoute
   ToolsFeedingCalculatorRoute: typeof ToolsFeedingCalculatorRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
+  TemplatesIndexRoute: typeof TemplatesIndexRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   PetsPetIdEditRoute: typeof PetsPetIdEditRoute
   PetsPetIdMedicationsRoute: typeof PetsPetIdMedicationsRoute
@@ -436,6 +462,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -529,13 +562,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TalkAboutYourPetRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/templates': {
-      id: '/templates'
-      path: '/templates'
-      fullPath: '/templates'
-      preLoaderRoute: typeof TemplatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -583,6 +609,20 @@ declare module '@tanstack/react-router' {
       path: '/pets/new'
       fullPath: '/pets/new'
       preLoaderRoute: typeof PetsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/': {
+      id: '/templates/'
+      path: '/templates'
+      fullPath: '/templates/'
+      preLoaderRoute: typeof TemplatesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/$slug': {
+      id: '/templates/$slug'
+      path: '/templates/$slug'
+      fullPath: '/templates/$slug'
+      preLoaderRoute: typeof TemplatesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools/feeding-calculator': {
@@ -652,6 +692,7 @@ const CarePetIdRouteWithChildren = CarePetIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AppRoute: AppRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
@@ -665,7 +706,6 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TalkAboutYourPetRoute: TalkAboutYourPetRoute,
-  TemplatesRoute: TemplatesRoute,
   TermsRoute: TermsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
@@ -673,8 +713,10 @@ const rootRouteChildren: RootRouteChildren = {
   CarePetIdRoute: CarePetIdRouteWithChildren,
   GuidesSlugRoute: GuidesSlugRoute,
   PetsNewRoute: PetsNewRoute,
+  TemplatesSlugRoute: TemplatesSlugRoute,
   ToolsFeedingCalculatorRoute: ToolsFeedingCalculatorRoute,
   GuidesIndexRoute: GuidesIndexRoute,
+  TemplatesIndexRoute: TemplatesIndexRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   PetsPetIdEditRoute: PetsPetIdEditRoute,
   PetsPetIdMedicationsRoute: PetsPetIdMedicationsRoute,

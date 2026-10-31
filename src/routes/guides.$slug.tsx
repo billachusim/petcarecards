@@ -3,8 +3,9 @@ import { AlertTriangle, ArrowRight, Check, Clock } from "lucide-react";
 
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
-import { AUTHOR, GUIDES, type Guide, getGuide } from "@/features/guides/guides-data";
+import { AUTHOR, GUIDES, NOINDEX_GUIDE_SLUGS, type Guide, getGuide } from "@/features/guides/guides-data";
 import { getGeneratedGuides } from "@/features/guides/guides.functions";
+import { TEMPLATE_TOOLS } from "@/features/templates/templates-data";
 import { PUBLISHER, SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/guides/$slug")({
       return { meta: [{ title: "Guide not found" }, { name: "robots", content: "noindex" }] };
     }
     const { guide } = loaderData;
-    return publicHead({
+    const head = publicHead({
       title: guide.metaTitle,
       description: guide.description,
       path: `/guides/${guide.slug}`,
@@ -29,6 +30,11 @@ export const Route = createFileRoute("/guides/$slug")({
       publishedTime: guide.published,
       modifiedTime: guide.updated,
     });
+    if (!NOINDEX_GUIDE_SLUGS.has(guide.slug)) return head;
+    return {
+      ...head,
+      meta: head.meta.map((m) => (m["name"] === "robots" ? { name: "robots", content: "noindex, follow" } : m)),
+    };
   },
   notFoundComponent: GuideNotFound,
   component: GuidePage,
@@ -77,6 +83,8 @@ function GuidePage() {
           })),
         }
       : null;
+
+  const templates = TEMPLATE_TOOLS.filter((tool) => tool.relatedGuides.includes(guide.slug));
 
   const related = guide.related
     .map((slug) => all.find((g) => g.slug === slug))
@@ -185,6 +193,28 @@ function GuidePage() {
             )}
           </section>
         ))}
+
+        {templates.length > 0 && (
+          <aside className="mt-10 rounded-3xl border border-primary/25 bg-primary/5 p-6">
+            <h2 className="font-display text-2xl font-semibold">Free template</h2>
+            <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+              Fill it in on screen, then print it or save it as a PDF. No sign-up.
+            </p>
+            <ul className="mt-4 space-y-2">
+              {templates.map((tool) => (
+                <li key={tool.slug}>
+                  <Link
+                    to="/templates/$slug"
+                    params={{ slug: tool.slug }}
+                    className="inline-flex items-center gap-2 font-medium text-primary hover:underline"
+                  >
+                    {tool.name} <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
 
         <aside className="mt-10 rounded-3xl border border-border bg-card p-6">
           <h2 className="font-display text-2xl font-semibold">Turn this into a care card</h2>

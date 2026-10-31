@@ -3,6 +3,7 @@ import { Printer } from "lucide-react";
 
 import { AppShell } from "@/components/app/app-shell";
 import { Button } from "@/components/ui/button";
+import { TEMPLATE_TOOLS } from "@/features/templates/templates-data";
 import { SITE_NAME, absoluteUrl, breadcrumbLd, publicHead } from "@/lib/seo";
 
 const TITLE = "Free Printable Pet Care Templates";
@@ -88,7 +89,7 @@ const TEMPLATES: Template[] = [
   },
 ];
 
-export const Route = createFileRoute("/templates")({
+export const Route = createFileRoute("/templates/")({
   head: () =>
     publicHead({
       title: `${TITLE} — Sitter, Emergency, Feeding, Medication | ${SITE_NAME}`,
@@ -151,6 +152,30 @@ function TemplatesPage() {
         </Button>
       </header>
 
+      <section className="no-print mt-8" aria-labelledby="fill-in">
+        <h2 id="fill-in" className="font-display text-2xl font-semibold">
+          Fill in on screen, then print
+        </h2>
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+          Type your pet&apos;s details and watch the sheet build as you go. Your answers stay in this
+          browser.
+        </p>
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          {TEMPLATE_TOOLS.map((tool) => (
+            <li key={tool.slug}>
+              <Link
+                to="/templates/$slug"
+                params={{ slug: tool.slug }}
+                className="block rounded-2xl border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:bg-secondary"
+              >
+                {tool.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h2 className="mt-10 font-display text-2xl font-semibold">Blank sheets to print</h2>
+      </section>
+
       <div className="mt-8 space-y-8">
         {TEMPLATES.map((template) => (
           <section
@@ -182,7 +207,7 @@ function TemplatesPage() {
           link, print, or hand over as a QR code — and you can update it after you have left.
         </p>
         <Button asChild size="lg" className="mt-5 h-12 rounded-xl px-6">
-          <Link to="/pets/new">Create a care card</Link>
+          <Link to="/onboarding">Create a care card</Link>
         </Button>
       </aside>
     </AppShell>

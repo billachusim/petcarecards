@@ -57,7 +57,7 @@ function EditPet() {
         <p className="mt-2 text-sm text-muted-foreground">
           The card may have been deleted on this device.
         </p>
-        <Button className="mt-6 rounded-xl" onClick={() => void navigate({ to: "/" })}>
+        <Button className="mt-6 rounded-xl" onClick={() => void navigate({ to: "/app" })}>
           Go home
         </Button>
       </AppShell>
@@ -71,7 +71,7 @@ function EditPet() {
       <Button
         variant="ghost"
         className="mb-4 -ml-2 rounded-xl"
-        onClick={() => void navigate({ to: "/" })}
+        onClick={() => void navigate({ to: "/app" })}
       >
         <ArrowLeft className="size-4" aria-hidden="true" /> Back
       </Button>
