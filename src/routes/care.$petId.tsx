@@ -62,7 +62,7 @@ function CareCardPage() {
           Care cards are stored on the device that created them. Ask the owner to share the card
           again, or create your own.
         </p>
-        <Button className="mt-6 rounded-xl" onClick={() => void navigate({ to: "/" })}>
+        <Button className="mt-6 rounded-xl" onClick={() => void navigate({ to: "/app" })}>
           Go home
         </Button>
       </AppShell>
@@ -132,7 +132,7 @@ function CareCardPage() {
       <PaywallDialog open={paywallOpen} onOpenChange={setPaywallOpen} />
 
       <div className="no-print mb-4 flex items-center justify-between">
-        <Button variant="ghost" className="-ml-2 rounded-xl" onClick={() => void navigate({ to: "/" })}>
+        <Button variant="ghost" className="-ml-2 rounded-xl" onClick={() => void navigate({ to: "/app" })}>
           <ArrowLeft className="size-4" aria-hidden="true" /> Back
         </Button>
         <Button asChild variant="ghost" className="rounded-xl">

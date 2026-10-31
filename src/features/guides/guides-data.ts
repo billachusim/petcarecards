@@ -31,6 +31,18 @@ export interface Guide {
 
 export const AUTHOR = "The Pet Care Card team";
 
+/**
+ * Auto-written guides that drifted outside the caregiver-handover topic.
+ * They stay reachable for visitors but are kept out of the index and sitemap
+ * until they are rewritten or removed.
+ */
+export const NOINDEX_GUIDE_SLUGS = new Set([
+  "how-to-prepare-pets-for-a-power-cut",
+  "moving-house-with-a-cat-checklist",
+  "how-to-travel-with-a-cat-by-car",
+  "dog-holiday-packing-list",
+]);
+
 export const GUIDES: Guide[] = [
   {
     slug: "pet-sitter-care-card-checklist",
@@ -64,7 +76,7 @@ export const GUIDES: Guide[] = [
       {
         heading: "2. Feeding",
         paragraphs: [
-          "Be specific about amounts and containers. \"One scoop\" means nothing to someone who has never seen your scoop.",
+          'Be specific about amounts and containers. "One scoop" means nothing to someone who has never seen your scoop.',
         ],
         checklist: [
           "Food brand and type, and where it is stored",
@@ -139,7 +151,12 @@ export const GUIDES: Guide[] = [
           "Make a separate card for each pet. Shared instructions get skimmed, and feeding mistakes between pets are one of the most common sitter errors.",
       },
     ],
-    related: ["what-to-leave-with-a-dog-sitter", "pet-emergency-contact-sheet", "printable-pet-care-card-template", "voice-pet-sitter-instructions"],
+    related: [
+      "what-to-leave-with-a-dog-sitter",
+      "pet-emergency-contact-sheet",
+      "printable-pet-care-card-template",
+      "voice-pet-sitter-instructions",
+    ],
   },
   {
     slug: "what-to-leave-with-a-dog-sitter",
@@ -219,7 +236,12 @@ export const GUIDES: Guide[] = [
           "Yes. Emergencies are not proportional to trip length, and a clinic will move faster when the caller already has the clinic name, your name and the dog's details.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet", "voice-pet-sitter-instructions"],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "pet-feeding-schedule-template",
+      "pet-emergency-contact-sheet",
+      "voice-pet-sitter-instructions",
+    ],
   },
   {
     slug: "cat-sitter-instructions",
@@ -290,7 +312,12 @@ export const GUIDES: Guide[] = [
           "Ask for a short message covering how much was eaten, what was in the litter box, and how the cat behaved. That is enough to spot most problems early.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-feeding-schedule-template", "pet-emergency-contact-sheet", "voice-pet-sitter-instructions"],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "pet-feeding-schedule-template",
+      "pet-emergency-contact-sheet",
+      "voice-pet-sitter-instructions",
+    ],
   },
   {
     slug: "pet-emergency-contact-sheet",
@@ -301,7 +328,7 @@ export const GUIDES: Guide[] = [
     answer:
       "A pet emergency contact sheet needs the owner's number, a backup decision-maker, the regular vet's name, phone and address, the nearest 24-hour emergency hospital, the pet's known conditions and medications, and written authorisation for treatment up to a stated amount. Keep it to one page and post it where a caregiver can see it.",
     published: "2026-08-24",
-    updated: "2026-09-02",
+    updated: "2026-10-31",
     readMinutes: 4,
     intro: [
       "Emergency information is only useful if it can be read by a stressed person in ten seconds. That means one page, big type, and no searching.",
@@ -333,7 +360,7 @@ export const GUIDES: Guide[] = [
       {
         heading: "Written authorisation",
         paragraphs: [
-          "Add a line such as: \"I authorise [caregiver name] to seek veterinary treatment for [pet name] and approve costs up to [amount].\" Sign and date it, and give your clinic a copy before you travel.",
+          'Add a line such as: "I authorise [caregiver name] to seek veterinary treatment for [pet name] and approve costs up to [amount]." Sign and date it, and give your clinic a copy before you travel.',
         ],
       },
       {
@@ -342,6 +369,38 @@ export const GUIDES: Guide[] = [
           "Printed on the fridge or by the front door",
           "On the caregiver's phone as a shared link",
           "A QR code near the pet's food, so anyone in the home can open it",
+        ],
+      },
+      {
+        heading: "A filled-in example",
+        paragraphs: [
+          "This is what a complete emergency sheet looks like. It fits on one page in large type.",
+        ],
+        bullets: [
+          "Pet: Biscuit, golden retriever, 4 years, 30 kg, microchip 985 112 003 456 789.",
+          "Owner: Sam Rivera, 555-0142 (call and text).",
+          "Backup who can make decisions: Alex, neighbour with a spare key, 555-0178.",
+          "Vet: Riverside Animal Clinic, 555-0110, 24 Mill Road. Open 8:00 to 18:00, Saturday until 12:00.",
+          "24-hour clinic: City Pet ER, 555-0199, 3 Station Street.",
+          "Medical: allergic to chicken. Daily ear drops, see the label in the fridge door.",
+          "Authorised spend: up to $1,000 without calling the owner.",
+          "Insurance: PetCover, policy 44-1029.",
+        ],
+      },
+      {
+        heading: "What sitters actually struggle with in an emergency",
+        paragraphs: [
+          "Ask experienced sitters and the same problems come up again and again. They cannot reach the owner because of time zones or flights. The regular vet is closed and nobody wrote down an out-of-hours clinic. Or the vet asks a question about the pet's history that only the owner knows.",
+          "A good emergency sheet solves all three: a backup person who can decide, a 24-hour clinic with its address, and a short medical history in plain words.",
+        ],
+      },
+      {
+        heading: "Test it before you leave",
+        checklist: [
+          "Call the 24-hour clinic number once to check it is right.",
+          "Tell your vet who is looking after your pet and that they may call.",
+          "Check your backup contact knows they are the backup.",
+          "Put one copy on the fridge, one by the front door, and send a photo to the sitter.",
         ],
       },
     ],
@@ -357,7 +416,11 @@ export const GUIDES: Guide[] = [
           "Yes. A stated limit lets a clinic begin stabilising care immediately instead of waiting for you, and it protects the caregiver from making a financial decision on your behalf.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-medication-instructions-for-caregivers", "printable-pet-care-card-template"],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "pet-medication-instructions-for-caregivers",
+      "printable-pet-care-card-template",
+    ],
   },
   {
     slug: "pet-medication-instructions-for-caregivers",
@@ -368,7 +431,7 @@ export const GUIDES: Guide[] = [
     answer:
       "Copy each medication exactly as your vet labelled it: medication name, dose, how often, how it is given, and start and end dates. Add where it is stored, what to do about a missed or spat-out dose, and the vet number to call with questions. Never ask a caregiver to judge a dose.",
     published: "2026-08-24",
-    updated: "2026-09-02",
+    updated: "2026-10-31",
     readMinutes: 5,
     medicalDisclaimer: true,
     intro: [
@@ -420,6 +483,35 @@ export const GUIDES: Guide[] = [
           "Leave the medication in its original labelled container. It confirms your written notes and gives a vet everything they need if something goes wrong.",
         ],
       },
+      {
+        heading: "A filled-in example",
+        paragraphs: [
+          "One medication, written so a caregiver cannot misread it. The details come from the vet's label, not from memory.",
+        ],
+        bullets: [
+          "Name: exactly as printed on the label.",
+          "Dose and route: copied word for word from the label.",
+          "When: 8:00 with breakfast. Not on an empty stomach.",
+          "Where it is kept: fridge door, top shelf, in the original box.",
+          "How: hidden in a small piece of cheese. Check it was swallowed.",
+          "If refused, vomited or missed: do not give a second dose. Call Riverside Animal Clinic on 555-0110.",
+        ],
+      },
+      {
+        heading: "Use a dose log",
+        paragraphs: [
+          "When more than one person helps, a dose log is the single best way to stop a dose being given twice or skipped. It is a simple table: date, time given, initials. The caregiver fills in a line straight after each dose.",
+          "Keep the log next to the medication, and ask the caregiver to send you a photo of it every day or two.",
+        ],
+      },
+      {
+        heading: "What not to write",
+        bullets: [
+          "Doses you have worked out yourself. Only use what your vet wrote.",
+          '"Same as usual". The caregiver does not know what usual is.',
+          "Instructions for medication the pet has stopped taking. Remove old boxes from the shelf too.",
+        ],
+      },
     ],
     faqs: [
       {
@@ -433,7 +525,11 @@ export const GUIDES: Guide[] = [
           "They should not give it and should call your vet clinic, which is why the clinic number belongs on the same page as the medication list.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-emergency-contact-sheet", "pet-feeding-schedule-template"],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "pet-emergency-contact-sheet",
+      "pet-feeding-schedule-template",
+    ],
   },
   {
     slug: "pet-feeding-schedule-template",
@@ -444,7 +540,7 @@ export const GUIDES: Guide[] = [
     answer:
       "A usable feeding schedule lists each meal by clock time with an exact amount in cups or grams, names the food and where it is stored, states the treat allowance, lists foods to avoid, and says what to do if the pet does not eat. Amounts should never be described in scoops or handfuls.",
     published: "2026-08-24",
-    updated: "2026-09-02",
+    updated: "2026-10-31",
     readMinutes: 4,
     intro: [
       "Feeding is the instruction a caregiver follows most often, so it is worth making it precise.",
@@ -485,6 +581,33 @@ export const GUIDES: Guide[] = [
           "Give one simple fallback, such as adding a spoon of the usual wet food, and a clear threshold for calling you or the vet. A cat that has not eaten for 24 hours needs a call.",
         ],
       },
+      {
+        heading: "A filled-in example",
+        paragraphs: [
+          "A two-meal schedule for a medium dog looks like this. The tick grid underneath is what stops double feeding when more than one person visits.",
+        ],
+        bullets: [
+          "Food: dry kibble, blue tub under the sink. Measuring cup is inside the tub.",
+          "Amount: 1 cup (about 120 g) per meal.",
+          "Times: 7:00 and 18:00, give or take half an hour.",
+          "Treats: 2 dental chews a day. No table scraps.",
+          "Avoid: grapes, raisins, onions, chocolate, cooked bones.",
+          "If she will not eat: one skipped meal is normal. Call the owner after two.",
+        ],
+      },
+      {
+        heading: "Why a tick grid matters",
+        paragraphs: [
+          "When a neighbour does the morning visit and a friend does the evening, each one tends to assume the other forgot. The result is a pet fed four times a day for a week. A simple grid with one box per meal, initialled when done, removes the guesswork.",
+          "Keep the grid next to the food, not in a drawer. A pen on a string helps more than you would think.",
+        ],
+      },
+      {
+        heading: "Switching food while you are away",
+        paragraphs: [
+          "Avoid it. If you must change food, start the switch at least a week before you leave so any stomach upset happens while you are home. Leave enough of the usual food for the whole stay plus a few extra days in case you are delayed.",
+        ],
+      },
     ],
     faqs: [
       {
@@ -498,7 +621,11 @@ export const GUIDES: Guide[] = [
           "Give a daily total and ask the sitter to top up to that amount and report what is left, so you still know how much was eaten.",
       },
     ],
-    related: ["what-to-leave-with-a-dog-sitter", "cat-sitter-instructions", "pet-sitter-care-card-checklist"],
+    related: [
+      "what-to-leave-with-a-dog-sitter",
+      "cat-sitter-instructions",
+      "pet-sitter-care-card-checklist",
+    ],
   },
   {
     slug: "printable-pet-care-card-template",
@@ -509,7 +636,7 @@ export const GUIDES: Guide[] = [
     answer:
       "A printable pet care card fits on one page in this order: pet header with photo, about, feeding, routine, medication, emergency contacts and vet. Use large type, keep the emergency block visually distinct, and pair the printed copy with a shareable link or QR code so the caregiver has it on their phone.",
     published: "2026-08-24",
-    updated: "2026-09-02",
+    updated: "2026-10-31",
     readMinutes: 4,
     intro: [
       "A printed card on the fridge is still the most reliable format, because it works with no phone, no battery and no signal.",
@@ -548,6 +675,38 @@ export const GUIDES: Guide[] = [
           "Re-check the card before every stay. Doses, vet numbers and feeding amounts change more often than people expect.",
         ],
       },
+      {
+        heading: "A filled-in example",
+        paragraphs: [
+          "Here is what one good care card looks like for a four-year-old golden retriever called Biscuit. Notice that every line answers a question a sitter would otherwise have to text you about.",
+        ],
+        bullets: [
+          "About: Biscuit, golden retriever, 4 years, 30 kg. Friendly, but bolts through open doors.",
+          "Feeding: 1 cup dry food at 7:00 and 18:00. Scoop is in the blue tub under the sink. No grapes, chocolate or cooked bones.",
+          "Routine: 30-minute walk at 8:00 and 17:30 on the park loop. Garden before bed. Sleeps in the crate in the kitchen.",
+          "Medication: ear drops each evening, as written on the vet's label in the fridge door.",
+          "Emergency: Sam (owner) 555-0142. Alex, neighbour with a key, 555-0178. Authorised to spend up to $1,000 without calling.",
+          "Vet: Riverside Animal Clinic, 555-0110, 24 Mill Road. Out of hours: City Pet ER, 555-0199.",
+        ],
+      },
+      {
+        heading: "Mistakes that make a care card hard to use",
+        bullets: [
+          'Vague amounts such as "a scoop" or "a handful" instead of cups or grams.',
+          "Phone numbers without names, so the sitter does not know who they are calling.",
+          "The vet's name but not the address, so it cannot be typed into a map in a hurry.",
+          "Medication paraphrased from memory instead of copied from the label.",
+          "Small print. A sitter reads the card standing up, often in a rush. Use at least 12 pt type.",
+          'Nothing about what is normal. "Skips breakfast sometimes" saves a panicked phone call.',
+        ],
+      },
+      {
+        heading: "Paper, link or QR code: which to use",
+        paragraphs: [
+          "Use all three if you can. Paper works when a phone battery is flat and is easy to glance at by the food bowl. A link can be updated after you leave, which matters when plans change. A QR code on the fridge or crate means anyone who walks in, including a second sitter or a neighbour, can open the latest version in seconds.",
+          "If you only do one, choose the one your sitter will actually look at. Ask them.",
+        ],
+      },
     ],
     faqs: [
       {
@@ -561,7 +720,12 @@ export const GUIDES: Guide[] = [
           "Two printed copies is a sensible default: one on the fridge and one with the pet's supplies, plus the shared digital link.",
       },
     ],
-    related: ["pet-sitter-care-card-checklist", "pet-emergency-contact-sheet", "pet-feeding-schedule-template", "voice-pet-sitter-instructions"],
+    related: [
+      "pet-sitter-care-card-checklist",
+      "pet-emergency-contact-sheet",
+      "pet-feeding-schedule-template",
+      "voice-pet-sitter-instructions",
+    ],
   },
   {
     slug: "puppy-feeding-schedule-by-age",
@@ -602,7 +766,7 @@ export const GUIDES: Guide[] = [
       {
         heading: "Keep the times consistent",
         paragraphs: [
-          "Regular meal times make house-training far more predictable: most puppies need to go out within 15 to 30 minutes of eating. If you are handing over to a sitter, write the actual clock times, not \"morning and evening\".",
+          'Regular meal times make house-training far more predictable: most puppies need to go out within 15 to 30 minutes of eating. If you are handing over to a sitter, write the actual clock times, not "morning and evening".',
         ],
         checklist: [
           "Meal times as clock times: 7:00, 12:00, 17:00",
@@ -838,7 +1002,11 @@ export const GUIDES: Guide[] = [
           "Contact your vet if a cat has not eaten for around 24 hours, sooner if they are also lethargic, vomiting or hiding. Prolonged fasting in cats can lead to serious liver complications.",
       },
     ],
-    related: ["cat-sitter-instructions", "pet-feeding-schedule-template", "pet-sitter-care-card-checklist"],
+    related: [
+      "cat-sitter-instructions",
+      "pet-feeding-schedule-template",
+      "pet-sitter-care-card-checklist",
+    ],
   },
   {
     slug: "dog-feeding-chart-by-weight",
@@ -853,7 +1021,7 @@ export const GUIDES: Guide[] = [
     readMinutes: 5,
     medicalDisclaimer: true,
     intro: [
-      "\"How much should I feed my dog?\" has no single answer, because two foods at the same weight can differ by hundreds of calories per cup. What is consistent is the method: start from your food's own chart, measure properly, and adjust to the dog in front of you.",
+      '"How much should I feed my dog?" has no single answer, because two foods at the same weight can differ by hundreds of calories per cup. What is consistent is the method: start from your food\'s own chart, measure properly, and adjust to the dog in front of you.',
     ],
     sections: [
       {

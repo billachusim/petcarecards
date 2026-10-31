@@ -1,53 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-import { GUIDES } from "@/features/guides/guides-data";
+import { GUIDES, NOINDEX_GUIDE_SLUGS } from "@/features/guides/guides-data";
+import { TEMPLATE_TOOLS } from "@/features/templates/templates-data";
+import { SITE_URL } from "@/lib/seo";
 
-const BASE_URL = "https://petcarecards.app";
+/** Bump when the static marketing pages change meaningfully. */
+const SITE_UPDATED = "2026-10-31";
 
 interface SitemapEntry {
   path: string;
   lastmod?: string;
-  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-  priority?: string;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const { fetchPublishedGeneratedGuides } = await import(
-          "@/features/guides/generated-guides.server"
+        const { fetchPublishedGeneratedGuides } =
+          await import("@/features/guides/generated-guides.server");
+        const allGuides = [...GUIDES, ...(await fetchPublishedGeneratedGuides())].filter(
+          (guide) => !NOINDEX_GUIDE_SLUGS.has(guide.slug),
         );
-        const allGuides = [...GUIDES, ...(await fetchPublishedGeneratedGuides())];
+        const latestGuide =
+          allGuides
+            .map((g) => g.updated)
+            .sort()
+            .at(-1) ?? SITE_UPDATED;
 
         const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/guides", changefreq: "weekly", priority: "0.9" },
-          ...allGuides.map((guide) => ({
-            path: `/guides/${guide.slug}`,
-            lastmod: guide.updated,
-            priority: "0.8",
+          { path: "/", lastmod: SITE_UPDATED },
+          { path: "/guides", lastmod: latestGuide > SITE_UPDATED ? latestGuide : SITE_UPDATED },
+          ...allGuides.map((guide) => ({ path: `/guides/${guide.slug}`, lastmod: guide.updated })),
+          { path: "/templates", lastmod: SITE_UPDATED },
+          ...TEMPLATE_TOOLS.map((tool) => ({
+            path: `/templates/${tool.slug}`,
+            lastmod: SITE_UPDATED,
           })),
-          { path: "/talk-about-your-pet", changefreq: "monthly", priority: "0.9" },
-          { path: "/tools/feeding-calculator", changefreq: "monthly", priority: "0.7" },
-          { path: "/templates", changefreq: "monthly", priority: "0.7" },
-          { path: "/pricing", changefreq: "monthly", priority: "0.8" },
-          { path: "/contact", changefreq: "yearly", priority: "0.5" },
-          { path: "/about", changefreq: "yearly", priority: "0.5" },
-
-          { path: "/privacy", changefreq: "yearly", priority: "0.3" },
-          { path: "/terms", changefreq: "yearly", priority: "0.3" },
-          { path: "/refunds", changefreq: "yearly", priority: "0.3" },
+          { path: "/talk-about-your-pet", lastmod: SITE_UPDATED },
+          { path: "/tools/feeding-calculator", lastmod: SITE_UPDATED },
+          { path: "/pricing", lastmod: SITE_UPDATED },
+          { path: "/contact", lastmod: SITE_UPDATED },
+          { path: "/about", lastmod: SITE_UPDATED },
+          { path: "/privacy", lastmod: SITE_UPDATED },
+          { path: "/terms", lastmod: SITE_UPDATED },
+          { path: "/refunds", lastmod: SITE_UPDATED },
         ];
 
         const urls = entries.map((entry) =>
           [
             `  <url>`,
-            `    <loc>${BASE_URL}${entry.path}</loc>`,
+            `    <loc>${SITE_URL}${entry.path}</loc>`,
             entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>` : null,
-            entry.changefreq ? `    <changefreq>${entry.changefreq}</changefreq>` : null,
-            entry.priority ? `    <priority>${entry.priority}</priority>` : null,
             `  </url>`,
           ]
             .filter(Boolean)
