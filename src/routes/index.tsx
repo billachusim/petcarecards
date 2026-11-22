@@ -51,7 +51,16 @@ const FAQS = [
     answer:
       "Yes. The card works for dogs, cats, rabbits, birds and other pets, and every section is optional, so you only fill in what applies to your pet.",
   },
+  {
+    question: "Is there a Pet Care Card app for iPhone and Android?",
+    answer:
+      "Yes. Pet Care Card is on the App Store for iPhone and on Google Play for Android, with the same voice fill: tap the mic, describe your pet, and the care card fills itself in for you to check.",
+  },
 ];
+
+const APP_STORE_URL = "https://apps.apple.com/app/id6807899161";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.techfaculty.pet_care_card";
 
 const SECTIONS = [
   {
@@ -385,6 +394,27 @@ function Landing() {
               <p className="mt-1 text-base leading-relaxed text-muted-foreground">{faq.answer}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mt-14" aria-labelledby="get-the-app">
+        <h2 id="get-the-app" className="font-display text-2xl font-semibold">
+          Get the app
+        </h2>
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+          Keep your care cards on your phone, with voice fill and reminders.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-5 text-base">
+            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
+              Download on the App Store
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-5 text-base">
+            <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
+              Get it on Google Play
+            </a>
+          </Button>
         </div>
       </section>
 
